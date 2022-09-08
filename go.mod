@@ -26,11 +26,9 @@ require (
 	github.com/rs/zerolog v1.28.0
 	github.com/stangirard/yatas v0.10.2
 	golang.org/x/exp v0.0.0-20220907003533-145caa8ea1d0
-	honnef.co/go/tools v0.0.0-20190523083050-ea95bdfd59fc
 )
 
 require (
-	github.com/BurntSushi/toml v0.3.1 // indirect
 	github.com/VividCortex/ewma v1.2.0 // indirect
 	github.com/acarl005/stripansi v0.0.0-20180116102854-5a71ef0e047d // indirect
 	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.4.7 // indirect

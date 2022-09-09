@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/gob"
 	"os"
 	"sync"
 
@@ -187,14 +188,66 @@ func initTest(s aws.Config, c *commons.Config, a commons.AWS_Account) commons.Te
 	return checks
 }
 
-// Here is a real implementation of Greeter
 type YatasPlugin struct {
 	logger hclog.Logger
 }
 
+func UnmarshalAWS(g *YatasPlugin, c *commons.Config) ([]commons.AWS_Account, error) {
+	var accounts []commons.AWS_Account
+
+	for _, r := range c.PluginConfig {
+		var tmpAccounts []commons.AWS_Account
+		awsFound := false
+		for key, value := range r {
+
+			switch key {
+			case "pluginName":
+				if value == "aws" {
+					awsFound = true
+
+				}
+			case "accounts":
+
+				for _, v := range value.([]interface{}) {
+					var account commons.AWS_Account
+					g.logger.Debug("🔎")
+					g.logger.Debug("%v", v)
+					for keyaccounts, valueaccounts := range v.(map[string]interface{}) {
+						switch keyaccounts {
+						case "name":
+							account.Name = valueaccounts.(string)
+						case "profile":
+							account.Profile = valueaccounts.(string)
+						case "region":
+							account.Region = valueaccounts.(string)
+						case "sso":
+							account.SSO = valueaccounts.(bool)
+						}
+					}
+					tmpAccounts = append(tmpAccounts, account)
+
+				}
+
+			}
+		}
+		if awsFound {
+			accounts = tmpAccounts
+		}
+
+	}
+	g.logger.Debug("✅")
+	g.logger.Debug("%v", accounts)
+	g.logger.Debug("Length of accounts: %d", len(accounts))
+	return accounts, nil
+}
+
 func (g *YatasPlugin) Run(c *commons.Config) []commons.Tests {
 	g.logger.Debug("message from YatasPlugin.Run")
-
+	var err error
+	c.AWS, err = UnmarshalAWS(g, c)
+	if err != nil {
+		panic(err)
+	}
 	var checksAll []commons.Tests
 
 	checks, err := runPlugins(c, "aws")
@@ -210,12 +263,14 @@ func (g *YatasPlugin) Run(c *commons.Config) []commons.Tests {
 // This prevents users from executing bad plugins or executing a plugin
 // directory. It is a UX feature, not a security feature.
 var handshakeConfig = plugin.HandshakeConfig{
-	ProtocolVersion:  1,
+	ProtocolVersion:  2,
 	MagicCookieKey:   "BASIC_PLUGIN",
 	MagicCookieValue: "hello",
 }
 
 func main() {
+	gob.Register([]interface{}{})
+	gob.Register(map[string]interface{}{})
 	logger := hclog.New(&hclog.LoggerOptions{
 		Level:      hclog.Trace,
 		Output:     os.Stderr,

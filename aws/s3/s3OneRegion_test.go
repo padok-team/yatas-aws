@@ -6,12 +6,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/s3/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfBucketInOneZone(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		buckets     BucketAndNotInRegion
 		testName    string
 	}
@@ -22,9 +22,9 @@ func TestCheckIfBucketInOneZone(t *testing.T) {
 		{
 			name: "Check if S3 buckets are in one zone",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				buckets: BucketAndNotInRegion{
 					Buckets: []types.Bucket{
@@ -61,7 +61,7 @@ func TestCheckIfBucketInOneZone(t *testing.T) {
 
 func TestCheckIfBucketInOneZoneFail(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		buckets     BucketAndNotInRegion
 		testName    string
 	}
@@ -72,9 +72,9 @@ func TestCheckIfBucketInOneZoneFail(t *testing.T) {
 		{
 			name: "Check if S3 buckets are in one zone",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				buckets: BucketAndNotInRegion{
 					Buckets: []types.Bucket{

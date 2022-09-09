@@ -4,16 +4,16 @@ import (
 	"sync"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
-func RunChecks(wa *sync.WaitGroup, s aws.Config, c *config.Config, queue chan []config.Check) {
+func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan []commons.Check) {
 
-	var checkConfig config.CheckConfig
+	var checkConfig commons.CheckConfig
 	checkConfig.Init(s, c)
-	var checks []config.Check
+	var checks []commons.Check
 	guardyDetectors := GetDetectors(checkConfig.ConfigAWS)
-	go config.CheckTest(checkConfig.Wg, c, "AWS_GDT_001", CheckIfGuarddutyEnabled)(checkConfig, "AWS_GDT_001", guardyDetectors)
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_GDT_001", CheckIfGuarddutyEnabled)(checkConfig, "AWS_GDT_001", guardyDetectors)
 	go func() {
 		for t := range checkConfig.Queue {
 			t.EndCheck()

@@ -4,12 +4,12 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfUserCanElevateRights(t *testing.T) {
 	type args struct {
-		checkConfig            config.CheckConfig
+		checkConfig            commons.CheckConfig
 		userToPolociesElevated []UserToPoliciesElevate
 		testName               string
 	}
@@ -20,9 +20,9 @@ func TestCheckIfUserCanElevateRights(t *testing.T) {
 		{
 			name: "Check if  users can elevate rights",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				userToPolociesElevated: []UserToPoliciesElevate{
 					{
@@ -53,7 +53,7 @@ func TestCheckIfUserCanElevateRights(t *testing.T) {
 
 func TestCheckIfUserCanElevateRightsFAIL(t *testing.T) {
 	type args struct {
-		checkConfig            config.CheckConfig
+		checkConfig            commons.CheckConfig
 		userToPolociesElevated []UserToPoliciesElevate
 		testName               string
 	}
@@ -64,9 +64,9 @@ func TestCheckIfUserCanElevateRightsFAIL(t *testing.T) {
 		{
 			name: "Check if  users can elevate rights",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				userToPolociesElevated: []UserToPoliciesElevate{
 					{

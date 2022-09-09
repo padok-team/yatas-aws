@@ -6,12 +6,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/cloudtrail/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfCloudtrailsEncrypted(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		cloudtrails []types.Trail
 		testName    string
 	}
@@ -22,7 +22,7 @@ func TestCheckIfCloudtrailsEncrypted(t *testing.T) {
 		{
 			name: "TestCheckIfCloudtrailsEncrypted",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				cloudtrails: []types.Trail{
 					{
 						Name:     aws.String("test"),
@@ -53,7 +53,7 @@ func TestCheckIfCloudtrailsEncrypted(t *testing.T) {
 
 func TestCheckIfCloudtrailsEncryptedFail(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		cloudtrails []types.Trail
 		testName    string
 	}
@@ -64,7 +64,7 @@ func TestCheckIfCloudtrailsEncryptedFail(t *testing.T) {
 		{
 			name: "TestCheckIfCloudtrailsEncrypted",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				cloudtrails: []types.Trail{
 					{
 						Name:     aws.String("test"),

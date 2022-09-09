@@ -5,12 +5,12 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfDynamodbContinuousBackupsEnabled(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		dynamodbs   []TableBackups
 		testName    string
 	}
@@ -21,9 +21,9 @@ func TestCheckIfDynamodbContinuousBackupsEnabled(t *testing.T) {
 		{
 			name: "TestCheckIfDynamodbEncrypted",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				dynamodbs: []TableBackups{
 					{
@@ -55,7 +55,7 @@ func TestCheckIfDynamodbContinuousBackupsEnabled(t *testing.T) {
 
 func TestCheckIfDynamodbContinuousBackupsEnabledFail(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		dynamodbs   []TableBackups
 		testName    string
 	}
@@ -66,9 +66,9 @@ func TestCheckIfDynamodbContinuousBackupsEnabledFail(t *testing.T) {
 		{
 			name: "TestCheckIfDynamodbEncrypted",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				dynamodbs: []TableBackups{
 					{

@@ -6,12 +6,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/acm/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfACMInUse(t *testing.T) {
 	type args struct {
-		checkConfig  config.CheckConfig
+		checkConfig  commons.CheckConfig
 		certificates []types.CertificateDetail
 		testName     string
 	}
@@ -23,7 +23,7 @@ func TestCheckIfACMInUse(t *testing.T) {
 		{
 			name: "Check if all ACM certificates are in use",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				certificates: []types.CertificateDetail{
 					{
 						CertificateArn: aws.String("arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012"),
@@ -38,7 +38,7 @@ func TestCheckIfACMInUse(t *testing.T) {
 		{
 			name: "Check if all ACM certificates are in use",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				certificates: []types.CertificateDetail{
 					{
 						CertificateArn: aws.String("arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012"),

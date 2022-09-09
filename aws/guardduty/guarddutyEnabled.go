@@ -1,20 +1,20 @@
 package guardduty
 
 import (
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
-func CheckIfGuarddutyEnabled(checkConfig config.CheckConfig, testName string, detectors []string) {
-	var check config.Check
+func CheckIfGuarddutyEnabled(checkConfig commons.CheckConfig, testName string, detectors []string) {
+	var check commons.Check
 	check.InitCheck("GuardDuty is enabled in the account", "Check if GuardDuty is enabled", testName)
 
 	if len(detectors) == 0 {
 		Message := "GuardDuty is not enabled"
-		result := config.Result{Status: "FAIL", Message: Message}
+		result := commons.Result{Status: "FAIL", Message: Message}
 		check.AddResult(result)
 	} else {
 		Message := "GuardDuty is enabled"
-		result := config.Result{Status: "OK", Message: Message}
+		result := commons.Result{Status: "OK", Message: Message}
 		check.AddResult(result)
 	}
 	checkConfig.Queue <- check

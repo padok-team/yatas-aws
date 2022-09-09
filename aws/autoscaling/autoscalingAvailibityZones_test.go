@@ -6,12 +6,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/autoscaling/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfInTwoAvailibilityZones(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		groups      []types.AutoScalingGroup
 		testName    string
 	}
@@ -23,7 +23,7 @@ func TestCheckIfInTwoAvailibilityZones(t *testing.T) {
 		{
 			name: "TestCheckIfInTwoAvailibilityZones",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				groups:      []types.AutoScalingGroup{},
 				testName:    "AWS_ASG_001",
 			},
@@ -32,7 +32,7 @@ func TestCheckIfInTwoAvailibilityZones(t *testing.T) {
 		{
 			name: "TestCheckIfInTwoAvailibilityZones",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				groups: []types.AutoScalingGroup{
 					{
 						AvailabilityZones:    []string{"us-east-1a", "us-east-1b"},
@@ -46,7 +46,7 @@ func TestCheckIfInTwoAvailibilityZones(t *testing.T) {
 		{
 			name: "TestCheckIfInTwoAvailibilityZones",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				groups: []types.AutoScalingGroup{
 					{
 						AvailabilityZones:    []string{"us-east-1b"},
@@ -60,7 +60,7 @@ func TestCheckIfInTwoAvailibilityZones(t *testing.T) {
 		{
 			name: "TestCheckIfInTwoAvailibilityZones",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				groups: []types.AutoScalingGroup{
 					{
 						AvailabilityZones:    []string{"us-east-1a", "us-east-1b", "us-east-1c"},

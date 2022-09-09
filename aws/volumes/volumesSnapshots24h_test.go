@@ -7,12 +7,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfSnapshotYoungerthan24h(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		vs          couple
 		testName    string
 	}
@@ -23,9 +23,9 @@ func TestCheckIfSnapshotYoungerthan24h(t *testing.T) {
 		{
 			name: "TestCheckIfSnapshotYoungerthan24h",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				vs: couple{
 					Snapshot: []types.Snapshot{
@@ -64,7 +64,7 @@ func TestCheckIfSnapshotYoungerthan24h(t *testing.T) {
 
 func TestCheckIfSnapshotYoungerthan24hFail(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		vs          couple
 		testName    string
 	}
@@ -75,9 +75,9 @@ func TestCheckIfSnapshotYoungerthan24hFail(t *testing.T) {
 		{
 			name: "TestCheckIfSnapshotYoungerthan24h",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				vs: couple{
 					Snapshot: []types.Snapshot{

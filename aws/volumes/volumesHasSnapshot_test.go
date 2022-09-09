@@ -6,12 +6,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfAllVolumesHaveSnapshots(t *testing.T) {
 	type args struct {
-		checkConfig      config.CheckConfig
+		checkConfig      commons.CheckConfig
 		snapshot2Volumes couple
 		testName         string
 	}
@@ -22,9 +22,9 @@ func TestCheckIfAllVolumesHaveSnapshots(t *testing.T) {
 		{
 			name: "TestCheckIfAllVolumesHaveSnapshots",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				snapshot2Volumes: couple{
 					Snapshot: []types.Snapshot{
@@ -62,7 +62,7 @@ func TestCheckIfAllVolumesHaveSnapshots(t *testing.T) {
 
 func TestCheckIfAllVolumesHaveSnapshotsFail(t *testing.T) {
 	type args struct {
-		checkConfig      config.CheckConfig
+		checkConfig      commons.CheckConfig
 		snapshot2Volumes couple
 		testName         string
 	}
@@ -73,9 +73,9 @@ func TestCheckIfAllVolumesHaveSnapshotsFail(t *testing.T) {
 		{
 			name: "TestCheckIfAllVolumesHaveSnapshots",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				snapshot2Volumes: couple{
 					Snapshot: []types.Snapshot{

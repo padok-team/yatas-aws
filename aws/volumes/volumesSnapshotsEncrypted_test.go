@@ -6,12 +6,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfAllSnapshotsEncrypted(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		snapshots   []types.Snapshot
 		testName    string
 	}
@@ -22,9 +22,9 @@ func TestCheckIfAllSnapshotsEncrypted(t *testing.T) {
 		{
 			name: "TestCheckIfAllSnapshotsEncrypted",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				snapshots: []types.Snapshot{
 					{
@@ -55,7 +55,7 @@ func TestCheckIfAllSnapshotsEncrypted(t *testing.T) {
 
 func TestCheckIfAllSnapshotsEncryptedFail(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		snapshots   []types.Snapshot
 		testName    string
 	}
@@ -66,9 +66,9 @@ func TestCheckIfAllSnapshotsEncryptedFail(t *testing.T) {
 		{
 			name: "TestCheckIfAllSnapshotsEncrypted",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				snapshots: []types.Snapshot{
 					{

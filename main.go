@@ -28,13 +28,12 @@ import (
 	"github.com/stangirard/yatas-aws/aws/volumes"
 	"github.com/stangirard/yatas-aws/aws/vpc"
 
-	yatas "github.com/stangirard/yatas/config"
 	"github.com/stangirard/yatas/plugins/commons"
 )
 
 // Create a new session that the SDK will use to load
 // credentials from. With either SSO or credentials
-func initAuth(a yatas.AWS_Account) aws.Config {
+func initAuth(a commons.AWS_Account) aws.Config {
 
 	s := initSession(a)
 	return s
@@ -43,7 +42,7 @@ func initAuth(a yatas.AWS_Account) aws.Config {
 
 // Create a new session that the SDK will use to load
 // credentials from credentials
-func createSessionWithCredentials(c yatas.AWS_Account) aws.Config {
+func createSessionWithCredentials(c commons.AWS_Account) aws.Config {
 
 	if c.Profile == "" {
 		s, err := config.LoadDefaultConfig(context.TODO(),
@@ -77,7 +76,7 @@ func createSessionWithCredentials(c yatas.AWS_Account) aws.Config {
 // Create a new session that the SDK will use to load
 // credentials from the shared credentials file.
 // Usefull for SSO
-func createSessionWithSSO(c yatas.AWS_Account) aws.Config {
+func createSessionWithSSO(c commons.AWS_Account) aws.Config {
 
 	if c.Profile == "" {
 		s, err := config.LoadDefaultConfig(context.Background(),
@@ -111,7 +110,7 @@ func createSessionWithSSO(c yatas.AWS_Account) aws.Config {
 
 // Create a new session that the SDK will use to load
 // credentials from. With either SSO or credentials
-func initSession(c yatas.AWS_Account) aws.Config {
+func initSession(c commons.AWS_Account) aws.Config {
 
 	if c.SSO {
 		return createSessionWithSSO(c)
@@ -121,11 +120,11 @@ func initSession(c yatas.AWS_Account) aws.Config {
 }
 
 // Public Functin used to run the AWS tests
-func Run(c *yatas.Config) ([]yatas.Tests, error) {
+func Run(c *commons.Config) ([]commons.Tests, error) {
 
 	var wg sync.WaitGroup
-	var queue = make(chan yatas.Tests, 10)
-	var checks []yatas.Tests
+	var queue = make(chan commons.Tests, 10)
+	var checks []commons.Tests
 	wg.Add(len(c.AWS))
 	for _, account := range c.AWS {
 		go runTestsForAccount(account, c, queue)
@@ -143,36 +142,36 @@ func Run(c *yatas.Config) ([]yatas.Tests, error) {
 }
 
 // For each account we run the tests. We use a queue to store the results and a waitgroup to wait for all the tests to be done. This allows to run all tests asynchronously.
-func runTestsForAccount(account yatas.AWS_Account, c *yatas.Config, queue chan yatas.Tests) {
+func runTestsForAccount(account commons.AWS_Account, c *commons.Config, queue chan commons.Tests) {
 	s := initAuth(account)
 	checks := initTest(s, c, account)
 	queue <- checks
 }
 
 // Main function that launched all the test for a given account. If a new category is added, it needs to be added here.
-func initTest(s aws.Config, c *yatas.Config, a yatas.AWS_Account) yatas.Tests {
+func initTest(s aws.Config, c *commons.Config, a commons.AWS_Account) commons.Tests {
 
-	var checks yatas.Tests
+	var checks commons.Tests
 	checks.Account = a.Name
 	var wg sync.WaitGroup
-	queue := make(chan []yatas.Check, 100)
-	go yatas.CheckMacroTest(&wg, c, acm.RunChecks)(&wg, s, c, queue)
-	go yatas.CheckMacroTest(&wg, c, s3.RunChecks)(&wg, s, c, queue)
-	go yatas.CheckMacroTest(&wg, c, volumes.RunChecks)(&wg, s, c, queue)
-	go yatas.CheckMacroTest(&wg, c, rds.RunChecks)(&wg, s, c, queue)
-	go yatas.CheckMacroTest(&wg, c, vpc.RunChecks)(&wg, s, c, queue)
-	go yatas.CheckMacroTest(&wg, c, cloudtrail.RunChecks)(&wg, s, c, queue)
-	go yatas.CheckMacroTest(&wg, c, ecr.RunChecks)(&wg, s, c, queue)
-	go yatas.CheckMacroTest(&wg, c, lambda.RunChecks)(&wg, s, c, queue)
-	go yatas.CheckMacroTest(&wg, c, dynamodb.RunChecks)(&wg, s, c, queue)
-	go yatas.CheckMacroTest(&wg, c, ec2.RunChecks)(&wg, s, c, queue)
-	go yatas.CheckMacroTest(&wg, c, cloudfront.RunChecks)(&wg, s, c, queue)
-	go yatas.CheckMacroTest(&wg, c, apigateway.RunChecks)(&wg, s, c, queue)
-	go yatas.CheckMacroTest(&wg, c, autoscaling.RunChecks)(&wg, s, c, queue)
-	go yatas.CheckMacroTest(&wg, c, loadbalancers.RunChecks)(&wg, s, c, queue)
-	go yatas.CheckMacroTest(&wg, c, guardduty.RunChecks)(&wg, s, c, queue)
-	go yatas.CheckMacroTest(&wg, c, iam.RunChecks)(&wg, s, c, queue)
-	go yatas.CheckMacroTest(&wg, c, eks.RunChecks)(&wg, s, c, queue)
+	queue := make(chan []commons.Check, 100)
+	go commons.CheckMacroTest(&wg, c, acm.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, s3.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, volumes.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, rds.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, vpc.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, cloudtrail.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, ecr.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, lambda.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, dynamodb.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, ec2.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, cloudfront.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, apigateway.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, autoscaling.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, loadbalancers.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, guardduty.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, iam.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, eks.RunChecks)(&wg, s, c, queue)
 
 	go func() {
 		for t := range queue {
@@ -193,10 +192,10 @@ type YatasPlugin struct {
 	logger hclog.Logger
 }
 
-func (g *YatasPlugin) Run(c *yatas.Config) []yatas.Tests {
+func (g *YatasPlugin) Run(c *commons.Config) []commons.Tests {
 	g.logger.Debug("message from YatasPlugin.Run")
 
-	var checksAll []yatas.Tests
+	var checksAll []commons.Tests
 
 	checks, err := runPlugins(c, "aws")
 	if err != nil {
@@ -240,8 +239,8 @@ func main() {
 }
 
 // Run the plugins that are enabled in the config with a switch based on the name of the plugin
-func runPlugins(c *yatas.Config, plugin string) ([]yatas.Tests, error) {
-	var checksAll []yatas.Tests
+func runPlugins(c *commons.Config, plugin string) ([]commons.Tests, error) {
+	var checksAll []commons.Tests
 
 	checksAll, err := Run(c)
 	if err != nil {

@@ -4,12 +4,12 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfBucketObjectVersioningEnabled(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		buckets     []S3ToVersioning
 		testName    string
 	}
@@ -20,8 +20,8 @@ func TestCheckIfBucketObjectVersioningEnabled(t *testing.T) {
 		{
 			name: "check if bucket object versioning enabled",
 			args: args{
-				checkConfig: config.CheckConfig{
-					Queue: make(chan config.Check, 1),
+				checkConfig: commons.CheckConfig{
+					Queue: make(chan commons.Check, 1),
 					Wg:    &sync.WaitGroup{},
 				},
 				buckets: []S3ToVersioning{
@@ -52,7 +52,7 @@ func TestCheckIfBucketObjectVersioningEnabled(t *testing.T) {
 
 func TestCheckIfBucketObjectVersioningEnabledFail(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		buckets     []S3ToVersioning
 		testName    string
 	}
@@ -63,8 +63,8 @@ func TestCheckIfBucketObjectVersioningEnabledFail(t *testing.T) {
 		{
 			name: "check if bucket object versioning enabled",
 			args: args{
-				checkConfig: config.CheckConfig{
-					Queue: make(chan config.Check, 1),
+				checkConfig: commons.CheckConfig{
+					Queue: make(chan commons.Check, 1),
 					Wg:    &sync.WaitGroup{},
 				},
 				buckets: []S3ToVersioning{

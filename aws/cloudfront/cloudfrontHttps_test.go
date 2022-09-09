@@ -6,12 +6,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/cloudfront/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfHTTPSOnly(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		d           []types.DistributionSummary
 		testName    string
 	}
@@ -22,7 +22,7 @@ func TestCheckIfHTTPSOnly(t *testing.T) {
 		{
 			name: "TestCheckIfHTTPSOnly",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				d: []types.DistributionSummary{
 					{
 						ViewerCertificate: &types.ViewerCertificate{
@@ -40,7 +40,7 @@ func TestCheckIfHTTPSOnly(t *testing.T) {
 		{
 			name: "TestCheckIfHTTPSOnly",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				d: []types.DistributionSummary{
 					{
 						ViewerCertificate: &types.ViewerCertificate{
@@ -76,7 +76,7 @@ func TestCheckIfHTTPSOnly(t *testing.T) {
 
 func TestCheckIfHTTPSOnlyFail(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		d           []types.DistributionSummary
 		testName    string
 	}
@@ -87,7 +87,7 @@ func TestCheckIfHTTPSOnlyFail(t *testing.T) {
 		{
 			name: "TestCheckIfHTTPSOnly",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				d: []types.DistributionSummary{
 					{
 						ViewerCertificate: &types.ViewerCertificate{

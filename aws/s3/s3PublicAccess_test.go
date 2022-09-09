@@ -4,12 +4,12 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfS3PublicAccessBlockEnabled(t *testing.T) {
 	type args struct {
-		checkConfig           config.CheckConfig
+		checkConfig           commons.CheckConfig
 		s3toPublicBlockAccess []S3toPublicBlockAccess
 		testName              string
 	}
@@ -20,8 +20,8 @@ func TestCheckIfS3PublicAccessBlockEnabled(t *testing.T) {
 		{
 			name: "check if s3 public access block enabled",
 			args: args{
-				checkConfig: config.CheckConfig{
-					Queue: make(chan config.Check, 1),
+				checkConfig: commons.CheckConfig{
+					Queue: make(chan commons.Check, 1),
 					Wg:    &sync.WaitGroup{},
 				},
 				s3toPublicBlockAccess: []S3toPublicBlockAccess{
@@ -52,7 +52,7 @@ func TestCheckIfS3PublicAccessBlockEnabled(t *testing.T) {
 
 func TestCheckIfS3PublicAccessBlockEnabledFail(t *testing.T) {
 	type args struct {
-		checkConfig           config.CheckConfig
+		checkConfig           commons.CheckConfig
 		s3toPublicBlockAccess []S3toPublicBlockAccess
 		testName              string
 	}
@@ -63,8 +63,8 @@ func TestCheckIfS3PublicAccessBlockEnabledFail(t *testing.T) {
 		{
 			name: "check if s3 public access block enabled",
 			args: args{
-				checkConfig: config.CheckConfig{
-					Queue: make(chan config.Check, 1),
+				checkConfig: commons.CheckConfig{
+					Queue: make(chan commons.Check, 1),
 					Wg:    &sync.WaitGroup{},
 				},
 				s3toPublicBlockAccess: []S3toPublicBlockAccess{

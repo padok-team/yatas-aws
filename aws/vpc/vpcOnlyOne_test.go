@@ -6,12 +6,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func Test_checkIfOnlyOneVPC(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		vpcs        []types.Vpc
 		testName    string
 	}
@@ -22,7 +22,7 @@ func Test_checkIfOnlyOneVPC(t *testing.T) {
 		{
 			name: "Test_checkIfOnlyOneVPC",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				vpcs: []types.Vpc{
 					{
 						CidrBlock: aws.String("32.32.32.0/20"),
@@ -53,7 +53,7 @@ func Test_checkIfOnlyOneVPC(t *testing.T) {
 
 func Test_checkIfOnlyOneVPCFail(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		vpcs        []types.Vpc
 		testName    string
 	}
@@ -64,7 +64,7 @@ func Test_checkIfOnlyOneVPCFail(t *testing.T) {
 		{
 			name: "Test_checkIfOnlyOneVPC",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				vpcs: []types.Vpc{
 					{
 						CidrBlock: aws.String("32.32.32.0/20"),

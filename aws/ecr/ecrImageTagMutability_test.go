@@ -6,12 +6,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/ecr/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfTagImmutable(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		ecr         []types.Repository
 		testName    string
 	}
@@ -22,7 +22,7 @@ func TestCheckIfTagImmutable(t *testing.T) {
 		{
 			name: "Check if all ECRs are tag immutable",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				ecr: []types.Repository{
 					{
 						ImageTagMutability: types.ImageTagMutabilityImmutable,

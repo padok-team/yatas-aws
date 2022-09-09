@@ -6,12 +6,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/lambda/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfLambdaPrivate(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		lambdas     []types.FunctionConfiguration
 		testName    string
 	}
@@ -22,9 +22,9 @@ func TestCheckIfLambdaPrivate(t *testing.T) {
 		{
 			name: "TestCheckIfLambdaPrivate",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				lambdas: []types.FunctionConfiguration{
 					{
@@ -58,7 +58,7 @@ func TestCheckIfLambdaPrivate(t *testing.T) {
 
 func TestCheckIfLambdaPrivateFail(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		lambdas     []types.FunctionConfiguration
 		testName    string
 	}
@@ -69,9 +69,9 @@ func TestCheckIfLambdaPrivateFail(t *testing.T) {
 		{
 			name: "TestCheckIfLambdaPrivate",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				lambdas: []types.FunctionConfiguration{
 					{

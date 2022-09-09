@@ -6,12 +6,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/lambda/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfLambdaInSecurityGroup(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		lambdas     []types.FunctionConfiguration
 		testName    string
 	}
@@ -22,9 +22,9 @@ func TestCheckIfLambdaInSecurityGroup(t *testing.T) {
 		{
 			name: "TestCheckLambdaInSecurityGroup",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				lambdas: []types.FunctionConfiguration{
 					{
@@ -60,7 +60,7 @@ func TestCheckIfLambdaInSecurityGroup(t *testing.T) {
 
 func TestCheckIfLambdaInSecurityGroupFail(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		lambdas     []types.FunctionConfiguration
 		testName    string
 	}
@@ -71,9 +71,9 @@ func TestCheckIfLambdaInSecurityGroupFail(t *testing.T) {
 		{
 			name: "TestCheckLambdaInSecurityGroup",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				lambdas: []types.FunctionConfiguration{
 					{

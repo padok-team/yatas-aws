@@ -6,12 +6,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfVolumeIsUsed(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		volumes     []types.Volume
 		testName    string
 	}
@@ -23,7 +23,7 @@ func TestCheckIfVolumeIsUsed(t *testing.T) {
 		{
 			name: "Check if EC2 volumes are unused",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				volumes: []types.Volume{
 					{
 						VolumeId: aws.String("vol-0a0a0a0a"),
@@ -37,7 +37,7 @@ func TestCheckIfVolumeIsUsed(t *testing.T) {
 		{
 			name: "Check if EC2 volumes are unused",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				volumes: []types.Volume{
 					{
 						VolumeId: aws.String("vol-0a0a0a0a"),
@@ -51,7 +51,7 @@ func TestCheckIfVolumeIsUsed(t *testing.T) {
 		{
 			name: "Check if EC2 volumes are unused",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				volumes: []types.Volume{
 					{
 						VolumeId: aws.String("vol-0a0a0a0a"),
@@ -69,7 +69,7 @@ func TestCheckIfVolumeIsUsed(t *testing.T) {
 		{
 			name: "Check if EC2 volumes are unused",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				volumes: []types.Volume{
 					{
 						VolumeId: aws.String("vol-0a0a0a0a"),

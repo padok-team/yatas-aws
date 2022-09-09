@@ -6,12 +6,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfEC2PublicIPFAIL(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		instances   []types.Instance
 		testName    string
 	}
@@ -22,9 +22,9 @@ func TestCheckIfEC2PublicIPFAIL(t *testing.T) {
 		{
 			name: "TestCheckIfEC2PublicIP",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				instances: []types.Instance{
 					{
@@ -54,7 +54,7 @@ func TestCheckIfEC2PublicIPFAIL(t *testing.T) {
 
 func TestCheckIfEC2PublicIP(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		instances   []types.Instance
 		testName    string
 	}
@@ -65,9 +65,9 @@ func TestCheckIfEC2PublicIP(t *testing.T) {
 		{
 			name: "TestCheckIfEC2PublicIP",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				instances: []types.Instance{
 					{

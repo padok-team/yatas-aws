@@ -2,20 +2,20 @@ package cloudtrail
 
 import (
 	"github.com/aws/aws-sdk-go-v2/service/cloudtrail/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
-func CheckIfCloudtrailsGlobalServiceEventsEnabled(checkConfig config.CheckConfig, cloudtrails []types.Trail, testName string) {
-	var check config.Check
+func CheckIfCloudtrailsGlobalServiceEventsEnabled(checkConfig commons.CheckConfig, cloudtrails []types.Trail, testName string) {
+	var check commons.Check
 	check.InitCheck("Cloudtrails have Global Service Events Activated", "check if all cloudtrails have global service events enabled", testName)
 	for _, cloudtrail := range cloudtrails {
 		if !*cloudtrail.IncludeGlobalServiceEvents {
 			Message := "Cloudtrail " + *cloudtrail.Name + " has global service events disabled"
-			result := config.Result{Status: "FAIL", Message: Message, ResourceID: *cloudtrail.TrailARN}
+			result := commons.Result{Status: "FAIL", Message: Message, ResourceID: *cloudtrail.TrailARN}
 			check.AddResult(result)
 		} else {
 			Message := "Cloudtrail " + *cloudtrail.Name + " has global service events enabled"
-			result := config.Result{Status: "OK", Message: Message, ResourceID: *cloudtrail.TrailARN}
+			result := commons.Result{Status: "OK", Message: Message, ResourceID: *cloudtrail.TrailARN}
 			check.AddResult(result)
 		}
 	}

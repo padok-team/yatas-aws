@@ -7,12 +7,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/acm/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfCertificateExpiresIn90Days(t *testing.T) {
 	type args struct {
-		checkConfig  config.CheckConfig
+		checkConfig  commons.CheckConfig
 		certificates []types.CertificateDetail
 		testName     string
 	}
@@ -24,8 +24,8 @@ func TestCheckIfCertificateExpiresIn90Days(t *testing.T) {
 		{
 			name: "Check if certificate expires in 90 days",
 			args: args{
-				checkConfig: config.CheckConfig{
-					Queue: make(chan config.Check, 1),
+				checkConfig: commons.CheckConfig{
+					Queue: make(chan commons.Check, 1),
 					Wg:    &sync.WaitGroup{},
 				},
 				certificates: []types.CertificateDetail{
@@ -43,8 +43,8 @@ func TestCheckIfCertificateExpiresIn90Days(t *testing.T) {
 		{
 			name: "Check if certificate expires in 90 days",
 			args: args{
-				checkConfig: config.CheckConfig{
-					Queue: make(chan config.Check, 1),
+				checkConfig: commons.CheckConfig{
+					Queue: make(chan commons.Check, 1),
 					Wg:    &sync.WaitGroup{},
 				},
 				certificates: []types.CertificateDetail{

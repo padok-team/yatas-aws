@@ -1,20 +1,20 @@
 package cloudfront
 
 import (
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
-func CheckIfCookieLogginEnabled(checkConfig config.CheckConfig, d []SummaryToConfig, testName string) {
-	var check config.Check
+func CheckIfCookieLogginEnabled(checkConfig commons.CheckConfig, d []SummaryToConfig, testName string) {
+	var check commons.Check
 	check.InitCheck("Cloudfronts are logging Cookies", "Check if all cloudfront distributions have cookies logging enabled", testName)
 	for _, cc := range d {
 		if cc.config.Logging != nil && *cc.config.Logging.Enabled && cc.config.Logging.IncludeCookies != nil && *cc.config.Logging.IncludeCookies {
 			Message := "Cookie logging is enabled on " + *cc.summary.Id
-			result := config.Result{Status: "OK", Message: Message, ResourceID: *cc.summary.Id}
+			result := commons.Result{Status: "OK", Message: Message, ResourceID: *cc.summary.Id}
 			check.AddResult(result)
 		} else {
 			Message := "Cookie logging is not enabled on " + *cc.summary.Id
-			result := config.Result{Status: "FAIL", Message: Message, ResourceID: *cc.summary.Id}
+			result := commons.Result{Status: "FAIL", Message: Message, ResourceID: *cc.summary.Id}
 			check.AddResult(result)
 		}
 	}

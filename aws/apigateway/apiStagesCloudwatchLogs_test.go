@@ -6,12 +6,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/apigateway/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfStagesCloudwatchLogsExist(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		stages      map[string][]types.Stage
 		testName    string
 	}
@@ -22,9 +22,9 @@ func TestCheckIfStagesCloudwatchLogsExist(t *testing.T) {
 		{
 			name: "Test if stages are have cloudwatch logs enabled",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				stages: map[string][]types.Stage{
 					"test-api": {
@@ -62,7 +62,7 @@ func TestCheckIfStagesCloudwatchLogsExist(t *testing.T) {
 
 func TestCheckIfStagesCloudwatchLogsExistFail(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		stages      map[string][]types.Stage
 		testName    string
 	}
@@ -73,9 +73,9 @@ func TestCheckIfStagesCloudwatchLogsExistFail(t *testing.T) {
 		{
 			name: "Test if stages are have cloudwatch logs enabled",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				stages: map[string][]types.Stage{
 					"test-api": {

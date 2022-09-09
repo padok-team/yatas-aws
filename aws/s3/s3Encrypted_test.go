@@ -4,12 +4,12 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func Test_checkIfEncryptionEnabled(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		buckets     []S3ToEncryption
 		testName    string
 	}
@@ -20,8 +20,8 @@ func Test_checkIfEncryptionEnabled(t *testing.T) {
 		{
 			name: "check if encryption enabled",
 			args: args{
-				checkConfig: config.CheckConfig{
-					Queue: make(chan config.Check, 1),
+				checkConfig: commons.CheckConfig{
+					Queue: make(chan commons.Check, 1),
 					Wg:    &sync.WaitGroup{},
 				},
 				buckets: []S3ToEncryption{
@@ -52,7 +52,7 @@ func Test_checkIfEncryptionEnabled(t *testing.T) {
 
 func Test_checkIfEncryptionEnabledFail(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		buckets     []S3ToEncryption
 		testName    string
 	}
@@ -63,8 +63,8 @@ func Test_checkIfEncryptionEnabledFail(t *testing.T) {
 		{
 			name: "check if encryption enabled",
 			args: args{
-				checkConfig: config.CheckConfig{
-					Queue: make(chan config.Check, 1),
+				checkConfig: commons.CheckConfig{
+					Queue: make(chan commons.Check, 1),
 					Wg:    &sync.WaitGroup{},
 				},
 				buckets: []S3ToEncryption{

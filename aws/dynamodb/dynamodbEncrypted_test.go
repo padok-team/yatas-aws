@@ -7,12 +7,12 @@ import (
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfDynamodbEncrypted(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		dynamodbs   []*dynamodb.DescribeTableOutput
 		testName    string
 	}
@@ -23,9 +23,9 @@ func TestCheckIfDynamodbEncrypted(t *testing.T) {
 		{
 			name: "TestCheckIfDynamodbEncrypted",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				dynamodbs: []*dynamodb.DescribeTableOutput{
 					{
@@ -60,7 +60,7 @@ func TestCheckIfDynamodbEncrypted(t *testing.T) {
 
 func TestCheckIfDynamodbEncryptedFail(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		dynamodbs   []*dynamodb.DescribeTableOutput
 		testName    string
 	}
@@ -71,9 +71,9 @@ func TestCheckIfDynamodbEncryptedFail(t *testing.T) {
 		{
 			name: "TestCheckIfDynamodbEncrypted",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				dynamodbs: []*dynamodb.DescribeTableOutput{
 					{

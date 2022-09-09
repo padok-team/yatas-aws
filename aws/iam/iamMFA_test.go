@@ -6,12 +6,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/iam/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIf2FAActivated(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		mfaForUsers []MFAForUser
 		testName    string
 	}
@@ -22,8 +22,8 @@ func TestCheckIf2FAActivated(t *testing.T) {
 		{
 			name: "Check if all users have 2FA activated",
 			args: args{
-				checkConfig: config.CheckConfig{
-					Queue: make(chan config.Check, 1),
+				checkConfig: commons.CheckConfig{
+					Queue: make(chan commons.Check, 1),
 					Wg:    &sync.WaitGroup{},
 				},
 				mfaForUsers: []MFAForUser{

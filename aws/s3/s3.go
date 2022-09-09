@@ -7,7 +7,7 @@ import (
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/aws/aws-sdk-go-v2/service/s3/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func CheckS3Location(s aws.Config, bucket, region string) bool {
@@ -40,11 +40,11 @@ type BucketAndNotInRegion struct {
 	NotInRegion []types.Bucket
 }
 
-func RunChecks(wa *sync.WaitGroup, s aws.Config, c *config.Config, queue chan []config.Check) {
+func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan []commons.Check) {
 
-	var checkConfig config.CheckConfig
+	var checkConfig commons.CheckConfig
 	checkConfig.Init(s, c)
-	var checks []config.Check
+	var checks []commons.Check
 	buckets := GetListS3(s)
 	bucketsNotInRegion := GetListS3NotInRegion(s, s.Region)
 	couple := BucketAndNotInRegion{buckets, bucketsNotInRegion}
@@ -54,11 +54,11 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *config.Config, queue chan []
 	S3ToVersioning := GetS3ToVersioning(s, OnlyBucketInRegion)
 	S3ToObjectLock := GetS3ToObjectLock(s, OnlyBucketInRegion)
 
-	go config.CheckTest(checkConfig.Wg, c, "AWS_S3_001", checkIfEncryptionEnabled)(checkConfig, S3ToEncryption, "AWS_S3_001")
-	go config.CheckTest(checkConfig.Wg, c, "AWS_S3_002", CheckIfBucketInOneZone)(checkConfig, couple, "AWS_S3_002")
-	go config.CheckTest(checkConfig.Wg, c, "AWS_S3_003", CheckIfBucketObjectVersioningEnabled)(checkConfig, S3ToVersioning, "AWS_S3_003")
-	go config.CheckTest(checkConfig.Wg, c, "AWS_S3_004", CheckIfObjectLockConfigurationEnabled)(checkConfig, S3ToObjectLock, "AWS_S3_004")
-	go config.CheckTest(checkConfig.Wg, c, "AWS_S3_005", CheckIfS3PublicAccessBlockEnabled)(checkConfig, S3toPublicBlockAccess, "AWS_S3_005")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_S3_001", checkIfEncryptionEnabled)(checkConfig, S3ToEncryption, "AWS_S3_001")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_S3_002", CheckIfBucketInOneZone)(checkConfig, couple, "AWS_S3_002")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_S3_003", CheckIfBucketObjectVersioningEnabled)(checkConfig, S3ToVersioning, "AWS_S3_003")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_S3_004", CheckIfObjectLockConfigurationEnabled)(checkConfig, S3ToObjectLock, "AWS_S3_004")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_S3_005", CheckIfS3PublicAccessBlockEnabled)(checkConfig, S3toPublicBlockAccess, "AWS_S3_005")
 	// Wait for all the goroutines to finish
 
 	go func() {

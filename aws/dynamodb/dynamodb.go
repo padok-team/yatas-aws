@@ -4,19 +4,19 @@ import (
 	"sync"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
-func RunChecks(wa *sync.WaitGroup, s aws.Config, c *config.Config, queue chan []config.Check) {
+func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan []commons.Check) {
 
-	var checkConfig config.CheckConfig
+	var checkConfig commons.CheckConfig
 	checkConfig.Init(s, c)
-	var checks []config.Check
+	var checks []commons.Check
 	dynamodbs := GetDynamodbs(s)
 	gt := GetTables(s, dynamodbs)
 	gb := GetContinuousBackups(s, dynamodbs)
-	go config.CheckTest(checkConfig.Wg, c, "AWS_DYN_001", CheckIfDynamodbEncrypted)(checkConfig, gt, "AWS_DYN_001")
-	go config.CheckTest(checkConfig.Wg, c, "AWS_DYN_002", CheckIfDynamodbContinuousBackupsEnabled)(checkConfig, gb, "AWS_DYN_002")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_DYN_001", CheckIfDynamodbEncrypted)(checkConfig, gt, "AWS_DYN_001")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_DYN_002", CheckIfDynamodbContinuousBackupsEnabled)(checkConfig, gb, "AWS_DYN_002")
 
 	go func() {
 		for t := range checkConfig.Queue {

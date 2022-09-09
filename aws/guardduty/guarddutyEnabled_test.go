@@ -4,12 +4,12 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfGuarddutyEnabled(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		testName    string
 		detectors   []string
 	}
@@ -20,9 +20,9 @@ func TestCheckIfGuarddutyEnabled(t *testing.T) {
 		{
 			name: "TestCheckIfGuarddutyEnabled",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				testName:  "TestCheckIfGuarddutyEnabled",
 				detectors: []string{"detector1", "detector2"},
@@ -48,7 +48,7 @@ func TestCheckIfGuarddutyEnabled(t *testing.T) {
 
 func TestCheckIfGuarddutyEnabledFail(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		testName    string
 		detectors   []string
 	}
@@ -59,9 +59,9 @@ func TestCheckIfGuarddutyEnabledFail(t *testing.T) {
 		{
 			name: "TestCheckIfGuarddutyEnabled",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				testName:  "TestCheckIfGuarddutyEnabled",
 				detectors: []string{},

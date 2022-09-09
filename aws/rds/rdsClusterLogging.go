@@ -2,11 +2,11 @@ package rds
 
 import (
 	"github.com/aws/aws-sdk-go-v2/service/rds/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
-func CheckIfClusterLoggingEnabled(checkConfig config.CheckConfig, instances []types.DBCluster, testName string) {
-	var check config.Check
+func CheckIfClusterLoggingEnabled(checkConfig commons.CheckConfig, instances []types.DBCluster, testName string) {
+	var check commons.Check
 	check.InitCheck("Aurora RDS logs are exported to cloudwatch", "Check if Aurora RDS logging is enabled", testName)
 	for _, instance := range instances {
 		if instance.EnabledCloudwatchLogsExports != nil {
@@ -14,7 +14,7 @@ func CheckIfClusterLoggingEnabled(checkConfig config.CheckConfig, instances []ty
 			for _, export := range instance.EnabledCloudwatchLogsExports {
 				if export == "audit" {
 					Message := "RDS logging is enabled on " + *instance.DBClusterIdentifier
-					result := config.Result{Status: "OK", Message: Message, ResourceID: *instance.DBClusterArn}
+					result := commons.Result{Status: "OK", Message: Message, ResourceID: *instance.DBClusterArn}
 					check.AddResult(result)
 					found = true
 
@@ -24,13 +24,13 @@ func CheckIfClusterLoggingEnabled(checkConfig config.CheckConfig, instances []ty
 			}
 			if !found {
 				Message := "RDS logging is not enabled on " + *instance.DBClusterIdentifier
-				result := config.Result{Status: "FAIL", Message: Message, ResourceID: *instance.DBClusterArn}
+				result := commons.Result{Status: "FAIL", Message: Message, ResourceID: *instance.DBClusterArn}
 				check.AddResult(result)
 				continue
 			}
 		} else {
 			Message := "RDS logging is not enabled on " + *instance.DBClusterIdentifier
-			result := config.Result{Status: "FAIL", Message: Message, ResourceID: *instance.DBClusterArn}
+			result := commons.Result{Status: "FAIL", Message: Message, ResourceID: *instance.DBClusterArn}
 			check.AddResult(result)
 		}
 	}

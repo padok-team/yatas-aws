@@ -6,12 +6,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/ecr/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfImageScanningEnabled(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		ecr         []types.Repository
 		testName    string
 	}
@@ -22,9 +22,9 @@ func TestCheckIfImageScanningEnabled(t *testing.T) {
 		{
 			name: "TestCheckIfImageScanningEnabled",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				ecr: []types.Repository{
 					{
@@ -56,7 +56,7 @@ func TestCheckIfImageScanningEnabled(t *testing.T) {
 
 func TestCheckIfImageScanningEnabledFail(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		ecr         []types.Repository
 		testName    string
 	}
@@ -67,9 +67,9 @@ func TestCheckIfImageScanningEnabledFail(t *testing.T) {
 		{
 			name: "TestCheckIfImageScanningEnabled",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				ecr: []types.Repository{
 					{

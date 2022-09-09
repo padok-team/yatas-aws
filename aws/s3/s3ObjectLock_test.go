@@ -4,12 +4,12 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfObjectLockConfigurationEnabled(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		buckets     []S3ToObjectLock
 		testName    string
 	}
@@ -20,8 +20,8 @@ func TestCheckIfObjectLockConfigurationEnabled(t *testing.T) {
 		{
 			name: "check if object lock configuration enabled",
 			args: args{
-				checkConfig: config.CheckConfig{
-					Queue: make(chan config.Check, 1),
+				checkConfig: commons.CheckConfig{
+					Queue: make(chan commons.Check, 1),
 					Wg:    &sync.WaitGroup{},
 				},
 				buckets: []S3ToObjectLock{
@@ -52,7 +52,7 @@ func TestCheckIfObjectLockConfigurationEnabled(t *testing.T) {
 
 func TestCheckIfObjectLockConfigurationEnabledFail(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		buckets     []S3ToObjectLock
 		testName    string
 	}
@@ -63,8 +63,8 @@ func TestCheckIfObjectLockConfigurationEnabledFail(t *testing.T) {
 		{
 			name: "check if object lock configuration enabled",
 			args: args{
-				checkConfig: config.CheckConfig{
-					Queue: make(chan config.Check, 1),
+				checkConfig: commons.CheckConfig{
+					Queue: make(chan commons.Check, 1),
 					Wg:    &sync.WaitGroup{},
 				},
 				buckets: []S3ToObjectLock{

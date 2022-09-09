@@ -3,11 +3,11 @@ package volumes
 import (
 	"time"
 
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
-func CheckIfSnapshotYoungerthan24h(checkConfig config.CheckConfig, vs couple, testName string) {
-	var check config.Check
+func CheckIfSnapshotYoungerthan24h(checkConfig commons.CheckConfig, vs couple, testName string) {
+	var check commons.Check
 	check.InitCheck("EC2's snapshots are younger than a day old", "Check if all snapshots are younger than 24h", testName)
 	for _, volume := range vs.Volume {
 		snapshotYoungerThan24h := false
@@ -22,11 +22,11 @@ func CheckIfSnapshotYoungerthan24h(checkConfig config.CheckConfig, vs couple, te
 		}
 		if !snapshotYoungerThan24h {
 			Message := "Volume " + *volume.VolumeId + " has no snapshot younger than 24h"
-			result := config.Result{Status: "FAIL", Message: Message, ResourceID: *volume.VolumeId}
+			result := commons.Result{Status: "FAIL", Message: Message, ResourceID: *volume.VolumeId}
 			check.AddResult(result)
 		} else {
 			Message := "Volume " + *volume.VolumeId + " has snapshot younger than 24h"
-			result := config.Result{Status: "OK", Message: Message, ResourceID: *volume.VolumeId}
+			result := commons.Result{Status: "OK", Message: Message, ResourceID: *volume.VolumeId}
 			check.AddResult(result)
 		}
 	}

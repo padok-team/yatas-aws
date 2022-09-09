@@ -2,20 +2,20 @@ package lambda
 
 import (
 	"github.com/aws/aws-sdk-go-v2/service/lambda/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
-func CheckIfLambdaPrivate(checkConfig config.CheckConfig, lambdas []types.FunctionConfiguration, testName string) {
-	var check config.Check
+func CheckIfLambdaPrivate(checkConfig commons.CheckConfig, lambdas []types.FunctionConfiguration, testName string) {
+	var check commons.Check
 	check.InitCheck("Lambdas are private", "Check if all Lambdas are private", testName)
 	for _, lambda := range lambdas {
 		if lambda.VpcConfig == nil {
 			Message := "Lambda " + *lambda.FunctionName + " is public"
-			result := config.Result{Status: "FAIL", Message: Message, ResourceID: *lambda.FunctionArn}
+			result := commons.Result{Status: "FAIL", Message: Message, ResourceID: *lambda.FunctionArn}
 			check.AddResult(result)
 		} else {
 			Message := "Lambda " + *lambda.FunctionName + " is private"
-			result := config.Result{Status: "OK", Message: Message, ResourceID: *lambda.FunctionArn}
+			result := commons.Result{Status: "OK", Message: Message, ResourceID: *lambda.FunctionArn}
 			check.AddResult(result)
 		}
 	}

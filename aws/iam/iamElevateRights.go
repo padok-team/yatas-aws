@@ -5,11 +5,11 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
-func CheckIfUserCanElevateRights(checkConfig config.CheckConfig, userToPolociesElevated []UserToPoliciesElevate, testName string) {
-	var check config.Check
+func CheckIfUserCanElevateRights(checkConfig commons.CheckConfig, userToPolociesElevated []UserToPoliciesElevate, testName string) {
+	var check commons.Check
 	check.InitCheck("IAM User can't elevate rights", "Check if  users can elevate rights", testName)
 	for _, userPol := range userToPolociesElevated {
 		if len(userPol.Policies) > 0 {
@@ -19,12 +19,12 @@ func CheckIfUserCanElevateRights(checkConfig config.CheckConfig, userToPolociesE
 			} else {
 				Message = "User " + userPol.UserName + " can elevate rights with " + fmt.Sprint(userPol.Policies)
 			}
-			result := config.Result{Status: "FAIL", Message: Message, ResourceID: userPol.UserName}
+			result := commons.Result{Status: "FAIL", Message: Message, ResourceID: userPol.UserName}
 			check.AddResult(result)
 
 		} else {
 			Message := "User " + userPol.UserName + " cannot elevate rights"
-			result := config.Result{Status: "OK", Message: Message, ResourceID: userPol.UserName}
+			result := commons.Result{Status: "OK", Message: Message, ResourceID: userPol.UserName}
 			check.AddResult(result)
 		}
 	}

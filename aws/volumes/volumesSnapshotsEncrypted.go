@@ -2,20 +2,20 @@ package volumes
 
 import (
 	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
-func CheckIfAllSnapshotsEncrypted(checkConfig config.CheckConfig, snapshots []types.Snapshot, testName string) {
-	var check config.Check
+func CheckIfAllSnapshotsEncrypted(checkConfig commons.CheckConfig, snapshots []types.Snapshot, testName string) {
+	var check commons.Check
 	check.InitCheck("EC2's Snapshots are encrypted", "Check if all snapshots are encrypted", testName)
 	for _, snapshot := range snapshots {
 		if snapshot.Encrypted == nil || !*snapshot.Encrypted {
 			Message := "Snapshot " + *snapshot.SnapshotId + " is not encrypted"
-			result := config.Result{Status: "FAIL", Message: Message, ResourceID: *snapshot.SnapshotId}
+			result := commons.Result{Status: "FAIL", Message: Message, ResourceID: *snapshot.SnapshotId}
 			check.AddResult(result)
 		} else {
 			Message := "Snapshot " + *snapshot.SnapshotId + " is encrypted"
-			result := config.Result{Status: "OK", Message: Message, ResourceID: *snapshot.SnapshotId}
+			result := commons.Result{Status: "OK", Message: Message, ResourceID: *snapshot.SnapshotId}
 			check.AddResult(result)
 		}
 	}

@@ -6,12 +6,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/rds/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func Test_checkIfEncryptionEnabled(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		instances   []types.DBInstance
 		testName    string
 	}
@@ -22,9 +22,9 @@ func Test_checkIfEncryptionEnabled(t *testing.T) {
 		{
 			name: "Test_checkIfEncryptionEnabled",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				instances: []types.DBInstance{
 					{
@@ -55,7 +55,7 @@ func Test_checkIfEncryptionEnabled(t *testing.T) {
 
 func Test_checkIfEncryptionEnabledFail(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		instances   []types.DBInstance
 		testName    string
 	}
@@ -66,9 +66,9 @@ func Test_checkIfEncryptionEnabledFail(t *testing.T) {
 		{
 			name: "Test_checkIfEncryptionEnabled",
 			args: args{
-				checkConfig: config.CheckConfig{
+				checkConfig: commons.CheckConfig{
 					Wg:    &sync.WaitGroup{},
-					Queue: make(chan config.Check, 1),
+					Queue: make(chan commons.Check, 1),
 				},
 				instances: []types.DBInstance{
 					{

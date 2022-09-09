@@ -5,18 +5,18 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/autoscaling"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
-func RunChecks(wa *sync.WaitGroup, s aws.Config, c *config.Config, queue chan []config.Check) {
-	var checkConfig config.CheckConfig
+func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan []commons.Check) {
+	var checkConfig commons.CheckConfig
 	checkConfig.Init(s, c)
-	var checks []config.Check
+	var checks []commons.Check
 	svc := autoscaling.NewFromConfig(s)
 	groups := GetAutoscalingGroups(svc)
 
-	go config.CheckTest(checkConfig.Wg, c, "AWS_ASG_001", CheckIfDesiredCapacityMaxCapacityBelow80percent)(checkConfig, groups, "AWS_ASG_001")
-	go config.CheckTest(checkConfig.Wg, c, "AWS_ASG_002", CheckIfInTwoAvailibilityZones)(checkConfig, groups, "AWS_ASG_002")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_ASG_001", CheckIfDesiredCapacityMaxCapacityBelow80percent)(checkConfig, groups, "AWS_ASG_001")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_ASG_002", CheckIfInTwoAvailibilityZones)(checkConfig, groups, "AWS_ASG_002")
 
 	go func() {
 		for t := range checkConfig.Queue {

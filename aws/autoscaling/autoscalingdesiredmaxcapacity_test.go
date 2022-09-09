@@ -6,12 +6,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/autoscaling/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfDesiredCapacityMaxCapacityBelow80percent(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		groups      []types.AutoScalingGroup
 		testName    string
 	}
@@ -22,7 +22,7 @@ func TestCheckIfDesiredCapacityMaxCapacityBelow80percent(t *testing.T) {
 		{
 			name: "TestCheckIfDesiredCapacityMaxCapacityBelow80percent",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				groups: []types.AutoScalingGroup{
 					{
 						DesiredCapacity:      aws.Int32(1),
@@ -36,7 +36,7 @@ func TestCheckIfDesiredCapacityMaxCapacityBelow80percent(t *testing.T) {
 		{
 			name: "TestCheckIfDesiredCapacityMaxCapacityBelow80percent",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				groups: []types.AutoScalingGroup{
 					{
 						DesiredCapacity:      aws.Int32(8),
@@ -67,7 +67,7 @@ func TestCheckIfDesiredCapacityMaxCapacityBelow80percent(t *testing.T) {
 
 func TestCheckIfDesiredCapacityMaxCapacityBelow80percentFail(t *testing.T) {
 	type args struct {
-		checkConfig config.CheckConfig
+		checkConfig commons.CheckConfig
 		groups      []types.AutoScalingGroup
 		testName    string
 	}
@@ -79,7 +79,7 @@ func TestCheckIfDesiredCapacityMaxCapacityBelow80percentFail(t *testing.T) {
 		{
 			name: "TestCheckIfDesiredCapacityMaxCapacityBelow80percent",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				groups: []types.AutoScalingGroup{
 					{
 						DesiredCapacity:      aws.Int32(2),
@@ -93,7 +93,7 @@ func TestCheckIfDesiredCapacityMaxCapacityBelow80percentFail(t *testing.T) {
 		{
 			name: "TestCheckIfDesiredCapacityMaxCapacityBelow80percent",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				groups: []types.AutoScalingGroup{
 					{
 						DesiredCapacity:      aws.Int32(10),
@@ -107,7 +107,7 @@ func TestCheckIfDesiredCapacityMaxCapacityBelow80percentFail(t *testing.T) {
 		{
 			name: "TestCheckIfDesiredCapacityMaxCapacityBelow80percent",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				groups:      GetAutoscalingGroups(mockAutoScaling),
 				testName:    "AWS_ASG_001",
 			},

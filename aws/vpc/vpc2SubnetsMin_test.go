@@ -6,12 +6,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
-	"github.com/stangirard/yatas/config"
+	"github.com/stangirard/yatas/plugins/commons"
 )
 
 func TestCheckIfAtLeast2Subnets(t *testing.T) {
 	type args struct {
-		checkConfig  config.CheckConfig
+		checkConfig  commons.CheckConfig
 		vpcToSubnets []VPCToSubnet
 		testName     string
 	}
@@ -22,7 +22,7 @@ func TestCheckIfAtLeast2Subnets(t *testing.T) {
 		{
 			name: "TestCheckIfAtLeast2Subnets",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				vpcToSubnets: []VPCToSubnet{
 					{
 						VpcID: "test",
@@ -59,7 +59,7 @@ func TestCheckIfAtLeast2Subnets(t *testing.T) {
 
 func TestCheckIfAtLeast2SubnetsFail(t *testing.T) {
 	type args struct {
-		checkConfig  config.CheckConfig
+		checkConfig  commons.CheckConfig
 		vpcToSubnets []VPCToSubnet
 		testName     string
 	}
@@ -70,7 +70,7 @@ func TestCheckIfAtLeast2SubnetsFail(t *testing.T) {
 		{
 			name: "TestCheckIfAtLeast2Subnets",
 			args: args{
-				checkConfig: config.CheckConfig{Queue: make(chan config.Check, 1), Wg: &sync.WaitGroup{}},
+				checkConfig: commons.CheckConfig{Queue: make(chan commons.Check, 1), Wg: &sync.WaitGroup{}},
 				vpcToSubnets: []VPCToSubnet{
 					{
 						VpcID: "test",

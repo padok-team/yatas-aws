@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/StanGirard/yatas-aws/compare/v0.0.6...v0.0.7) (2022-09-09)
+
+
+### Features
+
+* **auth:** plugin can now get authentification from interface passed ([7b006f3](https://github.com/StanGirard/yatas-aws/commit/7b006f395c9e100a68a59a0f6fd4cae056a94228))
+
 ### [0.0.6](https://github.com/StanGirard/yatas-aws/compare/v0.0.5...v0.0.6) (2022-09-09)
 
 

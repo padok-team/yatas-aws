@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/StanGirard/yatas-aws/compare/v0.0.5...v0.0.6) (2022-09-09)
+
+
+### Features
+
+* **makefile:** build in good destination ([f15217a](https://github.com/StanGirard/yatas-aws/commit/f15217a139d543a5f8d1b6f13f74d6b433a2e218))
+
 ### [0.0.5](https://github.com/StanGirard/yatas-aws/compare/v0.0.4...v0.0.5) (2022-09-09)
 
 

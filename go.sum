@@ -119,8 +119,8 @@ github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZN
 github.com/rs/xid v1.4.0/go.mod h1:trrq9SKmegXys3aeAKXMUTdJsYXVwGY3RLcfgqegfbg=
 github.com/rs/zerolog v1.28.0 h1:MirSo27VyNi7RJYP3078AA1+Cyzd2GB66qy3aUHvsWY=
 github.com/rs/zerolog v1.28.0/go.mod h1:NILgTygv/Uej1ra5XxGf82ZFSLk58MFGAUS2o6usyD0=
-github.com/stangirard/yatas v0.11.1 h1:Ko1x5gGi2jVAE8WxA0JY+IjT7wI/UT9fnlu47SGLJo4=
-github.com/stangirard/yatas v0.11.1/go.mod h1:U0wH8IbQvTL7/k2qmYOxG7BOcREAfvncEvi2NUc3q4g=
+github.com/stangirard/yatas v0.11.3 h1:9mEy3YBE/Ftoe6y72CQAMeIGeRSlv7qWUYvuFuwUwCQ=
+github.com/stangirard/yatas v0.11.3/go.mod h1:U0wH8IbQvTL7/k2qmYOxG7BOcREAfvncEvi2NUc3q4g=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.7.2 h1:4jaiDzPyXQvSd7D0EjG45355tLlV3VOECpq10pLC+8s=
 github.com/stretchr/testify v1.7.2/go.mod h1:R6va5+xMeoiuVRoj+gSkQ7d3FALtqAAGI1FQKckRals=

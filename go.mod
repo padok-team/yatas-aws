@@ -9,16 +9,16 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/apigateway v1.15.19
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.23.15
 	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.20.4
-	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.16.12
-	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.16.5
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.54.4
+	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.18.0
+	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.17.0
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.57.0
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.17.17
-	github.com/aws/aws-sdk-go-v2/service/eks v1.21.11
+	github.com/aws/aws-sdk-go-v2/service/eks v1.22.0
 	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.18.18
 	github.com/aws/aws-sdk-go-v2/service/guardduty v1.15.8
 	github.com/aws/aws-sdk-go-v2/service/iam v1.18.18
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.24.5
-	github.com/aws/aws-sdk-go-v2/service/rds v1.25.6
+	github.com/aws/aws-sdk-go-v2/service/rds v1.26.0
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.27.10
 	github.com/hashicorp/go-hclog v1.3.0
 	github.com/hashicorp/go-plugin v1.4.5

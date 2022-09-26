@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/StanGirard/yatas-aws/compare/v0.0.7...v0.0.8) (2022-09-26)
+
+
+### Features
+
+* **plugins:** upgraded to new interface ([c0db585](https://github.com/StanGirard/yatas-aws/commit/c0db58594f2b7e2b6205f41cdffdd945ceac6c6c))
+
 ### [0.0.7](https://github.com/StanGirard/yatas-aws/compare/v0.0.6...v0.0.7) (2022-09-09)
 
 

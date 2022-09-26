@@ -4,27 +4,27 @@ go 1.19
 
 require (
 	github.com/aws/aws-sdk-go-v2 v1.16.16
-	github.com/aws/aws-sdk-go-v2/config v1.17.7
-	github.com/aws/aws-sdk-go-v2/service/acm v1.14.18
-	github.com/aws/aws-sdk-go-v2/service/apigateway v1.15.20
-	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.23.16
-	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.20.5
-	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.18.1
-	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.17.1
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.58.0
-	github.com/aws/aws-sdk-go-v2/service/ecr v1.17.18
-	github.com/aws/aws-sdk-go-v2/service/eks v1.22.1
-	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.18.19
-	github.com/aws/aws-sdk-go-v2/service/guardduty v1.15.9
-	github.com/aws/aws-sdk-go-v2/service/iam v1.18.19
-	github.com/aws/aws-sdk-go-v2/service/lambda v1.24.6
-	github.com/aws/aws-sdk-go-v2/service/rds v1.26.1
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.27.11
+	github.com/aws/aws-sdk-go-v2/config v1.17.6
+	github.com/aws/aws-sdk-go-v2/service/acm v1.14.17
+	github.com/aws/aws-sdk-go-v2/service/apigateway v1.15.19
+	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.23.15
+	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.20.4
+	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.16.12
+	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.16.5
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.54.4
+	github.com/aws/aws-sdk-go-v2/service/ecr v1.17.17
+	github.com/aws/aws-sdk-go-v2/service/eks v1.21.11
+	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.18.18
+	github.com/aws/aws-sdk-go-v2/service/guardduty v1.15.8
+	github.com/aws/aws-sdk-go-v2/service/iam v1.18.18
+	github.com/aws/aws-sdk-go-v2/service/lambda v1.24.5
+	github.com/aws/aws-sdk-go-v2/service/rds v1.25.6
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.27.10
 	github.com/hashicorp/go-hclog v1.3.1
 	github.com/hashicorp/go-plugin v1.4.5
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/rs/zerolog v1.28.0
-	github.com/stangirard/yatas v0.11.9
+	github.com/stangirard/yatas v0.11.10
 	golang.org/x/exp v0.0.0-20220921164117-439092de6870
 )
 

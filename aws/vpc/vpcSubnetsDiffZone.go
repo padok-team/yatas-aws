@@ -6,7 +6,7 @@ import (
 
 func CheckIfSubnetInDifferentZone(checkConfig commons.CheckConfig, vpcToSubnets []VPCToSubnet, testName string) {
 	var check commons.Check
-	check.InitCheck("VPC's Subnets are in different zones", "Check if Subnet are in different zone", testName)
+	check.InitCheck("VPC's Subnets are in different zones", "Check if Subnet are in different zone", testName, []string{"Security", "Good Practice"})
 	for _, vpcToSubnet := range vpcToSubnets {
 		subnetsAZ := make(map[string]int)
 		for _, subnet := range vpcToSubnet.Subnets {

@@ -8,7 +8,7 @@ import (
 func CheckIfCloudtrailsEncrypted(checkConfig commons.CheckConfig, cloudtrails []types.Trail, testName string) {
 
 	var check commons.Check
-	check.InitCheck("Cloudtrails are encrypted", "check if all cloudtrails are encrypted", testName)
+	check.InitCheck("Cloudtrails are encrypted", "check if all cloudtrails are encrypted", testName, []string{"Security", "Good Practice"})
 	for _, cloudtrail := range cloudtrails {
 		if cloudtrail.KmsKeyId == nil || *cloudtrail.KmsKeyId == "" {
 			Message := "Cloudtrail " + *cloudtrail.Name + " is not encrypted"

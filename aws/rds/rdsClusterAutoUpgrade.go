@@ -7,7 +7,7 @@ import (
 
 func checkIfClusterAutoUpgradeEnabled(checkConfig commons.CheckConfig, instances []types.DBCluster, testName string) {
 	var check commons.Check
-	check.InitCheck("Aurora Clusters have minor versions automatically updated", "Check if Aurora RDS minor auto upgrade is enabled", testName)
+	check.InitCheck("Aurora Clusters have minor versions automatically updated", "Check if Aurora RDS minor auto upgrade is enabled", testName, []string{"Security", "Good Practice"})
 	for _, instance := range instances {
 		if !instance.AutoMinorVersionUpgrade {
 			Message := "RDS auto upgrade is not enabled on " + *instance.DBClusterIdentifier

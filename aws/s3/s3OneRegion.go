@@ -6,7 +6,7 @@ import (
 
 func CheckIfBucketInOneZone(checkConfig commons.CheckConfig, buckets BucketAndNotInRegion, testName string) {
 	var check commons.Check
-	check.InitCheck("S3 buckets are not global but in one zone", "Check if S3 buckets are in one zone", testName)
+	check.InitCheck("S3 buckets are not global but in one zone", "Check if S3 buckets are in one zone", testName, []string{"Security", "Good Practice"})
 	for _, bucket := range buckets.Buckets {
 		found := false
 		for _, region := range buckets.NotInRegion {

@@ -7,7 +7,7 @@ import (
 
 func checkIfClusterRDSPrivateEnabled(checkConfig commons.CheckConfig, instances []types.DBCluster, testName string) {
 	var check commons.Check
-	check.InitCheck("Aurora RDS aren't publicly accessible", "Check if Aurora RDS private is enabled", testName)
+	check.InitCheck("Aurora RDS aren't publicly accessible", "Check if Aurora RDS private is enabled", testName, []string{"Security", "Good Practice"})
 	for _, instance := range instances {
 		if instance.PubliclyAccessible != nil && *instance.PubliclyAccessible {
 			Message := "RDS private is not enabled on " + *instance.DBClusterIdentifier

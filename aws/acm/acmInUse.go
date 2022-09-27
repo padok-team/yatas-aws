@@ -7,7 +7,7 @@ import (
 
 func CheckIfACMInUse(checkConfig commons.CheckConfig, certificates []types.CertificateDetail, testName string) {
 	var check commons.Check
-	check.InitCheck("ACM certificates are used", "Check if certificate is in use", testName)
+	check.InitCheck("ACM certificates are used", "Check if certificate is in use", testName, []string{"Security", "Good Practice"})
 	for _, certificate := range certificates {
 		if len(certificate.InUseBy) > 0 {
 			Message := "Certificate " + *certificate.CertificateArn + " is in use"

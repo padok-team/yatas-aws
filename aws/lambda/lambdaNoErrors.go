@@ -7,7 +7,7 @@ import (
 
 func CheckIfLambdaNoErrors(checkConfig commons.CheckConfig, lambdas []types.FunctionConfiguration, testName string) {
 	var check commons.Check
-	check.InitCheck("Lambdas are not with errors", "Check if all Lambdas are running smoothly", testName)
+	check.InitCheck("Lambdas are not with errors", "Check if all Lambdas are running smoothly", testName, []string{"Security", "Good Practice"})
 	for _, lambda := range lambdas {
 		if lambda.StateReasonCode != types.StateReasonCodeIdle && lambda.StateReasonCode != "" {
 			Message := "Lambda " + *lambda.FunctionName + " is in error with code : " + string(lambda.StateReasonCode)

@@ -7,7 +7,7 @@ import (
 
 func checkIfEncryptionEnabled(checkConfig commons.CheckConfig, volumes []types.Volume, testName string) {
 	var check commons.Check
-	check.InitCheck("EC2's volumes are encrypted", "Check if EC2 encryption is enabled", testName)
+	check.InitCheck("EC2's volumes are encrypted", "Check if EC2 encryption is enabled", testName, []string{"Security", "Good Practice"})
 	for _, volume := range volumes {
 		if volume.Encrypted != nil && *volume.Encrypted {
 			Message := "EC2 encryption is enabled on " + *volume.VolumeId

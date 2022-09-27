@@ -6,7 +6,7 @@ import (
 
 func CheckIfBucketObjectVersioningEnabled(checkConfig commons.CheckConfig, buckets []S3ToVersioning, testName string) {
 	var check commons.Check
-	check.InitCheck("S3 buckets are versioned", "Check if S3 buckets are using object versioning", testName)
+	check.InitCheck("S3 buckets are versioned", "Check if S3 buckets are using object versioning", testName, []string{"Security", "Good Practice"})
 	for _, bucket := range buckets {
 		if !bucket.Versioning {
 			Message := "S3 bucket " + bucket.BucketName + " is not using object versioning"

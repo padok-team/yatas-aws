@@ -6,7 +6,7 @@ import (
 
 func CheckIfACLUsed(checkConfig commons.CheckConfig, d []SummaryToConfig, testName string) {
 	var check commons.Check
-	check.InitCheck("Cloudfronts are protected by an ACL", "Check if all cloudfront distributions have an ACL used", testName)
+	check.InitCheck("Cloudfronts are protected by an ACL", "Check if all cloudfront distributions have an ACL used", testName, []string{"Security", "Good Practice"})
 	for _, cc := range d {
 
 		if cc.config.WebACLId != nil && *cc.config.WebACLId != "" {

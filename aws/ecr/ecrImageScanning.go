@@ -7,7 +7,7 @@ import (
 
 func CheckIfImageScanningEnabled(checkConfig commons.CheckConfig, ecr []types.Repository, testName string) {
 	var check commons.Check
-	check.InitCheck("ECRs image are scanned on push", "Check if all ECRs have image scanning enabled", testName)
+	check.InitCheck("ECRs image are scanned on push", "Check if all ECRs have image scanning enabled", testName, []string{"Security", "Good Practice"})
 	for _, ecr := range ecr {
 		if !ecr.ImageScanningConfiguration.ScanOnPush {
 			Message := "ECR " + *ecr.RepositoryName + " has image scanning disabled"

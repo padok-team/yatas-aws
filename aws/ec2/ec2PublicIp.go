@@ -7,7 +7,7 @@ import (
 
 func CheckIfEC2PublicIP(checkConfig commons.CheckConfig, instances []types.Instance, testName string) {
 	var check commons.Check
-	check.InitCheck("EC2s don't have a public IP", "Check if all instances have a public IP", testName)
+	check.InitCheck("EC2s don't have a public IP", "Check if all instances have a public IP", testName, []string{"Security", "Good Practice"})
 	for _, instance := range instances {
 		if instance.PublicIpAddress != nil {
 			Message := "EC2 instance " + *instance.InstanceId + " has a public IP" + *instance.PublicIpAddress

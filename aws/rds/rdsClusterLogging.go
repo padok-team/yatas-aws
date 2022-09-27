@@ -7,7 +7,7 @@ import (
 
 func CheckIfClusterLoggingEnabled(checkConfig commons.CheckConfig, instances []types.DBCluster, testName string) {
 	var check commons.Check
-	check.InitCheck("Aurora RDS logs are exported to cloudwatch", "Check if Aurora RDS logging is enabled", testName)
+	check.InitCheck("Aurora RDS logs are exported to cloudwatch", "Check if Aurora RDS logging is enabled", testName, []string{"Security", "Good Practice"})
 	for _, instance := range instances {
 		if instance.EnabledCloudwatchLogsExports != nil {
 			found := false

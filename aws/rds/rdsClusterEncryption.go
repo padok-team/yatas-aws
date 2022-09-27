@@ -7,7 +7,7 @@ import (
 
 func checkIfClusterEncryptionEnabled(checkConfig commons.CheckConfig, instances []types.DBCluster, testName string) {
 	var check commons.Check
-	check.InitCheck("Aurora RDS are encrypted", "Check if Aurora RDS encryption is enabled", testName)
+	check.InitCheck("Aurora RDS are encrypted", "Check if Aurora RDS encryption is enabled", testName, []string{"Security", "Good Practice"})
 	for _, instance := range instances {
 		if !instance.StorageEncrypted {
 			Message := "RDS encryption is not enabled on " + *instance.DBClusterIdentifier

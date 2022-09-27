@@ -10,7 +10,7 @@ import (
 
 func checkCIDR20(checkConfig commons.CheckConfig, vpcs []types.Vpc, testName string) {
 	var check commons.Check
-	check.InitCheck("VPC CIDRs are bigger than /20", "Check if VPC CIDR is /20 or bigger", testName)
+	check.InitCheck("VPC CIDRs are bigger than /20", "Check if VPC CIDR is /20 or bigger", testName, []string{"Security", "Good Practice"})
 	for _, vpc := range vpcs {
 		cidr := *vpc.CidrBlock
 		// split the cidr to / and get the last part as an int

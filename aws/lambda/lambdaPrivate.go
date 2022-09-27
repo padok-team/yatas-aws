@@ -7,7 +7,7 @@ import (
 
 func CheckIfLambdaPrivate(checkConfig commons.CheckConfig, lambdas []types.FunctionConfiguration, testName string) {
 	var check commons.Check
-	check.InitCheck("Lambdas are private", "Check if all Lambdas are private", testName)
+	check.InitCheck("Lambdas are private", "Check if all Lambdas are private", testName, []string{"Security", "Good Practice"})
 	for _, lambda := range lambdas {
 		if lambda.VpcConfig == nil {
 			Message := "Lambda " + *lambda.FunctionName + " is public"

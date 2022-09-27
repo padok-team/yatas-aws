@@ -7,7 +7,7 @@ import (
 
 func CheckIfEncrypted(checkConfig commons.CheckConfig, ecr []types.Repository, testName string) {
 	var check commons.Check
-	check.InitCheck("ECRs are encrypted", "Check if all ECRs are encrypted", testName)
+	check.InitCheck("ECRs are encrypted", "Check if all ECRs are encrypted", testName, []string{"Security", "Good Practice"})
 	for _, ecr := range ecr {
 		if ecr.EncryptionConfiguration == nil {
 			Message := "ECR " + *ecr.RepositoryName + " is not encrypted"

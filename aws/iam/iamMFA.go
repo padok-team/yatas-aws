@@ -6,7 +6,7 @@ import (
 
 func CheckIf2FAActivated(checkConfig commons.CheckConfig, mfaForUsers []MFAForUser, testName string) {
 	var check commons.Check
-	check.InitCheck("IAM Users have 2FA activated", "Check if all users have 2FA activated", testName)
+	check.InitCheck("IAM Users have 2FA activated", "Check if all users have 2FA activated", testName, []string{"Security", "Good Practice"})
 	for _, mfaForUser := range mfaForUsers {
 		if len(mfaForUser.MFAs) == 0 {
 			Message := "2FA is not activated on " + mfaForUser.UserName

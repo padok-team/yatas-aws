@@ -7,7 +7,7 @@ import (
 
 func CheckIfLambdaInSecurityGroup(checkConfig commons.CheckConfig, lambdas []types.FunctionConfiguration, testName string) {
 	var check commons.Check
-	check.InitCheck("Lambdas are in a security group", "Check if all Lambdas are in a security group", testName)
+	check.InitCheck("Lambdas are in a security group", "Check if all Lambdas are in a security group", testName, []string{"Security", "Good Practice"})
 	for _, lambda := range lambdas {
 		if lambda.VpcConfig == nil || lambda.VpcConfig.SecurityGroupIds == nil {
 			Message := "Lambda " + *lambda.FunctionName + " is not in a security group"

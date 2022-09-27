@@ -7,7 +7,7 @@ import (
 
 func checkIfEncryptionEnabled(checkConfig commons.CheckConfig, instances []types.DBInstance, testName string) {
 	var check commons.Check
-	check.InitCheck("RDS are encrypted", "Check if RDS encryption is enabled", testName)
+	check.InitCheck("RDS are encrypted", "Check if RDS encryption is enabled", testName, []string{"Security", "Good Practice"})
 	for _, instance := range instances {
 		if !instance.StorageEncrypted {
 			Message := "RDS encryption is not enabled on " + *instance.DBInstanceIdentifier

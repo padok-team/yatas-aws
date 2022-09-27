@@ -6,7 +6,7 @@ import (
 
 func CheckIfAllVolumesHaveSnapshots(checkConfig commons.CheckConfig, snapshot2Volumes couple, testName string) {
 	var check commons.Check
-	check.InitCheck("EC2 have snapshots", "Check if all volumes have snapshots", testName)
+	check.InitCheck("EC2 have snapshots", "Check if all volumes have snapshots", testName, []string{"Security", "Good Practice"})
 	for _, volume := range snapshot2Volumes.Volume {
 		ok := false
 		for _, snapshot := range snapshot2Volumes.Snapshot {

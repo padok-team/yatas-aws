@@ -7,7 +7,7 @@ import (
 
 func CheckIfVolumeIsUsed(checkConfig commons.CheckConfig, volumes []types.Volume, testName string) {
 	var check commons.Check
-	check.InitCheck("EC2's volumes are unused", "Check if EC2 volumes are unused", testName)
+	check.InitCheck("EC2's volumes are unused", "Check if EC2 volumes are unused", testName, []string{"Security", "Good Practice"})
 	for _, volume := range volumes {
 		if volume.State != types.VolumeStateInUse && volume.State != types.VolumeStateDeleted {
 			Message := "EC2 volume is unused " + *volume.VolumeId

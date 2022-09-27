@@ -7,7 +7,7 @@ import (
 
 func checkIfClusterBackupEnabled(checkConfig commons.CheckConfig, instances []types.DBCluster, testName string) {
 	var check commons.Check
-	check.InitCheck("Aurora RDS are backedup automatically with PITR", "Check if Aurora RDS backup is enabled", testName)
+	check.InitCheck("Aurora RDS are backedup automatically with PITR", "Check if Aurora RDS backup is enabled", testName, []string{"Security", "Good Practice"})
 	for _, instance := range instances {
 		if instance.BackupRetentionPeriod == nil || *instance.BackupRetentionPeriod == 0 {
 			Message := "RDS backup is not enabled on " + *instance.DBClusterIdentifier

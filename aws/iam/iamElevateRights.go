@@ -10,7 +10,7 @@ import (
 
 func CheckIfUserCanElevateRights(checkConfig commons.CheckConfig, userToPolociesElevated []UserToPoliciesElevate, testName string) {
 	var check commons.Check
-	check.InitCheck("IAM User can't elevate rights", "Check if  users can elevate rights", testName)
+	check.InitCheck("IAM User can't elevate rights", "Check if  users can elevate rights", testName, []string{"Security", "Good Practice"})
 	for _, userPol := range userToPolociesElevated {
 		if len(userPol.Policies) > 0 {
 			var Message string

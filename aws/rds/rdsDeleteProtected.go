@@ -7,7 +7,7 @@ import (
 
 func CheckIfDeleteProtectionEnabled(checkConfig commons.CheckConfig, instances []types.DBInstance, testName string) {
 	var check commons.Check
-	check.InitCheck("RDS have the deletion protection enabled", "Check if RDS delete protection is enabled", testName)
+	check.InitCheck("RDS have the deletion protection enabled", "Check if RDS delete protection is enabled", testName, []string{"Security", "Good Practice"})
 	for _, instance := range instances {
 		if instance.DeletionProtection {
 			Message := "RDS delete protection is enabled on " + *instance.DBInstanceIdentifier

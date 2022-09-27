@@ -7,7 +7,7 @@ import (
 
 func CheckIfMonitoringEnabled(checkConfig commons.CheckConfig, instances []types.Instance, testName string) {
 	var check commons.Check
-	check.InitCheck("EC2s have the monitoring option enabled", "Check if all instances have monitoring enabled", testName)
+	check.InitCheck("EC2s have the monitoring option enabled", "Check if all instances have monitoring enabled", testName, []string{"Security", "Good Practice"})
 	for _, instance := range instances {
 		if instance.Monitoring.State != types.MonitoringStateEnabled {
 			Message := "EC2 instance " + *instance.InstanceId + " has no monitoring enabled"

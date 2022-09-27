@@ -7,7 +7,7 @@ import (
 
 func CheckIfClusterDeleteProtectionEnabled(checkConfig commons.CheckConfig, instances []types.DBCluster, testName string) {
 	var check commons.Check
-	check.InitCheck("Aurora RDS have the deletion protection enabled", "Check if Aurora RDS delete protection is enabled", testName)
+	check.InitCheck("Aurora RDS have the deletion protection enabled", "Check if Aurora RDS delete protection is enabled", testName, []string{"Security", "Good Practice"})
 	for _, instance := range instances {
 		if instance.DeletionProtection != nil && *instance.DeletionProtection {
 			Message := "RDS delete protection is enabled on " + *instance.DBClusterIdentifier

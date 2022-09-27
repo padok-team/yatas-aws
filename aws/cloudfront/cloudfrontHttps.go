@@ -7,7 +7,7 @@ import (
 
 func CheckIfHTTPSOnly(checkConfig commons.CheckConfig, d []types.DistributionSummary, testName string) {
 	var check commons.Check
-	check.InitCheck("Cloudfronts only allow HTTPS or redirect to HTTPS", "Check if all cloudfront distributions are HTTPS only", testName)
+	check.InitCheck("Cloudfronts only allow HTTPS or redirect to HTTPS", "Check if all cloudfront distributions are HTTPS only", testName, []string{"Security", "Good Practice"})
 	for _, cloudfront := range d {
 		if cloudfront.DefaultCacheBehavior != nil && (cloudfront.DefaultCacheBehavior.ViewerProtocolPolicy == "https-only" || cloudfront.DefaultCacheBehavior.ViewerProtocolPolicy == "redirect-to-https") {
 			Message := "Cloudfront distribution is HTTPS only on " + *cloudfront.Id

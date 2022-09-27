@@ -7,7 +7,7 @@ import (
 
 func CheckIfTracingEnabled(checkConfig commons.CheckConfig, stages map[string][]types.Stage, testName string) {
 	var check commons.Check
-	check.InitCheck("ApiGateways have tracing enabled", "Check if all stages are enabled for tracing", testName)
+	check.InitCheck("ApiGateways have tracing enabled", "Check if all stages are enabled for tracing", testName, []string{"Security", "Good Practice"})
 	for apigateway, id := range stages {
 		for _, stage := range id {
 			if stage.TracingEnabled {

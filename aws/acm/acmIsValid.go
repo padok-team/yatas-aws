@@ -7,7 +7,7 @@ import (
 
 func CheckIfACMValid(checkConfig commons.CheckConfig, certificates []types.CertificateDetail, testName string) {
 	var check commons.Check
-	check.InitCheck("ACM certificates are valid", "Check if certificate is valid", testName)
+	check.InitCheck("ACM certificates are valid", "Check if certificate is valid", testName, []string{"Security", "Good Practice"})
 	for _, certificate := range certificates {
 		if certificate.Status == types.CertificateStatusIssued || certificate.Status == types.CertificateStatusInactive {
 			Message := "Certificate " + *certificate.CertificateArn + " is valid"

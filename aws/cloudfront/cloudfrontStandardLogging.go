@@ -6,7 +6,7 @@ import (
 
 func CheckIfStandardLogginEnabled(checkConfig commons.CheckConfig, d []SummaryToConfig, testName string) {
 	var check commons.Check
-	check.InitCheck("Cloudfronts queries are logged", "Check if all cloudfront distributions have standard logging enabled", testName)
+	check.InitCheck("Cloudfronts queries are logged", "Check if all cloudfront distributions have standard logging enabled", testName, []string{"Security", "Good Practice"})
 	for _, cc := range d {
 
 		if cc.config.Logging != nil && cc.config.Logging.Enabled != nil && *cc.config.Logging.Enabled {

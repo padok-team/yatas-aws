@@ -7,7 +7,7 @@ import (
 
 func CheckIfInTwoAvailibilityZones(checkConfig commons.CheckConfig, groups []types.AutoScalingGroup, testName string) {
 	var check commons.Check
-	check.InitCheck("Autoscaling group are in two availability zones", "Check if all autoscaling groups have at least two availability zones", testName)
+	check.InitCheck("Autoscaling group are in two availability zones", "Check if all autoscaling groups have at least two availability zones", testName, []string{"Security", "Good Practice"})
 	for _, group := range groups {
 		if len(group.AvailabilityZones) < 2 {
 			Message := "Autoscaling group " + *group.AutoScalingGroupName + " has less than two availability zones"

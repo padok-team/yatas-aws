@@ -7,7 +7,7 @@ import (
 
 func checkIfAutoUpgradeEnabled(checkConfig commons.CheckConfig, instances []types.DBInstance, testName string) {
 	var check commons.Check
-	check.InitCheck("RDS have minor versions automatically updated", "Check if RDS minor auto upgrade is enabled", testName)
+	check.InitCheck("RDS have minor versions automatically updated", "Check if RDS minor auto upgrade is enabled", testName, []string{"Security", "Good Practice"})
 	for _, instance := range instances {
 		if !instance.AutoMinorVersionUpgrade {
 			Message := "RDS auto upgrade is not enabled on " + *instance.DBInstanceIdentifier

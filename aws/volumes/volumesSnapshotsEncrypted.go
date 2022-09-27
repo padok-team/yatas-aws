@@ -7,7 +7,7 @@ import (
 
 func CheckIfAllSnapshotsEncrypted(checkConfig commons.CheckConfig, snapshots []types.Snapshot, testName string) {
 	var check commons.Check
-	check.InitCheck("EC2's Snapshots are encrypted", "Check if all snapshots are encrypted", testName)
+	check.InitCheck("EC2's Snapshots are encrypted", "Check if all snapshots are encrypted", testName, []string{"Security", "Good Practice"})
 	for _, snapshot := range snapshots {
 		if snapshot.Encrypted == nil || !*snapshot.Encrypted {
 			Message := "Snapshot " + *snapshot.SnapshotId + " is not encrypted"

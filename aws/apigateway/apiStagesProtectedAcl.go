@@ -7,7 +7,7 @@ import (
 
 func CheckIfStagesProtectedByAcl(checkConfig commons.CheckConfig, stages map[string][]types.Stage, testName string) {
 	var check commons.Check
-	check.InitCheck("ApiGateways are protected by an ACL", "Check if all stages are protected by ACL", testName)
+	check.InitCheck("ApiGateways are protected by an ACL", "Check if all stages are protected by ACL", testName, []string{"Security", "Good Practice"})
 	for apigateway, id := range stages {
 		for _, stage := range id {
 			if stage.WebAclArn != nil && *stage.WebAclArn != "" {

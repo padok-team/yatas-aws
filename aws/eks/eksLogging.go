@@ -7,7 +7,7 @@ import (
 
 func CheckIfLoggingIsEnabled(checkConfig commons.CheckConfig, clusters []types.Cluster, testName string) {
 	var check commons.Check
-	check.InitCheck("EKS clusters have logging enabled", "Check if logging is enabled", testName)
+	check.InitCheck("EKS clusters have logging enabled", "Check if logging is enabled", testName, []string{"Security", "Good Practice"})
 	for _, cluster := range clusters {
 		if cluster.Logging != nil && len(cluster.Logging.ClusterLogging) > 0 {
 			Message := "Logging is enabled for cluster " + *cluster.Name

@@ -9,7 +9,7 @@ import (
 
 func CheckIfCloudfrontTLS1_2Minimum(checkConfig commons.CheckConfig, d []types.DistributionSummary, testName string) {
 	var check commons.Check
-	check.InitCheck("Cloudfronts enforce TLS 1.2 at least", "Check if all cloudfront distributions have TLS 1.2 minimum", testName)
+	check.InitCheck("Cloudfronts enforce TLS 1.2 at least", "Check if all cloudfront distributions have TLS 1.2 minimum", testName, []string{"Security", "Good Practice"})
 	for _, cloudfront := range d {
 		if cloudfront.ViewerCertificate != nil && strings.Contains(string(cloudfront.ViewerCertificate.MinimumProtocolVersion), "TLSv1.2") {
 			Message := "TLS 1.2 minimum is set on " + *cloudfront.Id

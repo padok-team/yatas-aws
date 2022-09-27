@@ -7,7 +7,7 @@ import (
 
 func CheckIfTagImmutable(checkConfig commons.CheckConfig, ecr []types.Repository, testName string) {
 	var check commons.Check
-	check.InitCheck("ECRs tags are immutable", "Check if all ECRs are tag immutable", testName)
+	check.InitCheck("ECRs tags are immutable", "Check if all ECRs are tag immutable", testName, []string{"Security", "Good Practice"})
 	for _, ecr := range ecr {
 		if ecr.ImageTagMutability == types.ImageTagMutabilityMutable {
 			Message := "ECR " + *ecr.RepositoryName + " is not tag immutable"

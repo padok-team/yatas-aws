@@ -9,7 +9,7 @@ import (
 
 func CheckIfUserLastPasswordUse120Days(checkConfig commons.CheckConfig, users []types.User, testName string) {
 	var check commons.Check
-	check.InitCheck("IAM Users have not used their password for 120 days", "Check if all users have not used their password for 120 days", testName)
+	check.InitCheck("IAM Users have not used their password for 120 days", "Check if all users have not used their password for 120 days", testName, []string{"Security", "Good Practice"})
 	for _, user := range users {
 		if user.PasswordLastUsed != nil {
 			if time.Since(*user.PasswordLastUsed).Hours() > 120*24 {

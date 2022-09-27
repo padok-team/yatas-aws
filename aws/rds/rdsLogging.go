@@ -7,7 +7,7 @@ import (
 
 func CheckIfLoggingEnabled(checkConfig commons.CheckConfig, instances []types.DBInstance, testName string) {
 	var check commons.Check
-	check.InitCheck("RDS logs are exported to cloudwatch", "Check if RDS logging is enabled", testName)
+	check.InitCheck("RDS logs are exported to cloudwatch", "Check if RDS logging is enabled", testName, []string{"Security", "Good Practice"})
 	for _, instance := range instances {
 		if instance.EnabledCloudwatchLogsExports != nil {
 			found := false

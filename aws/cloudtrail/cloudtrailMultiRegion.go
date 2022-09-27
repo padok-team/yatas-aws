@@ -7,7 +7,7 @@ import (
 
 func CheckIfCloudtrailsMultiRegion(checkConfig commons.CheckConfig, cloudtrails []types.Trail, testName string) {
 	var check commons.Check
-	check.InitCheck("Cloudtrails are in multiple regions", "check if all cloudtrails are multi region", testName)
+	check.InitCheck("Cloudtrails are in multiple regions", "check if all cloudtrails are multi region", testName, []string{"Security", "Good Practice"})
 	for _, cloudtrail := range cloudtrails {
 		if !*cloudtrail.IsMultiRegionTrail {
 			Message := "Cloudtrail " + *cloudtrail.Name + " is not multi region"

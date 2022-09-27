@@ -6,7 +6,7 @@ import (
 
 func CheckIfCookieLogginEnabled(checkConfig commons.CheckConfig, d []SummaryToConfig, testName string) {
 	var check commons.Check
-	check.InitCheck("Cloudfronts are logging Cookies", "Check if all cloudfront distributions have cookies logging enabled", testName)
+	check.InitCheck("Cloudfronts are logging Cookies", "Check if all cloudfront distributions have cookies logging enabled", testName, []string{"Security", "Good Practice"})
 	for _, cc := range d {
 		if cc.config.Logging != nil && *cc.config.Logging.Enabled && cc.config.Logging.IncludeCookies != nil && *cc.config.Logging.IncludeCookies {
 			Message := "Cookie logging is enabled on " + *cc.summary.Id

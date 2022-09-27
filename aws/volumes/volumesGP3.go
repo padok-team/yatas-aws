@@ -7,7 +7,7 @@ import (
 
 func CheckIfVolumesTypeGP3(checkConfig commons.CheckConfig, volumes []types.Volume, testName string) {
 	var check commons.Check
-	check.InitCheck("EC2 are using GP3", "Check if all volumes are of type gp3", testName)
+	check.InitCheck("EC2 are using GP3", "Check if all volumes are of type gp3", testName, []string{"Security", "Good Practice"})
 	for _, volume := range volumes {
 		if volume.VolumeType != "gp3" {
 			Message := "Volume " + *volume.VolumeId + " is not of type gp3"

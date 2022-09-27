@@ -7,7 +7,7 @@ import (
 
 func CheckIfCloudtrailsGlobalServiceEventsEnabled(checkConfig commons.CheckConfig, cloudtrails []types.Trail, testName string) {
 	var check commons.Check
-	check.InitCheck("Cloudtrails have Global Service Events Activated", "check if all cloudtrails have global service events enabled", testName)
+	check.InitCheck("Cloudtrails have Global Service Events Activated", "check if all cloudtrails have global service events enabled", testName, []string{"Security", "Good Practice"})
 	for _, cloudtrail := range cloudtrails {
 		if !*cloudtrail.IncludeGlobalServiceEvents {
 			Message := "Cloudtrail " + *cloudtrail.Name + " has global service events disabled"

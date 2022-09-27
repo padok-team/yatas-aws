@@ -8,7 +8,7 @@ import (
 
 func CheckAgeAccessKeyLessThan90Days(checkConfig commons.CheckConfig, accessKeysForUsers []AccessKeysForUser, testName string) {
 	var check commons.Check
-	check.InitCheck("IAM access key younger than 90 days", "Check if all users have access key less than 90 days", testName)
+	check.InitCheck("IAM access key younger than 90 days", "Check if all users have access key less than 90 days", testName, []string{"Security", "Good Practice"})
 	for _, accesskeyforuser := range accessKeysForUsers {
 		now := time.Now()
 		for _, accessKey := range accesskeyforuser.AccessKeys {

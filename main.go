@@ -16,6 +16,7 @@ import (
 	"github.com/stangirard/yatas-aws/aws/autoscaling"
 	"github.com/stangirard/yatas-aws/aws/cloudfront"
 	"github.com/stangirard/yatas-aws/aws/cloudtrail"
+	"github.com/stangirard/yatas-aws/aws/cognito"
 	"github.com/stangirard/yatas-aws/aws/dynamodb"
 	"github.com/stangirard/yatas-aws/aws/ec2"
 	"github.com/stangirard/yatas-aws/aws/ecr"
@@ -156,6 +157,7 @@ func initTest(s aws.Config, c *commons.Config, a commons.AWS_Account) commons.Te
 	checks.Account = a.Name
 	var wg sync.WaitGroup
 	queue := make(chan []commons.Check, 100)
+	go commons.CheckMacroTest(&wg, c, cognito.RunChecks)(&wg, s, c, queue)
 	go commons.CheckMacroTest(&wg, c, acm.RunChecks)(&wg, s, c, queue)
 	go commons.CheckMacroTest(&wg, c, s3.RunChecks)(&wg, s, c, queue)
 	go commons.CheckMacroTest(&wg, c, volumes.RunChecks)(&wg, s, c, queue)
@@ -272,7 +274,7 @@ func main() {
 	gob.Register([]interface{}{})
 	gob.Register(map[string]interface{}{})
 	logger := hclog.New(&hclog.LoggerOptions{
-		Level:      hclog.Trace,
+		Level:      hclog.Debug,
 		Output:     os.Stderr,
 		JSONFormat: true,
 	})

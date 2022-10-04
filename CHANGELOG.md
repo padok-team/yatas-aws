@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/StanGirard/yatas-aws/compare/v1.1.0...v1.2.0) (2022-10-04)
+
+
+### Features
+
+* **cognito:** added new test for unauthenticated ([ba60f4a](https://github.com/StanGirard/yatas-aws/commit/ba60f4a8f0be230c10bb4503125c5122f3a0d77e))
+
 ## [1.1.0](https://github.com/StanGirard/yatas-aws/compare/v1.0.0...v1.1.0) (2022-09-27)
 
 

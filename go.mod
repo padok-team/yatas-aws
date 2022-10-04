@@ -5,13 +5,13 @@ go 1.19
 require (
 	github.com/aws/aws-sdk-go-v2 v1.16.16
 	github.com/aws/aws-sdk-go-v2/config v1.17.8
-	github.com/aws/aws-sdk-go-v2/service/acm v1.14.18
+	github.com/aws/aws-sdk-go-v2/service/acm v1.15.0
 	github.com/aws/aws-sdk-go-v2/service/apigateway v1.15.20
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.23.16
 	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.20.5
 	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.18.1
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.17.1
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.60.0
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.62.0
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.17.18
 	github.com/aws/aws-sdk-go-v2/service/eks v1.22.1
 	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.18.19

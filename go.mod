@@ -9,14 +9,14 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/apigateway v1.15.20
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.23.16
 	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.20.5
-	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.18.1
+	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.18.2
 	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.14.1
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.17.1
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.62.0
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.17.18
 	github.com/aws/aws-sdk-go-v2/service/eks v1.22.1
-	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.18.19
-	github.com/aws/aws-sdk-go-v2/service/guardduty v1.15.9
+	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.18.20
+	github.com/aws/aws-sdk-go-v2/service/guardduty v1.15.10
 	github.com/aws/aws-sdk-go-v2/service/iam v1.18.19
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.24.6
 	github.com/aws/aws-sdk-go-v2/service/rds v1.26.1

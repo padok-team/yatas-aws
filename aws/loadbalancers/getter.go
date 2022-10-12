@@ -2,6 +2,7 @@ package loadbalancers
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2"
@@ -23,7 +24,7 @@ func GetLoadBalancersAttributes(s aws.Config, loadbalancers []types.LoadBalancer
 		}
 		result, err := svc.DescribeLoadBalancerAttributes(context.TODO(), input)
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
 		}
 		loadBalancerAttributes = append(loadBalancerAttributes, LoadBalancerAttributes{
 			LoadBalancerArn:  *loadbalancer.LoadBalancerArn,
@@ -42,7 +43,7 @@ func GetElasticLoadBalancers(s aws.Config) []types.LoadBalancer {
 	}
 	result, err := svc.DescribeLoadBalancers(context.TODO(), input)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	loadBalancers = append(loadBalancers, result.LoadBalancers...)
 	for {
@@ -50,7 +51,7 @@ func GetElasticLoadBalancers(s aws.Config) []types.LoadBalancer {
 			input.Marker = result.NextMarker
 			result, err = svc.DescribeLoadBalancers(context.TODO(), input)
 			if err != nil {
-				panic(err)
+				fmt.Println(err)
 			}
 			loadBalancers = append(loadBalancers, result.LoadBalancers...)
 		} else {

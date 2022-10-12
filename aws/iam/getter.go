@@ -2,6 +2,7 @@ package iam
 
 import (
 	"context"
+	"fmt"
 	"sync"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
@@ -16,7 +17,7 @@ func GetAllUsers(s aws.Config) []types.User {
 	result, err := svc.ListUsers(context.TODO(), input)
 	users = append(users, result.Users...)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	for {
 		if result.IsTruncated {
@@ -24,7 +25,7 @@ func GetAllUsers(s aws.Config) []types.User {
 			result, err = svc.ListUsers(context.TODO(), input)
 			users = append(users, result.Users...)
 			if err != nil {
-				panic(err)
+				fmt.Println(err)
 			}
 		} else {
 			break
@@ -48,7 +49,7 @@ func GetMfaForUsers(s aws.Config, u []types.User) []MFAForUser {
 		}
 		result, err := svc.ListMFADevices(context.TODO(), input)
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
 		}
 		mfaForUsers = append(mfaForUsers, MFAForUser{
 			UserName: *user.UserName,
@@ -63,7 +64,7 @@ func GetMfaForUsers(s aws.Config, u []types.User) []MFAForUser {
 					MFAs:     result.MFADevices,
 				})
 				if err != nil {
-					panic(err)
+					fmt.Println(err)
 				}
 			} else {
 				break
@@ -88,7 +89,7 @@ func GetAccessKeysForUsers(s aws.Config, u []types.User) []AccessKeysForUser {
 		}
 		result, err := svc.ListAccessKeys(context.TODO(), input)
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
 		}
 		accessKeysForUsers = append(accessKeysForUsers, AccessKeysForUser{
 			UserName:   *user.UserName,
@@ -103,7 +104,7 @@ func GetAccessKeysForUsers(s aws.Config, u []types.User) []AccessKeysForUser {
 					AccessKeys: result.AccessKeyMetadata,
 				})
 				if err != nil {
-					panic(err)
+					fmt.Println(err)
 				}
 			} else {
 				break
@@ -183,7 +184,7 @@ func GetPolicyDocument(wg *sync.WaitGroup, queue chan *string, s aws.Config, pol
 	svc := iam.NewFromConfig(s)
 	result, err := svc.GetPolicyVersion(context.TODO(), input)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	queue <- result.PolicyVersion.Document
 }
@@ -195,7 +196,7 @@ func GetPolicyAttachedToUser(s aws.Config, user types.User) []types.AttachedPoli
 	}
 	result, err := svc.ListAttachedUserPolicies(context.TODO(), input)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	return result.AttachedPolicies
 }
@@ -207,7 +208,7 @@ func GetAllPolicyVersions(s aws.Config, policyArn *string) []types.PolicyVersion
 	}
 	result, err := svc.ListPolicyVersions(context.TODO(), input)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 
 	return result.Versions

@@ -2,6 +2,7 @@ package s3
 
 import (
 	"context"
+	"fmt"
 	"strings"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
@@ -16,7 +17,7 @@ func GetListS3(s aws.Config) []types.Bucket {
 	params := &s3.ListBucketsInput{}
 	resp, err := svc.ListBuckets(context.TODO(), params)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 
 	return resp.Buckets
@@ -29,7 +30,7 @@ func GetListS3NotInRegion(s aws.Config, region string) []types.Bucket {
 	params := &s3.ListBucketsInput{}
 	resp, err := svc.ListBuckets(context.TODO(), params)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 
 	var buckets []types.Bucket
@@ -83,7 +84,7 @@ func GetS3ToEncryption(s aws.Config, b []types.Bucket) []S3ToEncryption {
 		}
 		_, err := svc.GetBucketEncryption(context.TODO(), params)
 		if err != nil && !strings.Contains(err.Error(), "ServerSideEncryptionConfigurationNotFoundError") {
-			panic(err)
+			fmt.Println(err)
 		} else if err != nil {
 			s3toEncryption = append(s3toEncryption, S3ToEncryption{*bucket.Name, false})
 		} else {
@@ -110,7 +111,7 @@ func GetS3ToVersioning(s aws.Config, b []types.Bucket) []S3ToVersioning {
 		}
 		resp, err := svc.GetBucketVersioning(context.TODO(), params)
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
 		}
 		if resp.Status != types.BucketVersioningStatusEnabled {
 			s3toVersioning = append(s3toVersioning, S3ToVersioning{*bucket.Name, false})

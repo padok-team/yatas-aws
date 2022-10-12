@@ -2,6 +2,7 @@ package ecr
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/ecr"
@@ -17,7 +18,7 @@ func GetECRs(s aws.Config) []types.Repository {
 	result, err := svc.DescribeRepositories(context.TODO(), input)
 	ecrRepositories = append(ecrRepositories, result.Repositories...)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	for {
 		if result.NextToken != nil {
@@ -25,7 +26,7 @@ func GetECRs(s aws.Config) []types.Repository {
 			result, err = svc.DescribeRepositories(context.TODO(), input)
 			ecrRepositories = append(ecrRepositories, result.Repositories...)
 			if err != nil {
-				panic(err)
+				fmt.Println(err)
 			}
 		} else {
 			break

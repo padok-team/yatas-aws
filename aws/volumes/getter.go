@@ -2,6 +2,7 @@ package volumes
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/ec2"
@@ -22,7 +23,7 @@ func GetSnapshots(s aws.Config) []types.Snapshot {
 	}
 	result, err := svc.DescribeSnapshots(context.TODO(), input)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	snapshots = append(snapshots, result.Snapshots...)
 	for {
@@ -31,7 +32,7 @@ func GetSnapshots(s aws.Config) []types.Snapshot {
 			result, err = svc.DescribeSnapshots(context.TODO(), input)
 			snapshots = append(snapshots, result.Snapshots...)
 			if err != nil {
-				panic(err)
+				fmt.Println(err)
 			}
 		} else {
 			break
@@ -47,7 +48,7 @@ func GetVolumes(s aws.Config) []types.Volume {
 	input := &ec2.DescribeVolumesInput{}
 	result, err := svc.DescribeVolumes(context.TODO(), input)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	volumes = append(volumes, result.Volumes...)
 	for {
@@ -56,7 +57,7 @@ func GetVolumes(s aws.Config) []types.Volume {
 			result, err = svc.DescribeVolumes(context.TODO(), input)
 			volumes = append(volumes, result.Volumes...)
 			if err != nil {
-				panic(err)
+				fmt.Println(err)
 			}
 		} else {
 			break

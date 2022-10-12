@@ -2,6 +2,7 @@ package rds
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/service/rds"
 	"github.com/aws/aws-sdk-go-v2/service/rds/types"
@@ -19,7 +20,7 @@ func GetListRDS(svc RDSGetObjectAPI) []types.DBInstance {
 	resp, err := svc.DescribeDBInstances(context.TODO(), params)
 	instances = append(instances, resp.DBInstances...)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	for {
 		if resp.Marker != nil {
@@ -27,7 +28,7 @@ func GetListRDS(svc RDSGetObjectAPI) []types.DBInstance {
 			resp, err = svc.DescribeDBInstances(context.TODO(), params)
 			instances = append(instances, resp.DBInstances...)
 			if err != nil {
-				panic(err)
+				fmt.Println(err)
 			}
 		} else {
 			break
@@ -44,7 +45,7 @@ func GetListDBClusters(svc RDSGetObjectAPI) []types.DBCluster {
 	resp, err := svc.DescribeDBClusters(context.TODO(), params)
 	clusters = append(clusters, resp.DBClusters...)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	for {
 		if resp.Marker != nil {
@@ -52,7 +53,7 @@ func GetListDBClusters(svc RDSGetObjectAPI) []types.DBCluster {
 			resp, err = svc.DescribeDBClusters(context.TODO(), params)
 			clusters = append(clusters, resp.DBClusters...)
 			if err != nil {
-				panic(err)
+				fmt.Println(err)
 			}
 		} else {
 			break

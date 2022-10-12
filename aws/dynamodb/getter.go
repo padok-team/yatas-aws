@@ -2,6 +2,7 @@ package dynamodb
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
@@ -13,7 +14,7 @@ func GetDynamodbs(s aws.Config) []string {
 	dynamodbInput := &dynamodb.ListTablesInput{}
 	result, err := svc.ListTables(context.TODO(), dynamodbInput)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	return result.TableNames
 }
@@ -27,7 +28,7 @@ func GetTables(s aws.Config, dynamodbs []string) []*dynamodb.DescribeTableOutput
 		}
 		resp, err := svc.DescribeTable(context.TODO(), params)
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
 		}
 		tables = append(tables, resp)
 
@@ -49,7 +50,7 @@ func GetContinuousBackups(s aws.Config, tables []string) []TableBackups {
 		}
 		resp, err := svc.DescribeContinuousBackups(context.TODO(), params)
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
 		}
 		continuousBackups = append(continuousBackups, TableBackups{d, *resp.ContinuousBackupsDescription})
 	}

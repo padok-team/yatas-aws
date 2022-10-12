@@ -2,6 +2,7 @@ package ec2
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/service/ec2"
 	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
@@ -15,7 +16,7 @@ func GetEC2s(svc EC2GetObjectAPI) []types.Instance {
 	input := &ec2.DescribeInstancesInput{}
 	result, err := svc.DescribeInstances(context.TODO(), input)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	var instances []types.Instance
 	for _, r := range result.Reservations {
@@ -28,7 +29,7 @@ func GetEC2s(svc EC2GetObjectAPI) []types.Instance {
 		input.NextToken = result.NextToken
 		result, err = svc.DescribeInstances(context.TODO(), input)
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
 		}
 		for _, r := range result.Reservations {
 			instances = append(instances, r.Instances...)

@@ -2,6 +2,7 @@ package cloudfront
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/service/cloudfront"
 	"github.com/aws/aws-sdk-go-v2/service/cloudfront/types"
@@ -21,7 +22,7 @@ func GetAllCloudfront(svc CloudfrontGetObjectApi) []types.DistributionSummary {
 	input := &cloudfront.ListDistributionsInput{}
 	result, err := svc.ListDistributions(context.TODO(), input)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	return result.DistributionList.Items
 }
@@ -34,7 +35,7 @@ func GetAllDistributionConfig(svc CloudfrontGetObjectApi, ds []types.Distributio
 		}
 		result, err := svc.GetDistributionConfig(context.TODO(), input)
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
 		}
 		d = append(d, SummaryToConfig{summary: cc, config: *result.DistributionConfig})
 	}

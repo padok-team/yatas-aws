@@ -2,6 +2,7 @@ package cloudtrail
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/cloudtrail"
@@ -15,7 +16,7 @@ func GetCloudtrails(s aws.Config) []types.Trail {
 	}
 	result, err := svc.DescribeTrails(context.TODO(), input)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	return result.TrailList
 }

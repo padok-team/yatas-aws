@@ -2,6 +2,7 @@ package eks
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/eks"
@@ -17,7 +18,7 @@ func GetClusters(svc EKSGetObjectAPI) []types.Cluster {
 	input := &eks.ListClustersInput{}
 	result, err := svc.ListClusters(context.TODO(), input)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	var clusters []string
 	var clustersDetails []types.Cluster
@@ -31,7 +32,7 @@ func GetClusters(svc EKSGetObjectAPI) []types.Cluster {
 		input.NextToken = result.NextToken
 		result, err = svc.ListClusters(context.TODO(), input)
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
 		}
 		for _, r := range result.Clusters {
 			clusters = append(clusters, r)
@@ -44,7 +45,7 @@ func GetClusters(svc EKSGetObjectAPI) []types.Cluster {
 		}
 		result, err := svc.DescribeCluster(context.TODO(), input)
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
 		}
 		clustersDetails = append(clustersDetails, *result.Cluster)
 	}

@@ -2,6 +2,7 @@ package lambda
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/lambda"
@@ -17,7 +18,7 @@ func GetLambdas(s aws.Config) []types.FunctionConfiguration {
 	result, err := svc.ListFunctions(context.TODO(), input)
 	lambdas = append(lambdas, result.Functions...)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	for {
 		if result.NextMarker != nil {
@@ -25,7 +26,7 @@ func GetLambdas(s aws.Config) []types.FunctionConfiguration {
 			result, err = svc.ListFunctions(context.TODO(), input)
 			lambdas = append(lambdas, result.Functions...)
 			if err != nil {
-				panic(err)
+				fmt.Println(err)
 			}
 		} else {
 			break

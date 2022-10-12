@@ -16,7 +16,7 @@ func GetCognitoPools(s aws.Config) []types.IdentityPoolShortDescription {
 	}
 	result, err := svc.ListIdentityPools(context.TODO(), cognitoInput)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	fmt.Println("Hello")
 	return result.IdentityPools
@@ -31,7 +31,7 @@ func GetDetailedCognitoPool(s aws.Config, pools []types.IdentityPoolShortDescrip
 		}
 		result, err := svc.DescribeIdentityPool(context.TODO(), cognitoInput)
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
 		}
 		detailedPools = append(detailedPools, *result)
 	}

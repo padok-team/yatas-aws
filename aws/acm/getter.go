@@ -2,6 +2,7 @@ package acm
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/service/acm"
 	"github.com/aws/aws-sdk-go-v2/service/acm/types"
@@ -16,7 +17,7 @@ func GetCertificates(svc ACMGetObjectAPI) []types.CertificateDetail {
 	input := &acm.ListCertificatesInput{}
 	result, err := svc.ListCertificates(context.TODO(), input)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	var certificatesArn []*string
 	var certificates []types.CertificateDetail
@@ -30,7 +31,7 @@ func GetCertificates(svc ACMGetObjectAPI) []types.CertificateDetail {
 		input.NextToken = result.NextToken
 		result, err = svc.ListCertificates(context.TODO(), input)
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
 		}
 		for _, r := range result.CertificateSummaryList {
 			certificatesArn = append(certificatesArn, r.CertificateArn)
@@ -43,7 +44,7 @@ func GetCertificates(svc ACMGetObjectAPI) []types.CertificateDetail {
 		}
 		result, err := svc.DescribeCertificate(context.TODO(), input)
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
 		}
 		certificates = append(certificates, *result.Certificate)
 	}

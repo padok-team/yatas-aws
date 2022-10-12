@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/StanGirard/yatas-aws/compare/v1.2.0...v1.2.1) (2022-10-12)
+
+
+### Bug Fixes
+
+* **error:** panic to print ([51ecb24](https://github.com/StanGirard/yatas-aws/commit/51ecb24c1dda11d8097121916fb1e4fa493efbf2))
+
 ## [1.2.0](https://github.com/StanGirard/yatas-aws/compare/v1.1.0...v1.2.0) (2022-10-04)
 
 

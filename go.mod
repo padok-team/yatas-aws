@@ -3,7 +3,7 @@ module github.com/stangirard/yatas-aws
 go 1.19
 
 require (
-	github.com/aws/aws-sdk-go-v2 v1.16.16
+	github.com/aws/aws-sdk-go-v2 v1.17.0
 	github.com/aws/aws-sdk-go-v2/config v1.17.8
 	github.com/aws/aws-sdk-go-v2/service/acm v1.15.0
 	github.com/aws/aws-sdk-go-v2/service/apigateway v1.15.20

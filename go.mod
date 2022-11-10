@@ -4,21 +4,21 @@ go 1.19
 
 require (
 	github.com/aws/aws-sdk-go-v2 v1.17.1
-	github.com/aws/aws-sdk-go-v2/config v1.17.10
+	github.com/aws/aws-sdk-go-v2/config v1.17.11
 	github.com/aws/aws-sdk-go-v2/service/acm v1.15.2
-	github.com/aws/aws-sdk-go-v2/service/apigateway v1.15.22
+	github.com/aws/aws-sdk-go-v2/service/apigateway v1.15.23
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.23.18
 	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.20.7
 	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.18.2
 	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.14.3
-	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.17.3
+	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.17.4
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.63.3
-	github.com/aws/aws-sdk-go-v2/service/ecr v1.17.20
+	github.com/aws/aws-sdk-go-v2/service/ecr v1.17.21
 	github.com/aws/aws-sdk-go-v2/service/eks v1.22.4
-	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.18.22
+	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.18.23
 	github.com/aws/aws-sdk-go-v2/service/guardduty v1.15.10
 	github.com/aws/aws-sdk-go-v2/service/iam v1.18.23
-	github.com/aws/aws-sdk-go-v2/service/lambda v1.24.9
+	github.com/aws/aws-sdk-go-v2/service/lambda v1.24.10
 	github.com/aws/aws-sdk-go-v2/service/rds v1.26.3
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.27.11
 	github.com/hashicorp/go-hclog v1.3.1
@@ -31,7 +31,7 @@ require (
 
 require (
 	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.4.8 // indirect
-	github.com/aws/aws-sdk-go-v2/credentials v1.12.23 // indirect
+	github.com/aws/aws-sdk-go-v2/credentials v1.12.24 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.12.19 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.1.25 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.4.19 // indirect
@@ -44,7 +44,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.13.17 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sso v1.11.25 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.13.8 // indirect
-	github.com/aws/aws-sdk-go-v2/service/sts v1.17.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sts v1.17.2 // indirect
 	github.com/aws/smithy-go v1.13.4 // indirect
 	github.com/fatih/color v1.13.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect

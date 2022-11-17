@@ -15,7 +15,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.63.3
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.17.22
 	github.com/aws/aws-sdk-go-v2/service/eks v1.22.4
-	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.18.24
+	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.18.25
 	github.com/aws/aws-sdk-go-v2/service/guardduty v1.15.10
 	github.com/aws/aws-sdk-go-v2/service/iam v1.18.23
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.24.11

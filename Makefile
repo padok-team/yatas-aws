@@ -11,8 +11,8 @@ update:
 	go mod tidy
 
 install: build
-	mkdir -p ~/.yatas.d/plugins/github.com/StanGirard/yatas-aws/local/
-	mv ./bin/yatas-aws ~/.yatas.d/plugins/github.com/StanGirard/yatas-aws/local/
+	mkdir -p ~/.yatas.d/plugins/Thibaut/yatas-aws/local/
+	mv ./bin/yatas-aws ~/.yatas.d/plugins/Thibaut/yatas-aws/local/
 
 release: test
 	npm run release

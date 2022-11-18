@@ -11,7 +11,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.20.7
 	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.20.2
 	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.14.3
-	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.17.5
+	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.17.6
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.71.0
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.17.22
 	github.com/aws/aws-sdk-go-v2/service/eks v1.23.0

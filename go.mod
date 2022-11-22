@@ -5,22 +5,22 @@ go 1.19
 require (
 	github.com/aws/aws-sdk-go-v2 v1.17.1
 	github.com/aws/aws-sdk-go-v2/config v1.17.11
-	github.com/aws/aws-sdk-go-v2/service/acm v1.16.2
-	github.com/aws/aws-sdk-go-v2/service/apigateway v1.15.24
-	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.24.2
+	github.com/aws/aws-sdk-go-v2/service/acm v1.16.3
+	github.com/aws/aws-sdk-go-v2/service/apigateway v1.15.25
+	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.24.3
 	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.20.7
-	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.20.2
+	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.20.3
 	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.14.3
-	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.17.6
+	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.17.7
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.71.0
-	github.com/aws/aws-sdk-go-v2/service/ecr v1.17.22
+	github.com/aws/aws-sdk-go-v2/service/ecr v1.17.23
 	github.com/aws/aws-sdk-go-v2/service/eks v1.23.0
-	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.18.25
+	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.18.26
 	github.com/aws/aws-sdk-go-v2/service/guardduty v1.16.2
 	github.com/aws/aws-sdk-go-v2/service/iam v1.18.23
-	github.com/aws/aws-sdk-go-v2/service/lambda v1.25.0
-	github.com/aws/aws-sdk-go-v2/service/rds v1.30.0
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.29.3
+	github.com/aws/aws-sdk-go-v2/service/lambda v1.25.1
+	github.com/aws/aws-sdk-go-v2/service/rds v1.30.1
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.29.4
 	github.com/hashicorp/go-hclog v1.3.1
 	github.com/hashicorp/go-plugin v1.4.6
 	github.com/mitchellh/mapstructure v1.5.0

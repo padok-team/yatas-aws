@@ -10,7 +10,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.24.4
 	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.20.7
 	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.20.4
-	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.14.4
+	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.14.5
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.17.8
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.71.0
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.17.24
@@ -22,7 +22,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/rds v1.30.1
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.29.5
 	github.com/hashicorp/go-hclog v1.3.1
-	github.com/hashicorp/go-plugin v1.4.6
+	github.com/hashicorp/go-plugin v1.4.7
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/rs/zerolog v1.28.0
 	github.com/stangirard/yatas v1.2.0

@@ -7,19 +7,19 @@ require (
 	github.com/aws/aws-sdk-go-v2/config v1.17.11
 	github.com/aws/aws-sdk-go-v2/service/acm v1.16.5
 	github.com/aws/aws-sdk-go-v2/service/apigateway v1.15.27
-	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.24.4
-	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.20.7
-	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.20.4
+	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.25.1
+	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.22.2
+	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.21.1
 	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.14.6
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.17.9
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.71.0
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.77.0
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.17.25
-	github.com/aws/aws-sdk-go-v2/service/eks v1.23.0
+	github.com/aws/aws-sdk-go-v2/service/eks v1.26.0
 	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.18.28
 	github.com/aws/aws-sdk-go-v2/service/guardduty v1.16.6
 	github.com/aws/aws-sdk-go-v2/service/iam v1.18.25
-	github.com/aws/aws-sdk-go-v2/service/lambda v1.25.1
-	github.com/aws/aws-sdk-go-v2/service/rds v1.30.1
+	github.com/aws/aws-sdk-go-v2/service/lambda v1.26.2
+	github.com/aws/aws-sdk-go-v2/service/rds v1.37.0
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.29.6
 	github.com/hashicorp/go-hclog v1.3.1
 	github.com/hashicorp/go-plugin v1.4.8

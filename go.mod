@@ -7,26 +7,26 @@ require (
 	github.com/aws/aws-sdk-go-v2/config v1.18.7
 	github.com/aws/aws-sdk-go-v2/service/acm v1.16.5
 	github.com/aws/aws-sdk-go-v2/service/apigateway v1.15.27
-	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.24.4
-	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.20.7
-	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.20.4
+	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.25.1
+	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.22.2
+	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.21.1
 	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.14.6
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.17.9
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.71.0
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.77.0
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.17.25
-	github.com/aws/aws-sdk-go-v2/service/eks v1.23.0
+	github.com/aws/aws-sdk-go-v2/service/eks v1.26.0
 	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.18.28
 	github.com/aws/aws-sdk-go-v2/service/guardduty v1.16.6
 	github.com/aws/aws-sdk-go-v2/service/iam v1.18.25
-	github.com/aws/aws-sdk-go-v2/service/lambda v1.25.1
-	github.com/aws/aws-sdk-go-v2/service/rds v1.30.1
+	github.com/aws/aws-sdk-go-v2/service/lambda v1.26.2
+	github.com/aws/aws-sdk-go-v2/service/rds v1.37.0
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.29.6
-	github.com/hashicorp/go-hclog v1.3.1
+	github.com/hashicorp/go-hclog v1.4.0
 	github.com/hashicorp/go-plugin v1.4.8
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/rs/zerolog v1.28.0
-	github.com/stangirard/yatas v1.2.0
-	golang.org/x/exp v0.0.0-20221012112151-59b0eab1532e
+	github.com/stangirard/yatas v1.3.0
+	golang.org/x/exp v0.0.0-20221217163422-3c43f8badb15
 )
 
 require (
@@ -57,14 +57,14 @@ require (
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/mitchellh/go-testing-interface v1.14.1 // indirect
 	github.com/oklog/run v1.1.0 // indirect
-	golang.org/x/crypto v0.0.0-20220926161630-eccd6366d1be // indirect
-	golang.org/x/net v0.0.0-20220926192436-02166a98028e // indirect
-	golang.org/x/oauth2 v0.0.0-20220909003341-f21342109be1 // indirect
-	golang.org/x/sys v0.0.0-20220926163933-8cfa568d3c25 // indirect
-	golang.org/x/text v0.3.7 // indirect
+	golang.org/x/crypto v0.4.0 // indirect
+	golang.org/x/net v0.4.0 // indirect
+	golang.org/x/oauth2 v0.3.0 // indirect
+	golang.org/x/sys v0.3.0 // indirect
+	golang.org/x/text v0.5.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/genproto v0.0.0-20220926165614-551eb538f295 // indirect
-	google.golang.org/grpc v1.49.0 // indirect
+	google.golang.org/genproto v0.0.0-20221207170731-23e4bf6bdc37 // indirect
+	google.golang.org/grpc v1.51.0 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

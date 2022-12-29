@@ -31,6 +31,29 @@ func CheckIfUserCanElevateRights(checkConfig commons.CheckConfig, userToPolocies
 	checkConfig.Queue <- check
 }
 
+func CheckIfRoleCanElevateRights(checkConfig commons.CheckConfig, roleToPoliciesElevated []RoleToPoliciesElevate, testName string) {
+	var check commons.Check
+	check.InitCheck("IAM Role can't elevate rights", "Check if roles can elevate rights", testName, []string{"Security", "Good Practice"})
+	for _, rolePol := range roleToPoliciesElevated {
+		if len(rolePol.Policies) > 0 {
+			var Message string
+			if len(rolePol.Policies) > 3 {
+				Message = "Role " + rolePol.RoleName + " can elevate rights with " + fmt.Sprint(rolePol.Policies[len(rolePol.Policies)-3:]) + " only last 3 policies"
+			} else {
+				Message = "Role " + rolePol.RoleName + " can elevate rights with " + fmt.Sprint(rolePol.Policies)
+			}
+			result := commons.Result{Status: "FAIL", Message: Message, ResourceID: rolePol.RoleName}
+			check.AddResult(result)
+
+		} else {
+			Message := "Role " + rolePol.RoleName + " cannot elevate rights"
+			result := commons.Result{Status: "OK", Message: Message, ResourceID: rolePol.RoleName}
+			check.AddResult(result)
+		}
+	}
+	checkConfig.Queue <- check
+}
+
 func CheckPolicyForAllowInRequiredPermission(policies []Policy, requiredPermission [][]string) [][]string {
 	// Extract all allow statements from policy
 	allowStatements := make([]Statement, 0)

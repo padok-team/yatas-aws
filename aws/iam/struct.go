@@ -24,3 +24,8 @@ type UserPolicies struct {
 	UserName string
 	Policies []Policy
 }
+
+type RolePolicies struct {
+	RoleName string
+	Policies []Policy
+}

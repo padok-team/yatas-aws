@@ -34,6 +34,30 @@ func GetAllUsers(s aws.Config) []types.User {
 	return users
 }
 
+func GetAllRoles(s aws.Config) []types.Role {
+	svc := iam.NewFromConfig(s)
+	var roles []types.Role
+	input := &iam.ListRolesInput{}
+	result, err := svc.ListRoles(context.TODO(), input)
+	roles = append(roles, result.Roles...)
+	if err != nil {
+		fmt.Println(err)
+	}
+	for {
+		if result.IsTruncated {
+			input.Marker = result.Marker
+			result, err = svc.ListRoles(context.TODO(), input)
+			roles = append(roles, result.Roles...)
+			if err != nil {
+				fmt.Println(err)
+			}
+		} else {
+			break
+		}
+	}
+	return roles
+}
+
 type MFAForUser struct {
 	UserName string
 	MFAs     []types.MFADevice
@@ -212,4 +236,76 @@ func GetAllPolicyVersions(s aws.Config, policyArn *string) []types.PolicyVersion
 	}
 
 	return result.Versions
+}
+
+func GetRolePolicies(roles []types.Role, s aws.Config) []RolePolicies {
+	var wgPolicyForRole sync.WaitGroup
+	wgPolicyForRole.Add(len(roles))
+	queue := make(chan RolePolicies, 10)
+	for _, role := range roles {
+		go GetAllPolicyForRole(&wgPolicyForRole, queue, s, role)
+	}
+	var rolePolicies []RolePolicies
+	go func() {
+		for role := range queue {
+			rolePolicies = append(rolePolicies, role)
+			wgPolicyForRole.Done()
+		}
+
+	}()
+	wgPolicyForRole.Wait()
+	return rolePolicies
+}
+
+type RoleToPoliciesElevate struct {
+	RoleName string
+	Policies [][]string
+}
+
+func GetRoleToPoliciesElevate(rolePolicies []RolePolicies) []RoleToPoliciesElevate {
+	var rolesElevatedPolicies []RoleToPoliciesElevate
+	for _, role := range rolePolicies {
+		elevation := CheckPolicyForAllowInRequiredPermission(role.Policies, requiredPermissions)
+		if elevation != nil {
+			rolesElevatedPolicies = append(rolesElevatedPolicies, RoleToPoliciesElevate{
+				RoleName: role.RoleName,
+				Policies: elevation,
+			})
+		}
+
+	}
+
+	return rolesElevatedPolicies
+}
+
+func GetAllPolicyForRole(wg *sync.WaitGroup, queueCheck chan RolePolicies, s aws.Config, role types.Role) {
+	var policyList []Policy
+	var wgpolicy sync.WaitGroup
+	queue := make(chan *string, 100)
+	policies := GetPolicyAttachedToRole(s, role)
+	wgpolicy.Add(len(policies))
+	for _, policy := range policies {
+		go GetPolicyDocument(&wgpolicy, queue, s, policy.PolicyArn)
+
+	}
+	go func() {
+		for t := range queue {
+			policyList = append(policyList, JsonDecodePolicyDocument(t))
+			wgpolicy.Done()
+		}
+	}()
+	wgpolicy.Wait()
+	queueCheck <- RolePolicies{*role.RoleName, policyList}
+}
+
+func GetPolicyAttachedToRole(s aws.Config, role types.Role) []types.AttachedPolicy {
+	svc := iam.NewFromConfig(s)
+	input := &iam.ListAttachedRolePoliciesInput{
+		RoleName: role.RoleName,
+	}
+	result, err := svc.ListAttachedRolePolicies(context.TODO(), input)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return result.AttachedPolicies
 }

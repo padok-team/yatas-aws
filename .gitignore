@@ -1,3 +1,6 @@
 bin/
 package-lock.json
 node_modules/*
+report.html
+.yatas.yml
+results.yaml

@@ -121,7 +121,7 @@ func initSession(c commons.AWS_Account) aws.Config {
 	}
 }
 
-// Public Functin used to run the AWS tests
+// Public Function used to run the AWS tests
 func Run(c *commons.Config) ([]commons.Tests, error) {
 
 	var wg sync.WaitGroup

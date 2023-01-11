@@ -160,3 +160,96 @@ func GetFlowLogsForVpc(s aws.Config, vpcs []types.Vpc) []VpcToFlowLogs {
 	}
 	return vpcFlowLogs
 }
+
+type VpcToSecurityGroups struct {
+	vpcID          string
+	securityGroups []types.SecurityGroup
+}
+
+func GetSecurityGroupForVpc(s aws.Config, vpcs []types.Vpc) []VpcToSecurityGroups {
+	svc := ec2.NewFromConfig(s)
+	var vpcSecurityGroups []VpcToSecurityGroups
+	for _, vpc := range vpcs {
+		input := &ec2.DescribeSecurityGroupsInput{
+			Filters: []types.Filter{
+				{
+					Name:   aws.String("vpc-id"),
+					Values: []string{*vpc.VpcId},
+				},
+			},
+		}
+		result, err := svc.DescribeSecurityGroups(context.TODO(), input)
+		if err != nil {
+			fmt.Println(err)
+		}
+		vpcSecurityGroups = append(vpcSecurityGroups, VpcToSecurityGroups{
+			vpcID:          *vpc.VpcId,
+			securityGroups: result.SecurityGroups,
+		})
+		for {
+			if result.NextToken == nil {
+				break
+			}
+			input.NextToken = result.NextToken
+			result, err = svc.DescribeSecurityGroups(context.TODO(), input)
+			if err != nil {
+				fmt.Println(err)
+			}
+			vpcSecurityGroups = append(vpcSecurityGroups, VpcToSecurityGroups{
+				vpcID:          *vpc.VpcId,
+				securityGroups: result.SecurityGroups,
+			})
+		}
+	}
+	return vpcSecurityGroups
+}
+
+type SGToSecurityGroupRules struct {
+	vpcID              string
+	securityGroup      types.SecurityGroup
+	securityGroupRules []types.SecurityGroupRule
+}
+
+func GetSecurityGroupRulesForSg(s aws.Config, vpc2SGs []VpcToSecurityGroups) []SGToSecurityGroupRules {
+	svc := ec2.NewFromConfig(s)
+	var sg2SGRules []SGToSecurityGroupRules
+	// For each vpc-id
+	for _, vpc2sg := range vpc2SGs {
+		// For each Security group
+		for _, sg := range vpc2sg.securityGroups {
+			input := &ec2.DescribeSecurityGroupRulesInput{
+				Filters: []types.Filter{
+					{
+						Name:   aws.String("group-id"),
+						Values: []string{*sg.GroupId},
+					},
+				},
+			}
+			result, err := svc.DescribeSecurityGroupRules(context.TODO(), input)
+			if err != nil {
+				fmt.Println(err)
+			}
+			sg2SGRules = append(sg2SGRules, SGToSecurityGroupRules{
+				vpcID:              vpc2sg.vpcID,
+				securityGroup:      sg,
+				securityGroupRules: result.SecurityGroupRules,
+			})
+			for {
+				if result.NextToken == nil {
+					break
+				}
+				input.NextToken = result.NextToken
+				result, err := svc.DescribeSecurityGroupRules(context.TODO(), input)
+				if err != nil {
+					fmt.Println(err)
+				}
+				sg2SGRules = append(sg2SGRules, SGToSecurityGroupRules{
+					vpcID:              vpc2sg.vpcID,
+					securityGroup:      sg,
+					securityGroupRules: result.SecurityGroupRules,
+				})
+			}
+		}
+	}
+	return sg2SGRules
+}

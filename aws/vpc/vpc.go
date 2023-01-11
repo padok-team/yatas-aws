@@ -16,6 +16,8 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	subnetsforvpcs := GetSubnetForVPCS(s, vpcs)
 	internetGatewaysForVpc := GetInternetGatewaysForVpc(s, vpcs)
 	vpcFlowLogs := GetFlowLogsForVpc(s, vpcs)
+	securityGroupsForVpc := GetSecurityGroupForVpc(s, vpcs)
+	securityGroupRulesForVpc := GetSecurityGroupRulesForSg(s, securityGroupsForVpc)
 
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_VPC_001", checkCIDR20)(checkConfig, vpcs, "AWS_VPC_001")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_VPC_002", checkIfOnlyOneVPC)(checkConfig, vpcs, "AWS_VPC_002")
@@ -23,6 +25,7 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_VPC_004", checkIfVPCFLowLogsEnabled)(checkConfig, vpcFlowLogs, "AWS_VPC_004")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_VPC_005", CheckIfAtLeast2Subnets)(checkConfig, subnetsforvpcs, "AWS_VPC_005")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_VPC_006", CheckIfSubnetInDifferentZone)(checkConfig, subnetsforvpcs, "AWS_VPC_006")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_VPC_007", CheckInboudPort)(checkConfig, securityGroupRulesForVpc, "AWS_VPC_007")
 	go func() {
 		for t := range checkConfig.Queue {
 			t.EndCheck()

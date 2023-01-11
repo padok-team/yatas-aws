@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/StanGirard/yatas-aws/compare/v1.3.0...v1.4.0) (2023-01-11)
+
+
+### Features
+
+* **iam:** add check for IAM role privilege escalation ([0140c08](https://github.com/StanGirard/yatas-aws/commit/0140c080327073d073dc3a880bf3bff122769efa))
+* **iam:** update required permissions for privelege escalation ([43f44a6](https://github.com/StanGirard/yatas-aws/commit/43f44a6814139be6755112a63bb7383b08118d39))
+
 ## [1.3.0](https://github.com/StanGirard/yatas-aws/compare/v1.2.2...v1.3.0) (2022-12-23)
 
 

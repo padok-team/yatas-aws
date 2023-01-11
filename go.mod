@@ -4,9 +4,9 @@ go 1.19
 
 require (
 	github.com/aws/aws-sdk-go-v2 v1.17.3
-	github.com/aws/aws-sdk-go-v2/config v1.18.7
+	github.com/aws/aws-sdk-go-v2/config v1.18.8
 	github.com/aws/aws-sdk-go-v2/service/acm v1.16.5
-	github.com/aws/aws-sdk-go-v2/service/apigateway v1.15.27
+	github.com/aws/aws-sdk-go-v2/service/apigateway v1.15.28
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.25.1
 	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.22.2
 	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.21.1
@@ -25,7 +25,7 @@ require (
 	github.com/hashicorp/go-plugin v1.4.8
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/rs/zerolog v1.28.0
-	github.com/stangirard/yatas v1.3.0
+	github.com/stangirard/yatas v1.3.3
 	golang.org/x/exp v0.0.0-20221217163422-3c43f8badb15
 )
 

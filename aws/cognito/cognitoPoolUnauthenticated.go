@@ -11,11 +11,11 @@ func CheckIfCognitoAllowsUnauthenticated(checkConfig commons.CheckConfig, cognit
 	for _, c := range cognitoPools {
 		if c.AllowUnauthenticatedIdentities {
 			Message := "Cognito allows unauthenticated users on " + *c.IdentityPoolName
-			result := commons.Result{Status: "FAIL", Message: Message, ResourceID: *c.IdentityPoolName}
+			result := commons.Result{Status: "FAIL", Message: Message, ResourceID: *c.IdentityPoolId}
 			check.AddResult(result)
 		} else {
 			Message := "Cognito does not allow unauthenticated users on " + *c.IdentityPoolName
-			result := commons.Result{Status: "OK", Message: Message, ResourceID: *c.IdentityPoolName}
+			result := commons.Result{Status: "OK", Message: Message, ResourceID: *c.IdentityPoolId}
 			check.AddResult(result)
 		}
 	}

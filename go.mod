@@ -1,4 +1,4 @@
-module github.com/stangirard/yatas-aws
+module github.com/padok-team/yatas-aws
 
 go 1.19
 
@@ -25,7 +25,7 @@ require (
 	github.com/hashicorp/go-plugin v1.4.8
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/rs/zerolog v1.29.0
-	github.com/stangirard/yatas v1.3.0
+	github.com/padok-team/yatas v1.3.0
 	golang.org/x/exp v0.0.0-20230203172020-98cc5a0785f9
 )
 

@@ -2,7 +2,7 @@ package volumes
 
 import (
 	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func CheckIfVolumeIsUsed(checkConfig commons.CheckConfig, volumes []types.Volume, testName string) {

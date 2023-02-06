@@ -2,7 +2,7 @@ package cloudtrail
 
 import (
 	"github.com/aws/aws-sdk-go-v2/service/cloudtrail/types"
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func CheckIfCloudtrailsEncrypted(checkConfig commons.CheckConfig, cloudtrails []types.Trail, testName string) {

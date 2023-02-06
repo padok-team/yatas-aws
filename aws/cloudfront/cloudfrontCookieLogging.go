@@ -1,7 +1,7 @@
 package cloudfront
 
 import (
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func CheckIfCookieLogginEnabled(checkConfig commons.CheckConfig, d []SummaryToConfig, testName string) {

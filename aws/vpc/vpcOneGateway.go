@@ -1,7 +1,7 @@
 package vpc
 
 import (
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func checkIfOnlyOneGateway(checkConfig commons.CheckConfig, vpcInternetGateways []VpcToInternetGateway, testName string) {

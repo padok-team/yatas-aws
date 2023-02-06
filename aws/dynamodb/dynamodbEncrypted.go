@@ -2,7 +2,7 @@ package dynamodb
 
 import (
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func CheckIfDynamodbEncrypted(checkConfig commons.CheckConfig, dynamodbs []*dynamodb.DescribeTableOutput, testName string) {

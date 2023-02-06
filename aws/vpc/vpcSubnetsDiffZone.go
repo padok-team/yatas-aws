@@ -1,7 +1,7 @@
 package vpc
 
 import (
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func CheckIfSubnetInDifferentZone(checkConfig commons.CheckConfig, vpcToSubnets []VPCToSubnet, testName string) {

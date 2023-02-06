@@ -2,7 +2,7 @@ package autoscaling
 
 import (
 	"github.com/aws/aws-sdk-go-v2/service/autoscaling/types"
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func CheckIfInTwoAvailibilityZones(checkConfig commons.CheckConfig, groups []types.AutoScalingGroup, testName string) {

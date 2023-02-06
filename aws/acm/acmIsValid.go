@@ -2,7 +2,7 @@ package acm
 
 import (
 	"github.com/aws/aws-sdk-go-v2/service/acm/types"
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func CheckIfACMValid(checkConfig commons.CheckConfig, certificates []types.CertificateDetail, testName string) {

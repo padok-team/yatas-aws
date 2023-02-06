@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func CheckIfUserCanElevateRights(checkConfig commons.CheckConfig, userToPolociesElevated []UserToPoliciesElevate, testName string) {

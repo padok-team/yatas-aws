@@ -3,7 +3,7 @@ package volumes
 import (
 	"time"
 
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func CheckIfSnapshotYoungerthan24h(checkConfig commons.CheckConfig, vs couple, testName string) {

@@ -1,7 +1,7 @@
 package volumes
 
 import (
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func CheckIfAllVolumesHaveSnapshots(checkConfig commons.CheckConfig, snapshot2Volumes couple, testName string) {

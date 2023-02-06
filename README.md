@@ -3,7 +3,7 @@
 <p align="center">
 
 # YATAS
-[![codecov](https://codecov.io/gh/StanGirard/yatas-aws/branch/main/graph/badge.svg?token=OFGny8Za4x)](https://codecov.io/gh/StanGirard/YATAS) [![goreport](https://goreportcard.com/badge/github.com/stangirard/yatas-aws)](https://goreportcard.com/badge/github.com/stangirard/yatas)
+[![codecov](https://codecov.io/gh/padok-team/yatas-aws/branch/main/graph/badge.svg?token=OFGny8Za4x)](https://codecov.io/gh/padok-team/YATAS) [![goreport](https://goreportcard.com/badge/github.com/padok-team/yatas-aws)](https://goreportcard.com/badge/github.com/padok-team/yatas)
 
 Yet Another Testing &amp; Auditing Solution 
 
@@ -24,7 +24,7 @@ YATAS is a simple and easy to use tool to audit your infrastructure for misconfi
 
 | Name | Description | Checks |
 |------|-------------|--------|
-| [*AWS*](https://github.com/StanGirard/yatas-aws) | AWS checks | Good practices and security checks|
+| [*AWS*](https://github.com/padok-team/yatas-aws) | AWS checks | Good practices and security checks|
 
 
 To install this plugin simply add to your `.yatas.yml` file:
@@ -33,7 +33,7 @@ To install this plugin simply add to your `.yatas.yml` file:
 plugins:
   - name: "aws"
     enabled: true
-    source: "github.com/StanGirard/yatas-aws"
+    source: "github.com/padok-team/yatas-aws"
     version: "latest"
     description: "Check for AWS good practices"
 ```
@@ -42,7 +42,7 @@ plugins:
 ## Installation
 
 ```bash
-brew tap stangirard/tap
+brew tap padok-team/tap
 brew install yatas
 ```
 

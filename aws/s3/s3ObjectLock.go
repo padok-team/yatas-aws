@@ -1,7 +1,7 @@
 package s3
 
 import (
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func CheckIfObjectLockConfigurationEnabled(checkConfig commons.CheckConfig, buckets []S3ToObjectLock, testName string) {

@@ -2,7 +2,7 @@ package ecr
 
 import (
 	"github.com/aws/aws-sdk-go-v2/service/ecr/types"
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func CheckIfTagImmutable(checkConfig commons.CheckConfig, ecr []types.Repository, testName string) {

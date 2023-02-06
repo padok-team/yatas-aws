@@ -1,7 +1,7 @@
 package dynamodb
 
 import (
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func CheckIfDynamodbContinuousBackupsEnabled(checkConfig commons.CheckConfig, dynamodbs []TableBackups, testName string) {

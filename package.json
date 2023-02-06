@@ -12,13 +12,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/StanGirard/yatas-aws.git"
+    "url": "git+https://github.com/padok-team/yatas-aws.git"
   },
-  "author": "stangirard",
+  "author": "padok-team",
   "bugs": {
-    "url": "https://github.com/StanGirard/yatas-aws/issues"
+    "url": "https://github.com/padok-team/yatas-aws/issues"
   },
-  "homepage": "https://github.com/StanGirard/yatas-aws#readme",
+  "homepage": "https://github.com/padok-team/yatas-aws#readme",
   "devDependencies": {
     "standard-version": "9.5.0"
   },

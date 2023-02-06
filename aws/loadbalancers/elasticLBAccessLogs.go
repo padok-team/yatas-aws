@@ -1,7 +1,7 @@
 package loadbalancers
 
 import (
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func CheckIfAccessLogsEnabled(checkConfig commons.CheckConfig, loadBalancers []LoadBalancerAttributes, testName string) {

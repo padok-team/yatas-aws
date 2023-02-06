@@ -1,7 +1,7 @@
 package guardduty
 
 import (
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func CheckIfGuarddutyEnabled(checkConfig commons.CheckConfig, testName string, detectors []string) {

@@ -2,7 +2,7 @@ package cognito
 
 import (
 	"github.com/aws/aws-sdk-go-v2/service/cognitoidentity"
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func CheckIfCognitoAllowsUnauthenticated(checkConfig commons.CheckConfig, cognitoPools []cognitoidentity.DescribeIdentityPoolOutput, testName string) {

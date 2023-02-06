@@ -3,7 +3,7 @@ package iam
 import (
 	"time"
 
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func CheckAgeAccessKeyLessThan90Days(checkConfig commons.CheckConfig, accessKeysForUsers []AccessKeysForUser, testName string) {

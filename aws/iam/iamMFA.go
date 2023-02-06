@@ -1,7 +1,7 @@
 package iam
 
 import (
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func CheckIf2FAActivated(checkConfig commons.CheckConfig, mfaForUsers []MFAForUser, testName string) {

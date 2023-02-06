@@ -2,7 +2,7 @@ package volumes
 
 import (
 	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
-	"github.com/stangirard/yatas/plugins/commons"
+	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func CheckIfAllSnapshotsEncrypted(checkConfig commons.CheckConfig, snapshots []types.Snapshot, testName string) {

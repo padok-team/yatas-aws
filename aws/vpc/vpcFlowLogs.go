@@ -1,6 +1,6 @@
 package vpc
 
-import "github.com/stangirard/yatas/plugins/commons"
+import "github.com/padok-team/yatas/plugins/commons"
 
 func checkIfVPCFLowLogsEnabled(checkConfig commons.CheckConfig, VpcFlowLogs []VpcToFlowLogs, testName string) {
 	var check commons.Check

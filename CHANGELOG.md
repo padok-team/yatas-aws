@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/StanGirard/yatas-aws/compare/v1.4.0...v1.5.0) (2023-02-06)
+
+
+### Features
+
+* **upgrade:** upgraded all services ([e6758c9](https://github.com/StanGirard/yatas-aws/commit/e6758c9b034ab0eeb876ab4be24bab8b33b33efc))
+
+
+### Bug Fixes
+
+* **s3:** fixed issue with access policy ([d8075a9](https://github.com/StanGirard/yatas-aws/commit/d8075a9f0a95de05656cb70b8e03a9fc9c93f56a))
+
 ## [1.4.0](https://github.com/StanGirard/yatas-aws/compare/v1.3.0...v1.4.0) (2023-01-11)
 
 

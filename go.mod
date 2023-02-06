@@ -24,9 +24,9 @@ require (
 	github.com/hashicorp/go-hclog v1.4.0
 	github.com/hashicorp/go-plugin v1.4.8
 	github.com/mitchellh/mapstructure v1.5.0
+	github.com/padok-team/yatas v1.3.3
 	github.com/rs/zerolog v1.29.0
-	github.com/padok-team/yatas v1.3.0
-	golang.org/x/exp v0.0.0-20230203172020-98cc5a0785f9
+	golang.org/x/exp v0.0.0-20230206171751-46f607a40771
 )
 
 require (

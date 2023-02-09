@@ -34,8 +34,8 @@ github.com/aws/aws-sdk-go-v2/service/ec2 v1.84.1 h1:sJ4Fuz498wBjmL5WQrkYoXHn5Jro
 github.com/aws/aws-sdk-go-v2/service/ec2 v1.84.1/go.mod h1:jK4MhMMe6HIe4qnjGaQqQQECcsxRZ0q86oCq06T8IEE=
 github.com/aws/aws-sdk-go-v2/service/ecr v1.18.2 h1:wVHiJDAzNaovEUwJYsXLOf3/dXzYkidkcbHnLx+ebD0=
 github.com/aws/aws-sdk-go-v2/service/ecr v1.18.2/go.mod h1:53xgmccefO+AwKsxVKuTh2vo/IDOkeMWNpmDuhZH1Vc=
-github.com/aws/aws-sdk-go-v2/service/eks v1.27.1 h1:BlJZLzEoMworw6GNXfAP8kzvIBRq4hYa8KiQNZWiApA=
-github.com/aws/aws-sdk-go-v2/service/eks v1.27.1/go.mod h1:S30WtE6uWErcppqG9Rl03MATEFYsm0vnDyxPUKmmCqU=
+github.com/aws/aws-sdk-go-v2/service/eks v1.27.2 h1:0u+V3KLaPQK8JoAtwY83pDbffuefh38gG2c0MXKxcIQ=
+github.com/aws/aws-sdk-go-v2/service/eks v1.27.2/go.mod h1:S30WtE6uWErcppqG9Rl03MATEFYsm0vnDyxPUKmmCqU=
 github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.19.3 h1:ImX1QWOjO3MOXs0H1Hd6CvSAIThTmp9QEL0PmSaukLg=
 github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.19.3/go.mod h1:a00YXiI9e1xmr+RJPi2RjTl9z28g/0nnpj/5CTpIq+k=
 github.com/aws/aws-sdk-go-v2/service/guardduty v1.17.1 h1:fwe+VKxSXwiYOUvovYN6J5/NzUcVlG4As4rWJasTE/k=
@@ -131,8 +131,6 @@ github.com/stretchr/testify v1.7.2/go.mod h1:R6va5+xMeoiuVRoj+gSkQ7d3FALtqAAGI1F
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
 golang.org/x/crypto v0.5.0 h1:U/0M97KRkSFvyD/3FSmdP5W5swImpNgle/EHFhOsQPE=
 golang.org/x/crypto v0.5.0/go.mod h1:NK/OQwhpMQP3MwtdjgLlYHnH9ebylxKWv3e0fK+mkQU=
-golang.org/x/exp v0.0.0-20230203172020-98cc5a0785f9 h1:frX3nT9RkKybPnjyI+yvZh6ZucTZatCCEm9D47sZ2zo=
-golang.org/x/exp v0.0.0-20230203172020-98cc5a0785f9/go.mod h1:CxIveKay+FTh1D0yPZemJVgC/95VzuuOLq5Qi4xnoYc=
 golang.org/x/exp v0.0.0-20230206171751-46f607a40771 h1:xP7rWLUr1e1n2xkK5YB4LI0hPEy3LJC6Wk+D4pGlOJg=
 golang.org/x/exp v0.0.0-20230206171751-46f607a40771/go.mod h1:CxIveKay+FTh1D0yPZemJVgC/95VzuuOLq5Qi4xnoYc=
 golang.org/x/net v0.0.0-20190311183353-d8887717615a/go.mod h1:t9HGtf8HONx5eT2rtn7q6eTqICYqUVnKs3thJo3Qplg=

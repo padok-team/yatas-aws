@@ -34,3 +34,23 @@ func GetLambdas(s aws.Config) []types.FunctionConfiguration {
 	}
 	return lambdas
 }
+
+func GetLambdaUrlConfigs(s aws.Config, lambdas []types.FunctionConfiguration) []LambdaUrlConfig {
+	svc := lambda.NewFromConfig(s)
+	lambdaUrlConfigs := []LambdaUrlConfig{}
+	for _, function := range lambdas {
+		input := &lambda.ListFunctionUrlConfigsInput{
+			FunctionName: function.FunctionName,
+		}
+		result, err := svc.ListFunctionUrlConfigs(context.TODO(), input)
+		if err != nil {
+			return nil
+		}
+		lambdaUrlConfigs = append(lambdaUrlConfigs, LambdaUrlConfig{
+			LambdaName: *function.FunctionName,
+			LambdaArn:  *function.FunctionArn,
+			UrlConfigs: result.FunctionUrlConfigs,
+		})
+	}
+	return lambdaUrlConfigs
+}

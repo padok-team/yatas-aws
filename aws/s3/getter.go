@@ -18,6 +18,8 @@ func GetListS3(s aws.Config) []types.Bucket {
 	resp, err := svc.ListBuckets(context.TODO(), params)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list
+		return []types.Bucket{}
 	}
 
 	return resp.Buckets
@@ -31,6 +33,8 @@ func GetListS3NotInRegion(s aws.Config, region string) []types.Bucket {
 	resp, err := svc.ListBuckets(context.TODO(), params)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list
+		return []types.Bucket{}
 	}
 
 	var buckets []types.Bucket
@@ -116,6 +120,8 @@ func GetS3ToVersioning(s aws.Config, b []types.Bucket) []S3ToVersioning {
 		resp, err := svc.GetBucketVersioning(context.TODO(), params)
 		if err != nil {
 			fmt.Println(err)
+			// return empty	struct
+			return []S3ToVersioning{}
 		}
 		if resp.Status != types.BucketVersioningStatusEnabled {
 			s3toVersioning = append(s3toVersioning, S3ToVersioning{*bucket.Name, false})

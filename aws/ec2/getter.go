@@ -17,6 +17,8 @@ func GetEC2s(svc EC2GetObjectAPI) []types.Instance {
 	result, err := svc.DescribeInstances(context.TODO(), input)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list
+		return []types.Instance{}
 	}
 	var instances []types.Instance
 	for _, r := range result.Reservations {
@@ -30,6 +32,8 @@ func GetEC2s(svc EC2GetObjectAPI) []types.Instance {
 		result, err = svc.DescribeInstances(context.TODO(), input)
 		if err != nil {
 			fmt.Println(err)
+			// Return an empty list of instances
+			return []types.Instance{}
 		}
 		for _, r := range result.Reservations {
 			instances = append(instances, r.Instances...)

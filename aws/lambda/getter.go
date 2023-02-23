@@ -19,6 +19,8 @@ func GetLambdas(s aws.Config) []types.FunctionConfiguration {
 	lambdas = append(lambdas, result.Functions...)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list
+		return []types.FunctionConfiguration{}
 	}
 	for {
 		if result.NextMarker != nil {
@@ -27,6 +29,8 @@ func GetLambdas(s aws.Config) []types.FunctionConfiguration {
 			lambdas = append(lambdas, result.Functions...)
 			if err != nil {
 				fmt.Println(err)
+				// Return an empty list
+				return []types.FunctionConfiguration{}
 			}
 		} else {
 			break

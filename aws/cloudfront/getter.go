@@ -23,6 +23,8 @@ func GetAllCloudfront(svc CloudfrontGetObjectApi) []types.DistributionSummary {
 	result, err := svc.ListDistributions(context.TODO(), input)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list of certificates
+		return []types.DistributionSummary{}
 	}
 	return result.DistributionList.Items
 }
@@ -36,6 +38,8 @@ func GetAllDistributionConfig(svc CloudfrontGetObjectApi, ds []types.Distributio
 		result, err := svc.GetDistributionConfig(context.TODO(), input)
 		if err != nil {
 			fmt.Println(err)
+			// Return an empty list of certificates
+			return []SummaryToConfig{}
 		}
 		d = append(d, SummaryToConfig{summary: cc, config: *result.DistributionConfig})
 	}

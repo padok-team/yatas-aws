@@ -18,6 +18,8 @@ func GetCertificates(svc ACMGetObjectAPI) []types.CertificateDetail {
 	result, err := svc.ListCertificates(context.TODO(), input)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list of certificates
+		return []types.CertificateDetail{}
 	}
 	var certificatesArn []*string
 	var certificates []types.CertificateDetail
@@ -32,6 +34,7 @@ func GetCertificates(svc ACMGetObjectAPI) []types.CertificateDetail {
 		result, err = svc.ListCertificates(context.TODO(), input)
 		if err != nil {
 			fmt.Println(err)
+			return []types.CertificateDetail{}
 		}
 		for _, r := range result.CertificateSummaryList {
 			certificatesArn = append(certificatesArn, r.CertificateArn)
@@ -45,6 +48,7 @@ func GetCertificates(svc ACMGetObjectAPI) []types.CertificateDetail {
 		result, err := svc.DescribeCertificate(context.TODO(), input)
 		if err != nil {
 			fmt.Println(err)
+			return []types.CertificateDetail{}
 		}
 		certificates = append(certificates, *result.Certificate)
 	}

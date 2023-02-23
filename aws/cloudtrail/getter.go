@@ -17,6 +17,8 @@ func GetCloudtrails(s aws.Config) []types.Trail {
 	result, err := svc.DescribeTrails(context.TODO(), input)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list
+		return []types.Trail{}
 	}
 	return result.TrailList
 }

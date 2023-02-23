@@ -24,6 +24,8 @@ func GetSnapshots(s aws.Config) []types.Snapshot {
 	result, err := svc.DescribeSnapshots(context.TODO(), input)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list
+		return []types.Snapshot{}
 	}
 	snapshots = append(snapshots, result.Snapshots...)
 	for {
@@ -33,6 +35,8 @@ func GetSnapshots(s aws.Config) []types.Snapshot {
 			snapshots = append(snapshots, result.Snapshots...)
 			if err != nil {
 				fmt.Println(err)
+				// Return an empty list
+				return []types.Snapshot{}
 			}
 		} else {
 			break
@@ -49,6 +53,8 @@ func GetVolumes(s aws.Config) []types.Volume {
 	result, err := svc.DescribeVolumes(context.TODO(), input)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list
+		return []types.Volume{}
 	}
 	volumes = append(volumes, result.Volumes...)
 	for {
@@ -58,6 +64,8 @@ func GetVolumes(s aws.Config) []types.Volume {
 			volumes = append(volumes, result.Volumes...)
 			if err != nil {
 				fmt.Println(err)
+				// Return an empty list
+				return []types.Volume{}
 			}
 		} else {
 			break

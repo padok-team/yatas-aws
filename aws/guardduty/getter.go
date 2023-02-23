@@ -14,6 +14,8 @@ func GetDetectors(s aws.Config) []string {
 	result, err := svc.ListDetectors(context.TODO(), input)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list
+		return []string{}
 	}
 	return result.DetectorIds
 }

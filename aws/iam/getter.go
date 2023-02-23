@@ -18,6 +18,8 @@ func GetAllUsers(s aws.Config) []types.User {
 	users = append(users, result.Users...)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list
+		return []types.User{}
 	}
 	for {
 		if result.IsTruncated {
@@ -26,6 +28,8 @@ func GetAllUsers(s aws.Config) []types.User {
 			users = append(users, result.Users...)
 			if err != nil {
 				fmt.Println(err)
+				// Return an empty list
+				return []types.User{}
 			}
 		} else {
 			break
@@ -42,6 +46,8 @@ func GetAllRoles(s aws.Config) []types.Role {
 	roles = append(roles, result.Roles...)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list
+		return []types.Role{}
 	}
 	for {
 		if result.IsTruncated {
@@ -50,6 +56,8 @@ func GetAllRoles(s aws.Config) []types.Role {
 			roles = append(roles, result.Roles...)
 			if err != nil {
 				fmt.Println(err)
+				// Return an empty list
+				return []types.Role{}
 			}
 		} else {
 			break
@@ -74,6 +82,8 @@ func GetMfaForUsers(s aws.Config, u []types.User) []MFAForUser {
 		result, err := svc.ListMFADevices(context.TODO(), input)
 		if err != nil {
 			fmt.Println(err)
+			// Return an empty list of mfa devices
+			return []MFAForUser{}
 		}
 		mfaForUsers = append(mfaForUsers, MFAForUser{
 			UserName: *user.UserName,
@@ -89,6 +99,8 @@ func GetMfaForUsers(s aws.Config, u []types.User) []MFAForUser {
 				})
 				if err != nil {
 					fmt.Println(err)
+					// Return an empty list of mfa devices
+					return []MFAForUser{}
 				}
 			} else {
 				break
@@ -114,6 +126,8 @@ func GetAccessKeysForUsers(s aws.Config, u []types.User) []AccessKeysForUser {
 		result, err := svc.ListAccessKeys(context.TODO(), input)
 		if err != nil {
 			fmt.Println(err)
+			// Return an empty list of access keys
+			return []AccessKeysForUser{}
 		}
 		accessKeysForUsers = append(accessKeysForUsers, AccessKeysForUser{
 			UserName:   *user.UserName,
@@ -129,6 +143,8 @@ func GetAccessKeysForUsers(s aws.Config, u []types.User) []AccessKeysForUser {
 				})
 				if err != nil {
 					fmt.Println(err)
+					// Return an empty list of access keys
+					return []AccessKeysForUser{}
 				}
 			} else {
 				break
@@ -221,6 +237,8 @@ func GetPolicyAttachedToUser(s aws.Config, user types.User) []types.AttachedPoli
 	result, err := svc.ListAttachedUserPolicies(context.TODO(), input)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list of attached policies
+		return []types.AttachedPolicy{}
 	}
 	return result.AttachedPolicies
 }
@@ -233,6 +251,8 @@ func GetAllPolicyVersions(s aws.Config, policyArn *string) []types.PolicyVersion
 	result, err := svc.ListPolicyVersions(context.TODO(), input)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list of policy versions
+		return []types.PolicyVersion{}
 	}
 
 	return result.Versions
@@ -306,6 +326,8 @@ func GetPolicyAttachedToRole(s aws.Config, role types.Role) []types.AttachedPoli
 	result, err := svc.ListAttachedRolePolicies(context.TODO(), input)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list of attached policies
+		return []types.AttachedPolicy{}
 	}
 	return result.AttachedPolicies
 }

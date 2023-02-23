@@ -16,6 +16,8 @@ func GetListVPC(s aws.Config) []types.Vpc {
 	result, err := svc.DescribeVpcs(context.TODO(), input)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list of vpc
+		return []types.Vpc{}
 	}
 	vpcs = append(vpcs, result.Vpcs...)
 	for {
@@ -26,6 +28,8 @@ func GetListVPC(s aws.Config) []types.Vpc {
 		result, err = svc.DescribeVpcs(context.TODO(), input)
 		if err != nil {
 			fmt.Println(err)
+			// Return an empty list of vpc
+			return []types.Vpc{}
 		}
 		vpcs = append(vpcs, result.Vpcs...)
 	}
@@ -52,6 +56,8 @@ func GetSubnetForVPCS(s aws.Config, vpcs []types.Vpc) []VPCToSubnet {
 		result, err := svc.DescribeSubnets(context.TODO(), input)
 		if err != nil {
 			fmt.Println(err)
+			// Return an empty list of subnets
+			return []VPCToSubnet{}
 		}
 		vpcSubnets = append(vpcSubnets, VPCToSubnet{
 			VpcID:   *vpc.VpcId,
@@ -65,6 +71,8 @@ func GetSubnetForVPCS(s aws.Config, vpcs []types.Vpc) []VPCToSubnet {
 			result, err = svc.DescribeSubnets(context.TODO(), input)
 			if err != nil {
 				fmt.Println(err)
+				// Return an empty list of subnets
+				return []VPCToSubnet{}
 			}
 			vpcSubnets = append(vpcSubnets, VPCToSubnet{
 				VpcID:   *vpc.VpcId,
@@ -95,6 +103,8 @@ func GetInternetGatewaysForVpc(s aws.Config, vpcs []types.Vpc) []VpcToInternetGa
 		result, err := svc.DescribeInternetGateways(context.TODO(), input)
 		if err != nil {
 			fmt.Println(err)
+			// Return an empty list of internet gateways
+			return []VpcToInternetGateway{}
 		}
 		vpcInternetGateways = append(vpcInternetGateways, VpcToInternetGateway{
 			VpcID:            *vpc.VpcId,
@@ -108,6 +118,8 @@ func GetInternetGatewaysForVpc(s aws.Config, vpcs []types.Vpc) []VpcToInternetGa
 			result, err = svc.DescribeInternetGateways(context.TODO(), input)
 			if err != nil {
 				fmt.Println(err)
+				// Return an empty list of internet gateways
+				return []VpcToInternetGateway{}
 			}
 			vpcInternetGateways = append(vpcInternetGateways, VpcToInternetGateway{
 				VpcID:            *vpc.VpcId,
@@ -138,6 +150,8 @@ func GetFlowLogsForVpc(s aws.Config, vpcs []types.Vpc) []VpcToFlowLogs {
 		result, err := svc.DescribeFlowLogs(context.TODO(), input)
 		if err != nil {
 			fmt.Println(err)
+			// Return an empty list of flow logs
+			return []VpcToFlowLogs{}
 		}
 		vpcFlowLogs = append(vpcFlowLogs, VpcToFlowLogs{
 			VpcID:    *vpc.VpcId,
@@ -151,6 +165,8 @@ func GetFlowLogsForVpc(s aws.Config, vpcs []types.Vpc) []VpcToFlowLogs {
 			result, err = svc.DescribeFlowLogs(context.TODO(), input)
 			if err != nil {
 				fmt.Println(err)
+				// Return an empty list of flow logs
+				return []VpcToFlowLogs{}
 			}
 			vpcFlowLogs = append(vpcFlowLogs, VpcToFlowLogs{
 				VpcID:    *vpc.VpcId,

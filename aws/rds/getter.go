@@ -21,6 +21,8 @@ func GetListRDS(svc RDSGetObjectAPI) []types.DBInstance {
 	instances = append(instances, resp.DBInstances...)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list of instances
+		return []types.DBInstance{}
 	}
 	for {
 		if resp.Marker != nil {
@@ -29,6 +31,8 @@ func GetListRDS(svc RDSGetObjectAPI) []types.DBInstance {
 			instances = append(instances, resp.DBInstances...)
 			if err != nil {
 				fmt.Println(err)
+				// Return an empty list of instances
+				return []types.DBInstance{}
 			}
 		} else {
 			break
@@ -46,6 +50,8 @@ func GetListDBClusters(svc RDSGetObjectAPI) []types.DBCluster {
 	clusters = append(clusters, resp.DBClusters...)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list of instances
+		return []types.DBCluster{}
 	}
 	for {
 		if resp.Marker != nil {
@@ -54,6 +60,8 @@ func GetListDBClusters(svc RDSGetObjectAPI) []types.DBCluster {
 			clusters = append(clusters, resp.DBClusters...)
 			if err != nil {
 				fmt.Println(err)
+				// Return an empty list of instances
+				return []types.DBCluster{}
 			}
 		} else {
 			break

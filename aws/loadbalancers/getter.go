@@ -25,6 +25,8 @@ func GetLoadBalancersAttributes(s aws.Config, loadbalancers []types.LoadBalancer
 		result, err := svc.DescribeLoadBalancerAttributes(context.TODO(), input)
 		if err != nil {
 			fmt.Println(err)
+			// return empty struct
+			return []LoadBalancerAttributes{}
 		}
 		loadBalancerAttributes = append(loadBalancerAttributes, LoadBalancerAttributes{
 			LoadBalancerArn:  *loadbalancer.LoadBalancerArn,
@@ -44,6 +46,8 @@ func GetElasticLoadBalancers(s aws.Config) []types.LoadBalancer {
 	result, err := svc.DescribeLoadBalancers(context.TODO(), input)
 	if err != nil {
 		fmt.Println(err)
+		// return empty struct
+		return []types.LoadBalancer{}
 	}
 	loadBalancers = append(loadBalancers, result.LoadBalancers...)
 	for {
@@ -52,6 +56,8 @@ func GetElasticLoadBalancers(s aws.Config) []types.LoadBalancer {
 			result, err = svc.DescribeLoadBalancers(context.TODO(), input)
 			if err != nil {
 				fmt.Println(err)
+				// return empty struct
+				return []types.LoadBalancer{}
 			}
 			loadBalancers = append(loadBalancers, result.LoadBalancers...)
 		} else {

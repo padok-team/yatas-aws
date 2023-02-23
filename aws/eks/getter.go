@@ -19,6 +19,8 @@ func GetClusters(svc EKSGetObjectAPI) []types.Cluster {
 	result, err := svc.ListClusters(context.TODO(), input)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list
+		return []types.Cluster{}
 	}
 	var clusters []string
 	var clustersDetails []types.Cluster
@@ -33,6 +35,8 @@ func GetClusters(svc EKSGetObjectAPI) []types.Cluster {
 		result, err = svc.ListClusters(context.TODO(), input)
 		if err != nil {
 			fmt.Println(err)
+			// Return an empty list of instances
+			return []types.Cluster{}
 		}
 		for _, r := range result.Clusters {
 			clusters = append(clusters, r)
@@ -46,6 +50,8 @@ func GetClusters(svc EKSGetObjectAPI) []types.Cluster {
 		result, err := svc.DescribeCluster(context.TODO(), input)
 		if err != nil {
 			fmt.Println(err)
+			// Return an empty list of instances
+			return []types.Cluster{}
 		}
 		clustersDetails = append(clustersDetails, *result.Cluster)
 	}

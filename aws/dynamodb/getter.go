@@ -15,6 +15,8 @@ func GetDynamodbs(s aws.Config) []string {
 	result, err := svc.ListTables(context.TODO(), dynamodbInput)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list
+		return []string{}
 	}
 	return result.TableNames
 }
@@ -29,6 +31,8 @@ func GetTables(s aws.Config, dynamodbs []string) []*dynamodb.DescribeTableOutput
 		resp, err := svc.DescribeTable(context.TODO(), params)
 		if err != nil {
 			fmt.Println(err)
+			// Return an empty list of certificates
+			return []*dynamodb.DescribeTableOutput{}
 		}
 		tables = append(tables, resp)
 
@@ -51,6 +55,8 @@ func GetContinuousBackups(s aws.Config, tables []string) []TableBackups {
 		resp, err := svc.DescribeContinuousBackups(context.TODO(), params)
 		if err != nil {
 			fmt.Println(err)
+			// Return an empty list of certificates
+			return []TableBackups{}
 		}
 		continuousBackups = append(continuousBackups, TableBackups{d, *resp.ContinuousBackupsDescription})
 	}

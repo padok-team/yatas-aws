@@ -19,6 +19,8 @@ func GetECRs(s aws.Config) []types.Repository {
 	ecrRepositories = append(ecrRepositories, result.Repositories...)
 	if err != nil {
 		fmt.Println(err)
+		// Return an empty list
+		return []types.Repository{}
 	}
 	for {
 		if result.NextToken != nil {
@@ -27,6 +29,8 @@ func GetECRs(s aws.Config) []types.Repository {
 			ecrRepositories = append(ecrRepositories, result.Repositories...)
 			if err != nil {
 				fmt.Println(err)
+				// Return an empty list
+				return []types.Repository{}
 			}
 		} else {
 			break

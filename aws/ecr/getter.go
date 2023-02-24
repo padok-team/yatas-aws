@@ -16,22 +16,22 @@ func GetECRs(s aws.Config) []types.Repository {
 		MaxResults: aws.Int32(100),
 	}
 	result, err := svc.DescribeRepositories(context.TODO(), input)
-	ecrRepositories = append(ecrRepositories, result.Repositories...)
 	if err != nil {
 		fmt.Println(err)
 		// Return an empty list
 		return []types.Repository{}
 	}
+	ecrRepositories = append(ecrRepositories, result.Repositories...)
 	for {
 		if result.NextToken != nil {
 			input.NextToken = result.NextToken
 			result, err = svc.DescribeRepositories(context.TODO(), input)
-			ecrRepositories = append(ecrRepositories, result.Repositories...)
 			if err != nil {
 				fmt.Println(err)
 				// Return an empty list
 				return []types.Repository{}
 			}
+			ecrRepositories = append(ecrRepositories, result.Repositories...)
 		} else {
 			break
 		}

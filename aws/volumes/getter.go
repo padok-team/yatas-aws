@@ -32,12 +32,12 @@ func GetSnapshots(s aws.Config) []types.Snapshot {
 		if result.NextToken != nil {
 			input.NextToken = result.NextToken
 			result, err = svc.DescribeSnapshots(context.TODO(), input)
-			snapshots = append(snapshots, result.Snapshots...)
 			if err != nil {
 				fmt.Println(err)
 				// Return an empty list
 				return []types.Snapshot{}
 			}
+			snapshots = append(snapshots, result.Snapshots...)
 		} else {
 			break
 		}
@@ -61,12 +61,12 @@ func GetVolumes(s aws.Config) []types.Volume {
 		if result.NextToken != nil {
 			input.NextToken = result.NextToken
 			result, err = svc.DescribeVolumes(context.TODO(), input)
-			volumes = append(volumes, result.Volumes...)
 			if err != nil {
 				fmt.Println(err)
 				// Return an empty list
 				return []types.Volume{}
 			}
+			volumes = append(volumes, result.Volumes...)
 		} else {
 			break
 		}

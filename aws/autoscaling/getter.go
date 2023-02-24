@@ -15,10 +15,10 @@ func GetAutoscalingGroups(svc AutoscalingGroupApi) []types.AutoScalingGroup {
 	input := &autoscaling.DescribeAutoScalingGroupsInput{}
 	var groups []types.AutoScalingGroup
 	result, err := svc.DescribeAutoScalingGroups(context.TODO(), input)
-	groups = append(groups, result.AutoScalingGroups...)
 	if err != nil {
 		return nil
 	}
+	groups = append(groups, result.AutoScalingGroups...)
 	for {
 		if result.NextToken == nil {
 			break

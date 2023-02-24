@@ -15,22 +15,22 @@ func GetAllUsers(s aws.Config) []types.User {
 	var users []types.User
 	input := &iam.ListUsersInput{}
 	result, err := svc.ListUsers(context.TODO(), input)
-	users = append(users, result.Users...)
 	if err != nil {
 		fmt.Println(err)
 		// Return an empty list
 		return []types.User{}
 	}
+	users = append(users, result.Users...)
 	for {
 		if result.IsTruncated {
 			input.Marker = result.Marker
 			result, err = svc.ListUsers(context.TODO(), input)
-			users = append(users, result.Users...)
 			if err != nil {
 				fmt.Println(err)
 				// Return an empty list
 				return []types.User{}
 			}
+			users = append(users, result.Users...)
 		} else {
 			break
 		}
@@ -43,22 +43,23 @@ func GetAllRoles(s aws.Config) []types.Role {
 	var roles []types.Role
 	input := &iam.ListRolesInput{}
 	result, err := svc.ListRoles(context.TODO(), input)
-	roles = append(roles, result.Roles...)
 	if err != nil {
 		fmt.Println(err)
 		// Return an empty list
 		return []types.Role{}
 	}
+
+	roles = append(roles, result.Roles...)
 	for {
 		if result.IsTruncated {
 			input.Marker = result.Marker
 			result, err = svc.ListRoles(context.TODO(), input)
-			roles = append(roles, result.Roles...)
 			if err != nil {
 				fmt.Println(err)
 				// Return an empty list
 				return []types.Role{}
 			}
+			roles = append(roles, result.Roles...)
 		} else {
 			break
 		}
@@ -93,15 +94,15 @@ func GetMfaForUsers(s aws.Config, u []types.User) []MFAForUser {
 			if result.IsTruncated {
 				input.Marker = result.Marker
 				result, err = svc.ListMFADevices(context.TODO(), input)
-				mfaForUsers = append(mfaForUsers, MFAForUser{
-					UserName: *user.UserName,
-					MFAs:     result.MFADevices,
-				})
 				if err != nil {
 					fmt.Println(err)
 					// Return an empty list of mfa devices
 					return []MFAForUser{}
 				}
+				mfaForUsers = append(mfaForUsers, MFAForUser{
+					UserName: *user.UserName,
+					MFAs:     result.MFADevices,
+				})
 			} else {
 				break
 			}
@@ -137,15 +138,15 @@ func GetAccessKeysForUsers(s aws.Config, u []types.User) []AccessKeysForUser {
 			if result.IsTruncated {
 				input.Marker = result.Marker
 				result, err = svc.ListAccessKeys(context.TODO(), input)
-				accessKeysForUsers = append(accessKeysForUsers, AccessKeysForUser{
-					UserName:   *user.UserName,
-					AccessKeys: result.AccessKeyMetadata,
-				})
 				if err != nil {
 					fmt.Println(err)
 					// Return an empty list of access keys
 					return []AccessKeysForUser{}
 				}
+				accessKeysForUsers = append(accessKeysForUsers, AccessKeysForUser{
+					UserName:   *user.UserName,
+					AccessKeys: result.AccessKeyMetadata,
+				})
 			} else {
 				break
 			}

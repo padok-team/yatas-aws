@@ -16,22 +16,22 @@ func GetLambdas(s aws.Config) []types.FunctionConfiguration {
 		MaxItems: aws.Int32(100),
 	}
 	result, err := svc.ListFunctions(context.TODO(), input)
-	lambdas = append(lambdas, result.Functions...)
 	if err != nil {
 		fmt.Println(err)
 		// Return an empty list
 		return []types.FunctionConfiguration{}
 	}
+	lambdas = append(lambdas, result.Functions...)
 	for {
 		if result.NextMarker != nil {
 			input.Marker = result.NextMarker
 			result, err = svc.ListFunctions(context.TODO(), input)
-			lambdas = append(lambdas, result.Functions...)
 			if err != nil {
 				fmt.Println(err)
 				// Return an empty list
 				return []types.FunctionConfiguration{}
 			}
+			lambdas = append(lambdas, result.Functions...)
 		} else {
 			break
 		}

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.3](https://github.com/padok-team/yatas-aws/compare/v1.5.2...v1.5.3) (2023-02-24)
+
+
+### Bug Fixes
+
+* **getters:** use getter result only after error handling ([c79e53c](https://github.com/padok-team/yatas-aws/commit/c79e53c83e71131d81ffcbe4fb5e52949a6c7957))
+
 ### [1.5.2](https://github.com/padok-team/yatas-aws/compare/v1.5.1...v1.5.2) (2023-02-23)
 
 

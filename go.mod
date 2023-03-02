@@ -22,7 +22,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/rds v1.40.5
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.30.5
 	github.com/hashicorp/go-hclog v1.4.0
-	github.com/hashicorp/go-plugin v1.4.8
+	github.com/hashicorp/go-plugin v1.4.9
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/padok-team/yatas v1.3.3
 	github.com/rs/zerolog v1.29.0

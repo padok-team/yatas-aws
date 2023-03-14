@@ -18,12 +18,12 @@ func GetListRDS(svc RDSGetObjectAPI) []types.DBInstance {
 	params := &rds.DescribeDBInstancesInput{}
 	var instances []types.DBInstance
 	resp, err := svc.DescribeDBInstances(context.TODO(), params)
-	instances = append(instances, resp.DBInstances...)
 	if err != nil {
 		fmt.Println(err)
 		// Return an empty list of instances
 		return []types.DBInstance{}
 	}
+	instances = append(instances, resp.DBInstances...)
 	for {
 		if resp.Marker != nil {
 			params.Marker = resp.Marker

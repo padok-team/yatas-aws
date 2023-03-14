@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.4](https://github.com/padok-team/yatas-aws/compare/v1.5.3...v1.5.4) (2023-03-14)
+
+
+### Bug Fixes
+
+* **rds:** fixed when no rights to list rds ([3ed2787](https://github.com/padok-team/yatas-aws/commit/3ed2787835902d63fb0f3ee933e567e21dbfead5))
+
 ### [1.5.3](https://github.com/padok-team/yatas-aws/compare/v1.5.2...v1.5.3) (2023-02-24)
 
 

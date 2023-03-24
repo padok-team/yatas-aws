@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.5](https://github.com/padok-team/yatas-aws/compare/v1.5.4...v1.5.5) (2023-03-24)
+
+
+### Bug Fixes
+
+* **s3:** nil pointer gets3 ([1fa9b06](https://github.com/padok-team/yatas-aws/commit/1fa9b069d3ecca1b41a39ff3d26930b242071015))
+
 ### [1.5.4](https://github.com/padok-team/yatas-aws/compare/v1.5.3...v1.5.4) (2023-03-14)
 
 

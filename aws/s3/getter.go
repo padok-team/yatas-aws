@@ -39,7 +39,8 @@ func GetListS3NotInRegion(s aws.Config, region string) []types.Bucket {
 
 	var buckets []types.Bucket
 	for _, bucket := range resp.Buckets {
-		if !CheckS3Location(s, *bucket.Name, region) {
+		check, _ := CheckS3Location(s, *bucket.Name, region)
+		if !check {
 			buckets = append(buckets, bucket)
 		}
 	}
@@ -156,4 +157,52 @@ func GetS3ToObjectLock(s aws.Config, b []types.Bucket) []S3ToObjectLock {
 	}
 
 	return s3toObjectLock
+}
+
+type S3ToReplicationOtherRegion struct {
+	BucketName            string
+	ReplicatedOtherRegion bool
+	OtherRegion           string
+}
+
+func GetS3ToReplicationOtherRegion(s aws.Config, b []types.Bucket) []S3ToReplicationOtherRegion {
+
+	svc := s3.NewFromConfig(s)
+
+	var s3toReplicationOtherRegion []S3ToReplicationOtherRegion
+	for _, bucket := range b {
+		params := &s3.GetBucketReplicationInput{
+			Bucket: aws.String(*bucket.Name),
+		}
+		resp, err := svc.GetBucketReplication(context.TODO(), params)
+		if err != nil {
+			fmt.Println(err)
+			// TODO: handle error
+			// return empty	struct
+			// return []S3ToReplicationOtherRegion{}
+			s3toReplicationOtherRegion = append(s3toReplicationOtherRegion, S3ToReplicationOtherRegion{*bucket.Name, false, ""})
+			continue
+		}
+		if resp.ReplicationConfiguration == nil {
+			s3toReplicationOtherRegion = append(s3toReplicationOtherRegion, S3ToReplicationOtherRegion{*bucket.Name, false, ""})
+		} else {
+			// Check the region of destination buckets
+			found := false
+			for _, rule := range resp.ReplicationConfiguration.Rules {
+				check, otherRegion := CheckS3Location(s, *rule.Destination.Bucket, s.Region)
+				if !check {
+					s3toReplicationOtherRegion = append(s3toReplicationOtherRegion, S3ToReplicationOtherRegion{*bucket.Name, true, otherRegion})
+					found = true
+					break // break the loop if at least one of the replication rule is to other region
+				}
+			}
+
+			// no destination rule to other region
+			if !found {
+				s3toReplicationOtherRegion = append(s3toReplicationOtherRegion, S3ToReplicationOtherRegion{*bucket.Name, false, ""})
+			}
+		}
+	}
+
+	return s3toReplicationOtherRegion
 }

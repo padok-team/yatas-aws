@@ -216,7 +216,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 
 ### S3 Bucket
 - AWS_S3_001 S3 are encrypted
-- AWS_S3_002 S3 buckets are not global but in one zone
+- AWS_S3_002 S3 buckets are not replicated to another region
 - AWS_S3_003 S3 buckets are versioned
 - AWS_S3_004 S3 buckets have a retention policy
 - AWS_S3_005 S3 bucket have public access block enabled

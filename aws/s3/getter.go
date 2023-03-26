@@ -2,12 +2,14 @@ package s3
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"strings"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/aws/aws-sdk-go-v2/service/s3/types"
+	"github.com/aws/smithy-go"
 )
 
 func GetListS3(s aws.Config) []types.Bucket {
@@ -176,12 +178,14 @@ func GetS3ToReplicationOtherRegion(s aws.Config, b []types.Bucket) []S3ToReplica
 		}
 		resp, err := svc.GetBucketReplication(context.TODO(), params)
 		if err != nil {
+			var ae smithy.APIError
+			if errors.As(err, &ae) && ae.ErrorCode() == "ReplicationConfigurationNotFoundError" {
+				s3toReplicationOtherRegion = append(s3toReplicationOtherRegion, S3ToReplicationOtherRegion{*bucket.Name, false, ""})
+				continue
+			}
 			fmt.Println(err)
-			// TODO: handle error
 			// return empty	struct
-			// return []S3ToReplicationOtherRegion{}
-			s3toReplicationOtherRegion = append(s3toReplicationOtherRegion, S3ToReplicationOtherRegion{*bucket.Name, false, ""})
-			continue
+			return []S3ToReplicationOtherRegion{}
 		}
 		if resp.ReplicationConfiguration == nil {
 			s3toReplicationOtherRegion = append(s3toReplicationOtherRegion, S3ToReplicationOtherRegion{*bucket.Name, false, ""})
@@ -189,8 +193,8 @@ func GetS3ToReplicationOtherRegion(s aws.Config, b []types.Bucket) []S3ToReplica
 			// Check the region of destination buckets
 			found := false
 			for _, rule := range resp.ReplicationConfiguration.Rules {
-				check, otherRegion := CheckS3Location(s, *rule.Destination.Bucket, s.Region)
-				if !check {
+				replicationTarget := strings.TrimPrefix(*rule.Destination.Bucket, "arn:aws:s3:::")
+				if ok, otherRegion := CheckS3Location(s, replicationTarget, s.Region); !ok {
 					s3toReplicationOtherRegion = append(s3toReplicationOtherRegion, S3ToReplicationOtherRegion{*bucket.Name, true, otherRegion})
 					found = true
 					break // break the loop if at least one of the replication rule is to other region

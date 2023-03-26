@@ -13,7 +13,7 @@ func CheckIfBucketNoReplicationOtherRegion(checkConfig commons.CheckConfig, buck
 			result := commons.Result{Status: "FAIL", Message: Message, ResourceID: bucket.BucketName}
 			check.AddResult(result)
 		} else {
-			Message := "S3 bucket " + bucket.BucketName + " is not replicated in another region"
+			Message := "S3 bucket " + bucket.BucketName + " is not replicated to another region"
 			result := commons.Result{Status: "OK", Message: Message, ResourceID: bucket.BucketName}
 			check.AddResult(result)
 		}

@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/padok-team/yatas-aws/compare/v1.5.5...v1.6.0) (2023-03-27)
+
+
+### Features
+
+* **s3:** S3_002: better output and error handling + add tests ([4fcedd4](https://github.com/padok-team/yatas-aws/commit/4fcedd425518d5506f7f19c8613a74c25e24c23b))
+* **s3:** S3_002: check bucket has no replication to other region ([a086eaf](https://github.com/padok-team/yatas-aws/commit/a086eaf1d8eda900680684ee951c77e50bae4c18))
+* **s3:** S3_002: remove old version of check ([fae1929](https://github.com/padok-team/yatas-aws/commit/fae1929ec7896faa4230c15d14faf164bbf9d1b9))
+* **s3:** S3_002: update README ([7ee66e0](https://github.com/padok-team/yatas-aws/commit/7ee66e04db050cdd6bb3731bc76efef5414f7c46))
+
 ### [1.5.5](https://github.com/padok-team/yatas-aws/compare/v1.5.4...v1.5.5) (2023-03-24)
 
 

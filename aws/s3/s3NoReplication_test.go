@@ -4,15 +4,13 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/aws/aws-sdk-go-v2/aws"
-	"github.com/aws/aws-sdk-go-v2/service/s3/types"
 	"github.com/padok-team/yatas/plugins/commons"
 )
 
-func TestCheckIfBucketInOneZone(t *testing.T) {
+func Test_checkIfReplicationDisabled(t *testing.T) {
 	type args struct {
 		checkConfig commons.CheckConfig
-		buckets     BucketAndNotInRegion
+		buckets     []S3ToReplicationOtherRegion
 		testName    string
 	}
 	tests := []struct {
@@ -20,36 +18,30 @@ func TestCheckIfBucketInOneZone(t *testing.T) {
 		args args
 	}{
 		{
-			name: "Check if S3 buckets are in one zone",
+			name: "check if replication disabled",
 			args: args{
 				checkConfig: commons.CheckConfig{
-					Wg:    &sync.WaitGroup{},
 					Queue: make(chan commons.Check, 1),
+					Wg:    &sync.WaitGroup{},
 				},
-				buckets: BucketAndNotInRegion{
-					Buckets: []types.Bucket{
-						{
-							Name: aws.String("test"),
-						},
-					},
-					NotInRegion: []types.Bucket{
-						{
-							Name: aws.String("toto"),
-						},
+				buckets: []S3ToReplicationOtherRegion{
+					{
+						BucketName:            "test",
+						ReplicatedOtherRegion: false,
+						OtherRegion:           "",
 					},
 				},
-				testName: "AWS_S3_001",
 			},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			CheckIfBucketInOneZone(tt.args.checkConfig, tt.args.buckets, tt.args.testName)
+			CheckIfBucketNoReplicationOtherRegion(tt.args.checkConfig, tt.args.buckets, tt.args.testName)
 			tt.args.checkConfig.Wg.Add(1)
 			go func() {
 				for check := range tt.args.checkConfig.Queue {
 					if check.Status != "OK" {
-						t.Errorf("CheckIfBucketInOneZone() = %v", check)
+						t.Errorf("CheckIfBucketNoReplicationOtherRegion() = %v", check)
 					}
 					tt.args.checkConfig.Wg.Done()
 				}
@@ -59,10 +51,10 @@ func TestCheckIfBucketInOneZone(t *testing.T) {
 	}
 }
 
-func TestCheckIfBucketInOneZoneFail(t *testing.T) {
+func Test_checkIfReplicationDisabledFail(t *testing.T) {
 	type args struct {
 		checkConfig commons.CheckConfig
-		buckets     BucketAndNotInRegion
+		buckets     []S3ToReplicationOtherRegion
 		testName    string
 	}
 	tests := []struct {
@@ -70,36 +62,30 @@ func TestCheckIfBucketInOneZoneFail(t *testing.T) {
 		args args
 	}{
 		{
-			name: "Check if S3 buckets are in one zone",
+			name: "check if replication disabled",
 			args: args{
 				checkConfig: commons.CheckConfig{
-					Wg:    &sync.WaitGroup{},
 					Queue: make(chan commons.Check, 1),
+					Wg:    &sync.WaitGroup{},
 				},
-				buckets: BucketAndNotInRegion{
-					Buckets: []types.Bucket{
-						{
-							Name: aws.String("test"),
-						},
-					},
-					NotInRegion: []types.Bucket{
-						{
-							Name: aws.String("test"),
-						},
+				buckets: []S3ToReplicationOtherRegion{
+					{
+						BucketName:            "test",
+						ReplicatedOtherRegion: true,
+						OtherRegion:           "eu-west-1",
 					},
 				},
-				testName: "AWS_S3_001",
 			},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			CheckIfBucketInOneZone(tt.args.checkConfig, tt.args.buckets, tt.args.testName)
+			CheckIfBucketNoReplicationOtherRegion(tt.args.checkConfig, tt.args.buckets, tt.args.testName)
 			tt.args.checkConfig.Wg.Add(1)
 			go func() {
 				for check := range tt.args.checkConfig.Queue {
 					if check.Status != "FAIL" {
-						t.Errorf("CheckIfBucketInOneZone() = %v", check)
+						t.Errorf("CheckIfBucketNoReplicationOtherRegion() = %v", check)
 					}
 					tt.args.checkConfig.Wg.Done()
 				}

@@ -21,6 +21,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.29.4
 	github.com/aws/aws-sdk-go-v2/service/rds v1.40.7
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.30.6
+	github.com/aws/smithy-go v1.13.5
 	github.com/hashicorp/go-hclog v1.4.0
 	github.com/hashicorp/go-plugin v1.4.9
 	github.com/mitchellh/mapstructure v1.5.0
@@ -45,7 +46,6 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/sso v1.12.6 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.14.6 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sts v1.18.7 // indirect
-	github.com/aws/smithy-go v1.13.5 // indirect
 	github.com/fatih/color v1.14.1 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/go-github/v35 v35.3.0 // indirect

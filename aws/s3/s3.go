@@ -44,7 +44,7 @@ type BucketAndNotInRegion struct {
 func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan []commons.Check) {
 
 	var checkConfig commons.CheckConfig
-	checkConfig.Init(s, c)
+	checkConfig.Init(c)
 	var checks []commons.Check
 	buckets := GetListS3(s)
 	bucketsNotInRegion := GetListS3NotInRegion(s, s.Region)

@@ -29,13 +29,13 @@ import (
 	"github.com/padok-team/yatas-aws/aws/s3"
 	"github.com/padok-team/yatas-aws/aws/volumes"
 	"github.com/padok-team/yatas-aws/aws/vpc"
-
+	"github.com/padok-team/yatas-aws/internal"
 	"github.com/padok-team/yatas/plugins/commons"
 )
 
 // Create a new session that the SDK will use to load
 // credentials from. With either SSO or credentials
-func initAuth(a commons.AWS_Account) aws.Config {
+func initAuth(a internal.AWS_Account) aws.Config {
 
 	s := initSession(a)
 	return s
@@ -44,7 +44,7 @@ func initAuth(a commons.AWS_Account) aws.Config {
 
 // Create a new session that the SDK will use to load
 // credentials from credentials
-func createSessionWithCredentials(c commons.AWS_Account) aws.Config {
+func createSessionWithCredentials(c internal.AWS_Account) aws.Config {
 
 	if c.Profile == "" {
 		s, err := config.LoadDefaultConfig(context.TODO(),
@@ -78,7 +78,7 @@ func createSessionWithCredentials(c commons.AWS_Account) aws.Config {
 // Create a new session that the SDK will use to load
 // credentials from the shared credentials file.
 // Usefull for SSO
-func createSessionWithSSO(c commons.AWS_Account) aws.Config {
+func createSessionWithSSO(c internal.AWS_Account) aws.Config {
 
 	if c.Profile == "" {
 		s, err := config.LoadDefaultConfig(context.Background(),
@@ -112,7 +112,7 @@ func createSessionWithSSO(c commons.AWS_Account) aws.Config {
 
 // Create a new session that the SDK will use to load
 // credentials from. With either SSO or credentials
-func initSession(c commons.AWS_Account) aws.Config {
+func initSession(c internal.AWS_Account) aws.Config {
 
 	if c.SSO {
 		return createSessionWithSSO(c)
@@ -122,13 +122,13 @@ func initSession(c commons.AWS_Account) aws.Config {
 }
 
 // Public Functin used to run the AWS tests
-func Run(c *commons.Config) ([]commons.Tests, error) {
+func Run(c *commons.Config, accounts []internal.AWS_Account) ([]commons.Tests, error) {
 
 	var wg sync.WaitGroup
 	var queue = make(chan commons.Tests, 10)
 	var checks []commons.Tests
-	wg.Add(len(c.AWS))
-	for _, account := range c.AWS {
+	wg.Add(len(accounts))
+	for _, account := range accounts {
 		go runTestsForAccount(account, c, queue)
 	}
 	go func() {
@@ -144,14 +144,14 @@ func Run(c *commons.Config) ([]commons.Tests, error) {
 }
 
 // For each account we run the tests. We use a queue to store the results and a waitgroup to wait for all the tests to be done. This allows to run all tests asynchronously.
-func runTestsForAccount(account commons.AWS_Account, c *commons.Config, queue chan commons.Tests) {
+func runTestsForAccount(account internal.AWS_Account, c *commons.Config, queue chan commons.Tests) {
 	s := initAuth(account)
 	checks := initTest(s, c, account)
 	queue <- checks
 }
 
 // Main function that launched all the test for a given account. If a new category is added, it needs to be added here.
-func initTest(s aws.Config, c *commons.Config, a commons.AWS_Account) commons.Tests {
+func initTest(s aws.Config, c *commons.Config, a internal.AWS_Account) commons.Tests {
 
 	var checks commons.Tests
 	checks.Account = a.Name
@@ -194,11 +194,11 @@ type YatasPlugin struct {
 	logger hclog.Logger
 }
 
-func UnmarshalAWS(g *YatasPlugin, c *commons.Config) ([]commons.AWS_Account, error) {
-	var accounts []commons.AWS_Account
+func UnmarshalAWS(g *YatasPlugin, c *commons.Config) ([]internal.AWS_Account, error) {
+	var accounts []internal.AWS_Account
 
 	for _, r := range c.PluginConfig {
-		var tmpAccounts []commons.AWS_Account
+		var tmpAccounts []internal.AWS_Account
 		awsFound := false
 		for key, value := range r {
 
@@ -211,7 +211,7 @@ func UnmarshalAWS(g *YatasPlugin, c *commons.Config) ([]commons.AWS_Account, err
 			case "accounts":
 
 				for _, v := range value.([]interface{}) {
-					var account commons.AWS_Account
+					var account internal.AWS_Account
 					g.logger.Debug("🔎")
 					g.logger.Debug("%v", v)
 					for keyaccounts, valueaccounts := range v.(map[string]interface{}) {
@@ -246,13 +246,14 @@ func UnmarshalAWS(g *YatasPlugin, c *commons.Config) ([]commons.AWS_Account, err
 func (g *YatasPlugin) Run(c *commons.Config) []commons.Tests {
 	g.logger.Debug("message from YatasPlugin.Run")
 	var err error
-	c.AWS, err = UnmarshalAWS(g, c)
+	var accounts []internal.AWS_Account
+	accounts, err = UnmarshalAWS(g, c)
 	if err != nil {
 		panic(err)
 	}
 	var checksAll []commons.Tests
 
-	checks, err := runPlugins(c, "aws")
+	checks, err := runPlugins(c, "aws", accounts)
 	if err != nil {
 		g.logger.Error("Error running plugins", "error", err)
 	}
@@ -296,10 +297,10 @@ func main() {
 }
 
 // Run the plugins that are enabled in the config with a switch based on the name of the plugin
-func runPlugins(c *commons.Config, plugin string) ([]commons.Tests, error) {
+func runPlugins(c *commons.Config, plugin string, accounts []internal.AWS_Account) ([]commons.Tests, error) {
 	var checksAll []commons.Tests
 
-	checksAll, err := Run(c)
+	checksAll, err := Run(c, accounts)
 	if err != nil {
 		return nil, err
 	}

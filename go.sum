@@ -128,8 +128,8 @@ github.com/mitchellh/mapstructure v1.5.0 h1:jeMsZIYE/09sWLaz43PL7Gy6RuMjD2eJVyua
 github.com/mitchellh/mapstructure v1.5.0/go.mod h1:bFUtVrKA4DC2yAKiSyO/QUcy7e+RRV2QTWOzhPopBRo=
 github.com/oklog/run v1.1.0 h1:GEenZ1cK0+q0+wsJew9qUg/DyD8k3JzYsZAi5gYi2mA=
 github.com/oklog/run v1.1.0/go.mod h1:sVPdnTZT1zYwAJeCMu2Th4T21pA3FPOQRfWjQlk7DVU=
-github.com/padok-team/yatas v1.3.3 h1:/q6I4wUh57+jSklOEvxqVRSXQXJG9tN8yPwTqPm4vCs=
-github.com/padok-team/yatas v1.3.3/go.mod h1:ESVHn1tqFGZuyxu+JaFnWrsJJ/zZtIsryG5ezaKWWr0=
+github.com/padok-team/yatas v1.3.4-0.20230407155929-4e310d04944d h1:kJJfWLdDkcZLCd19Q3bOOaXmM9wUHa+L8qlwj92tTH0=
+github.com/padok-team/yatas v1.3.4-0.20230407155929-4e310d04944d/go.mod h1:bialjrQy80TYRWCce4rzwJCq07cFCJAKHOSKnTFMKnM=
 github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=

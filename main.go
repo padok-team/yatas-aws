@@ -37,30 +37,27 @@ import (
 // Create a new session that the SDK will use to load
 // credentials from. With either SSO or credentials
 func initAuth(a internal.AWS_Account) aws.Config {
-
+	logger.Logger.Debug("Init auth")
 	s := initSession(a)
 	return s
-
 }
 
 // Create a new session that the SDK will use to load
 // credentials from credentials
 func createSessionWithCredentials(c internal.AWS_Account) aws.Config {
+	var s aws.Config
+	var err error
 
 	if c.Profile == "" {
-		s, err := config.LoadDefaultConfig(context.TODO(),
+		s, err = config.LoadDefaultConfig(context.TODO(),
 			config.WithRegion(c.Region),
 			config.WithRetryer(func() aws.Retryer {
 				return retry.AddWithMaxAttempts(retry.NewStandard(), 10)
 			}),
 			config.WithRetryMode(aws.RetryMode(aws.RetryModeAdaptive)),
 		)
-		if err != nil {
-			panic(err)
-		}
-		return s
 	} else {
-		s, err := config.LoadDefaultConfig(context.TODO(),
+		s, err = config.LoadDefaultConfig(context.TODO(),
 			config.WithRegion(c.Region),
 			config.WithSharedConfigProfile(c.Profile),
 			config.WithRetryer(func() aws.Retryer {
@@ -68,12 +65,13 @@ func createSessionWithCredentials(c internal.AWS_Account) aws.Config {
 			}),
 			config.WithRetryMode(aws.RetryMode(aws.RetryModeAdaptive)),
 		)
-		if err != nil {
-			panic(err)
-		}
-		return s
 	}
 
+	if err != nil {
+		logger.Logger.Error(err.Error())
+	}
+
+	return s
 }
 
 // Create a new session that the SDK will use to load
@@ -90,7 +88,7 @@ func createSessionWithSSO(c internal.AWS_Account) aws.Config {
 			config.WithRetryMode(aws.RetryMode(aws.RetryModeAdaptive)),
 		)
 		if err != nil {
-			panic(err)
+			logger.Logger.Error(err.Error())
 		}
 		return s
 	} else {
@@ -103,7 +101,7 @@ func createSessionWithSSO(c internal.AWS_Account) aws.Config {
 			config.WithRetryMode(aws.RetryMode(aws.RetryModeAdaptive)),
 		)
 		if err != nil {
-			panic(err)
+			logger.Logger.Error(err.Error())
 		}
 		return s
 
@@ -116,20 +114,23 @@ func createSessionWithSSO(c internal.AWS_Account) aws.Config {
 func initSession(c internal.AWS_Account) aws.Config {
 
 	if c.SSO {
+		logger.Logger.Debug("Init SSO")
 		return createSessionWithSSO(c)
 	} else {
+		logger.Logger.Debug("Init Credentials")
 		return createSessionWithCredentials(c)
 	}
 }
 
 // Public Functin used to run the AWS tests
 func Run(c *commons.Config, accounts []internal.AWS_Account) ([]commons.Tests, error) {
-
+	logger.Logger.Debug("Run tests")
 	var wg sync.WaitGroup
 	var queue = make(chan commons.Tests, 10)
 	var checks []commons.Tests
 	wg.Add(len(accounts))
 	for _, account := range accounts {
+
 		go runTestsForAccount(account, c, queue)
 	}
 	go func() {
@@ -254,7 +255,8 @@ func (g *YatasPlugin) Run(c *commons.Config) []commons.Tests {
 	var accounts []internal.AWS_Account
 	accounts, err = UnmarshalAWS(g, c)
 	if err != nil {
-		panic(err)
+		logger.Logger.Error("Error unmarshaling AWS accounts", "error", err)
+		return nil
 	}
 	var checksAll []commons.Tests
 

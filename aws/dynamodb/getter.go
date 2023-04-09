@@ -2,11 +2,11 @@ package dynamodb
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
+	"github.com/padok-team/yatas-aws/logger"
 )
 
 func GetDynamodbs(s aws.Config) []string {
@@ -14,7 +14,9 @@ func GetDynamodbs(s aws.Config) []string {
 	dynamodbInput := &dynamodb.ListTablesInput{}
 	result, err := svc.ListTables(context.TODO(), dynamodbInput)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
+		// Return an empty list
+		return []string{}
 	}
 	return result.TableNames
 }
@@ -28,7 +30,9 @@ func GetTables(s aws.Config, dynamodbs []string) []*dynamodb.DescribeTableOutput
 		}
 		resp, err := svc.DescribeTable(context.TODO(), params)
 		if err != nil {
-			fmt.Println(err)
+			logger.Logger.Error(err.Error())
+			// Return an empty list of certificates
+			return []*dynamodb.DescribeTableOutput{}
 		}
 		tables = append(tables, resp)
 
@@ -50,7 +54,9 @@ func GetContinuousBackups(s aws.Config, tables []string) []TableBackups {
 		}
 		resp, err := svc.DescribeContinuousBackups(context.TODO(), params)
 		if err != nil {
-			fmt.Println(err)
+			logger.Logger.Error(err.Error())
+			// Return an empty list of certificates
+			return []TableBackups{}
 		}
 		continuousBackups = append(continuousBackups, TableBackups{d, *resp.ContinuousBackupsDescription})
 	}

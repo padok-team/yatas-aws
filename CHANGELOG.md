@@ -2,6 +2,56 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/padok-team/yatas-aws/compare/v1.6.0...v1.7.0) (2023-04-09)
+
+
+### Features
+
+* **deps:** update ([4af13e1](https://github.com/padok-team/yatas-aws/commit/4af13e1611719b9492e599b83e41ba63acbdb0f6))
+* **go:** updated to 1.20 ([03895f1](https://github.com/padok-team/yatas-aws/commit/03895f16b6e8d70a086b6a504f1b4b00ed3a86bd))
+* **logger:** update new logger ([45ff0ac](https://github.com/padok-team/yatas-aws/commit/45ff0ac10666e940b42ff4234d2656a7e02e3045))
+* **new-yatas:** update imports and function calls from YATAS ([926aebc](https://github.com/padok-team/yatas-aws/commit/926aebccf86e17caba64c5d9ac08b731c5a1a26d))
+* **panic:** to logger ([1381d16](https://github.com/padok-team/yatas-aws/commit/1381d16331bde6fcb42f0b2a7d0708598ca3b659))
+* **update:** dependcies ([5cecc6e](https://github.com/padok-team/yatas-aws/commit/5cecc6eb061a3d523942f03dcc029a607b4a721f))
+
+## [1.6.0](https://github.com/padok-team/yatas-aws/compare/v1.5.5...v1.6.0) (2023-03-27)
+
+
+### Features
+
+* **s3:** S3_002: better output and error handling + add tests ([4fcedd4](https://github.com/padok-team/yatas-aws/commit/4fcedd425518d5506f7f19c8613a74c25e24c23b))
+* **s3:** S3_002: check bucket has no replication to other region ([a086eaf](https://github.com/padok-team/yatas-aws/commit/a086eaf1d8eda900680684ee951c77e50bae4c18))
+* **s3:** S3_002: remove old version of check ([fae1929](https://github.com/padok-team/yatas-aws/commit/fae1929ec7896faa4230c15d14faf164bbf9d1b9))
+* **s3:** S3_002: update README ([7ee66e0](https://github.com/padok-team/yatas-aws/commit/7ee66e04db050cdd6bb3731bc76efef5414f7c46))
+
+### [1.5.5](https://github.com/padok-team/yatas-aws/compare/v1.5.4...v1.5.5) (2023-03-24)
+
+
+### Bug Fixes
+
+* **s3:** nil pointer gets3 ([1fa9b06](https://github.com/padok-team/yatas-aws/commit/1fa9b069d3ecca1b41a39ff3d26930b242071015))
+
+### [1.5.4](https://github.com/padok-team/yatas-aws/compare/v1.5.3...v1.5.4) (2023-03-14)
+
+
+### Bug Fixes
+
+* **rds:** fixed when no rights to list rds ([3ed2787](https://github.com/padok-team/yatas-aws/commit/3ed2787835902d63fb0f3ee933e567e21dbfead5))
+
+### [1.5.3](https://github.com/padok-team/yatas-aws/compare/v1.5.2...v1.5.3) (2023-02-24)
+
+
+### Bug Fixes
+
+* **getters:** use getter result only after error handling ([c79e53c](https://github.com/padok-team/yatas-aws/commit/c79e53c83e71131d81ffcbe4fb5e52949a6c7957))
+
+### [1.5.2](https://github.com/padok-team/yatas-aws/compare/v1.5.1...v1.5.2) (2023-02-23)
+
+
+### Bug Fixes
+
+* **getters:** made all getters fault tolerant by returning empty struct instead of only printing ([7c4336b](https://github.com/padok-team/yatas-aws/commit/7c4336b037d902b81c03c9420af8c4efb505785a))
+
 ### [1.5.1](https://github.com/padok-team/yatas-aws/compare/v1.5.0...v1.5.1) (2023-02-06)
 
 ## [1.5.0](https://github.com/padok-team/yatas-aws/compare/v1.4.0...v1.5.0) (2023-02-06)

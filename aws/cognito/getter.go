@@ -9,6 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/cognitoidentity/types"
 	"github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider"
 	ciptypes "github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider/types"
+	"github.com/padok-team/yatas-aws/logger"
 )
 
 func GetCognitoPools(s aws.Config) []types.IdentityPoolShortDescription {
@@ -18,7 +19,9 @@ func GetCognitoPools(s aws.Config) []types.IdentityPoolShortDescription {
 	}
 	result, err := svc.ListIdentityPools(context.TODO(), cognitoInput)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
+		// Return an empty list of certificates
+		return []types.IdentityPoolShortDescription{}
 	}
 	fmt.Println("Hello")
 	return result.IdentityPools
@@ -33,7 +36,9 @@ func GetDetailedCognitoPool(s aws.Config, pools []types.IdentityPoolShortDescrip
 		}
 		result, err := svc.DescribeIdentityPool(context.TODO(), cognitoInput)
 		if err != nil {
-			fmt.Println(err)
+			logger.Logger.Error(err.Error())
+			// Return an empty list of certificates
+			return []cognitoidentity.DescribeIdentityPoolOutput{}
 		}
 		detailedPools = append(detailedPools, *result)
 	}

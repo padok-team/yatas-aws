@@ -2,11 +2,11 @@ package ecr
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/ecr"
 	"github.com/aws/aws-sdk-go-v2/service/ecr/types"
+	"github.com/padok-team/yatas-aws/logger"
 )
 
 func GetECRs(s aws.Config) []types.Repository {
@@ -16,18 +16,22 @@ func GetECRs(s aws.Config) []types.Repository {
 		MaxResults: aws.Int32(100),
 	}
 	result, err := svc.DescribeRepositories(context.TODO(), input)
-	ecrRepositories = append(ecrRepositories, result.Repositories...)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
+		// Return an empty list
+		return []types.Repository{}
 	}
+	ecrRepositories = append(ecrRepositories, result.Repositories...)
 	for {
 		if result.NextToken != nil {
 			input.NextToken = result.NextToken
 			result, err = svc.DescribeRepositories(context.TODO(), input)
-			ecrRepositories = append(ecrRepositories, result.Repositories...)
 			if err != nil {
-				fmt.Println(err)
+				logger.Logger.Error(err.Error())
+				// Return an empty list
+				return []types.Repository{}
 			}
+			ecrRepositories = append(ecrRepositories, result.Repositories...)
 		} else {
 			break
 		}

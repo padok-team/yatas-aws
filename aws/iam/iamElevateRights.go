@@ -5,6 +5,7 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/padok-team/yatas-aws/logger"
 	"github.com/padok-team/yatas/plugins/commons"
 )
 
@@ -79,7 +80,7 @@ func CheckPolicyForAllowInRequiredPermission(policies []Policy, requiredPermissi
 					// If regex actions matches permission actions, return true
 					found, err := regexp.MatchString(actions, permission)
 					if err != nil {
-						panic(err)
+						logger.Logger.Error(err.Error())
 					}
 					if found {
 						permissionMap[permission] = true

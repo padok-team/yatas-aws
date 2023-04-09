@@ -2,10 +2,10 @@ package rds
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/service/rds"
 	"github.com/aws/aws-sdk-go-v2/service/rds/types"
+	"github.com/padok-team/yatas-aws/logger"
 )
 
 type RDSGetObjectAPI interface {
@@ -18,17 +18,21 @@ func GetListRDS(svc RDSGetObjectAPI) []types.DBInstance {
 	params := &rds.DescribeDBInstancesInput{}
 	var instances []types.DBInstance
 	resp, err := svc.DescribeDBInstances(context.TODO(), params)
-	instances = append(instances, resp.DBInstances...)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
+		// Return an empty list of instances
+		return []types.DBInstance{}
 	}
+	instances = append(instances, resp.DBInstances...)
 	for {
 		if resp.Marker != nil {
 			params.Marker = resp.Marker
 			resp, err = svc.DescribeDBInstances(context.TODO(), params)
 			instances = append(instances, resp.DBInstances...)
 			if err != nil {
-				fmt.Println(err)
+				logger.Logger.Error(err.Error())
+				// Return an empty list of instances
+				return []types.DBInstance{}
 			}
 		} else {
 			break
@@ -45,7 +49,9 @@ func GetListDBClusters(svc RDSGetObjectAPI) []types.DBCluster {
 	resp, err := svc.DescribeDBClusters(context.TODO(), params)
 	clusters = append(clusters, resp.DBClusters...)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
+		// Return an empty list of instances
+		return []types.DBCluster{}
 	}
 	for {
 		if resp.Marker != nil {
@@ -53,7 +59,9 @@ func GetListDBClusters(svc RDSGetObjectAPI) []types.DBCluster {
 			resp, err = svc.DescribeDBClusters(context.TODO(), params)
 			clusters = append(clusters, resp.DBClusters...)
 			if err != nil {
-				fmt.Println(err)
+				logger.Logger.Error(err.Error())
+				// Return an empty list of instances
+				return []types.DBCluster{}
 			}
 		} else {
 			break

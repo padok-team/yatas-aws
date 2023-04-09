@@ -10,9 +10,9 @@ import (
 func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan []commons.Check) {
 
 	var checkConfig commons.CheckConfig
-	checkConfig.Init(s, c)
+	checkConfig.Init(c)
 	var checks []commons.Check
-	guardyDetectors := GetDetectors(checkConfig.ConfigAWS)
+	guardyDetectors := GetDetectors(s)
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_GDT_001", CheckIfGuarddutyEnabled)(checkConfig, "AWS_GDT_001", guardyDetectors)
 	go func() {
 		for t := range checkConfig.Queue {

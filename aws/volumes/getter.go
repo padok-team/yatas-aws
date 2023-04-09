@@ -2,11 +2,11 @@ package volumes
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/ec2"
 	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
+	"github.com/padok-team/yatas-aws/logger"
 )
 
 type couple struct {
@@ -23,17 +23,21 @@ func GetSnapshots(s aws.Config) []types.Snapshot {
 	}
 	result, err := svc.DescribeSnapshots(context.TODO(), input)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
+		// Return an empty list
+		return []types.Snapshot{}
 	}
 	snapshots = append(snapshots, result.Snapshots...)
 	for {
 		if result.NextToken != nil {
 			input.NextToken = result.NextToken
 			result, err = svc.DescribeSnapshots(context.TODO(), input)
-			snapshots = append(snapshots, result.Snapshots...)
 			if err != nil {
-				fmt.Println(err)
+				logger.Logger.Error(err.Error())
+				// Return an empty list
+				return []types.Snapshot{}
 			}
+			snapshots = append(snapshots, result.Snapshots...)
 		} else {
 			break
 		}
@@ -48,17 +52,21 @@ func GetVolumes(s aws.Config) []types.Volume {
 	input := &ec2.DescribeVolumesInput{}
 	result, err := svc.DescribeVolumes(context.TODO(), input)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
+		// Return an empty list
+		return []types.Volume{}
 	}
 	volumes = append(volumes, result.Volumes...)
 	for {
 		if result.NextToken != nil {
 			input.NextToken = result.NextToken
 			result, err = svc.DescribeVolumes(context.TODO(), input)
-			volumes = append(volumes, result.Volumes...)
 			if err != nil {
-				fmt.Println(err)
+				logger.Logger.Error(err.Error())
+				// Return an empty list
+				return []types.Volume{}
 			}
+			volumes = append(volumes, result.Volumes...)
 		} else {
 			break
 		}

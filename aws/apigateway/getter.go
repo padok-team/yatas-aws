@@ -17,10 +17,10 @@ func GetApiGateways(svc APIGatewayGetObjectAPI) []types.RestApi {
 	input := &apigateway.GetRestApisInput{}
 	var apis []types.RestApi
 	result, err := svc.GetRestApis(context.TODO(), input)
-	apis = append(apis, result.Items...)
 	if err != nil {
 		return nil
 	}
+	apis = append(apis, result.Items...)
 	for {
 		if result.Position == nil {
 			break
@@ -42,10 +42,10 @@ func GetAllResourcesApiGateway(svc APIGatewayGetObjectAPI, apiId string) []types
 	}
 	var resources []types.Resource
 	result, err := svc.GetResources(context.TODO(), input)
-	resources = append(resources, result.Items...)
 	if err != nil {
 		return nil
 	}
+	resources = append(resources, result.Items...)
 
 	for {
 		if result.Position == nil {

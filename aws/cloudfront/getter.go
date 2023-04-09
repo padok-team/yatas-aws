@@ -2,10 +2,10 @@ package cloudfront
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/service/cloudfront"
 	"github.com/aws/aws-sdk-go-v2/service/cloudfront/types"
+	"github.com/padok-team/yatas-aws/logger"
 )
 
 type SummaryToConfig struct {
@@ -22,7 +22,7 @@ func GetAllCloudfront(svc CloudfrontGetObjectApi) []types.DistributionSummary {
 	input := &cloudfront.ListDistributionsInput{}
 	result, err := svc.ListDistributions(context.TODO(), input)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
 		// Return an empty list of certificates
 		return []types.DistributionSummary{}
 	}
@@ -37,7 +37,7 @@ func GetAllDistributionConfig(svc CloudfrontGetObjectApi, ds []types.Distributio
 		}
 		result, err := svc.GetDistributionConfig(context.TODO(), input)
 		if err != nil {
-			fmt.Println(err)
+			logger.Logger.Error(err.Error())
 			// Return an empty list of certificates
 			return []SummaryToConfig{}
 		}

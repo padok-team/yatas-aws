@@ -2,11 +2,11 @@ package lambda
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/lambda"
 	"github.com/aws/aws-sdk-go-v2/service/lambda/types"
+	"github.com/padok-team/yatas-aws/logger"
 )
 
 func GetLambdas(s aws.Config) []types.FunctionConfiguration {
@@ -17,7 +17,7 @@ func GetLambdas(s aws.Config) []types.FunctionConfiguration {
 	}
 	result, err := svc.ListFunctions(context.TODO(), input)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
 		// Return an empty list
 		return []types.FunctionConfiguration{}
 	}
@@ -27,7 +27,7 @@ func GetLambdas(s aws.Config) []types.FunctionConfiguration {
 			input.Marker = result.NextMarker
 			result, err = svc.ListFunctions(context.TODO(), input)
 			if err != nil {
-				fmt.Println(err)
+				logger.Logger.Error(err.Error())
 				// Return an empty list
 				return []types.FunctionConfiguration{}
 			}

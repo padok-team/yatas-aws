@@ -3,13 +3,13 @@ package s3
 import (
 	"context"
 	"errors"
-	"fmt"
 	"strings"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/aws/aws-sdk-go-v2/service/s3/types"
 	"github.com/aws/smithy-go"
+	"github.com/padok-team/yatas-aws/logger"
 )
 
 func GetListS3(s aws.Config) []types.Bucket {
@@ -19,7 +19,7 @@ func GetListS3(s aws.Config) []types.Bucket {
 	params := &s3.ListBucketsInput{}
 	resp, err := svc.ListBuckets(context.TODO(), params)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
 		// Return an empty list
 		return []types.Bucket{}
 	}
@@ -34,7 +34,7 @@ func GetListS3NotInRegion(s aws.Config, region string) []types.Bucket {
 	params := &s3.ListBucketsInput{}
 	resp, err := svc.ListBuckets(context.TODO(), params)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
 		// Return an empty list
 		return []types.Bucket{}
 	}
@@ -95,7 +95,7 @@ func GetS3ToEncryption(s aws.Config, b []types.Bucket) []S3ToEncryption {
 		}
 		_, err := svc.GetBucketEncryption(context.TODO(), params)
 		if err != nil && !strings.Contains(err.Error(), "ServerSideEncryptionConfigurationNotFoundError") {
-			fmt.Println(err)
+			logger.Logger.Error(err.Error())
 		} else if err != nil {
 			s3toEncryption = append(s3toEncryption, S3ToEncryption{*bucket.Name, false})
 		} else {
@@ -122,7 +122,7 @@ func GetS3ToVersioning(s aws.Config, b []types.Bucket) []S3ToVersioning {
 		}
 		resp, err := svc.GetBucketVersioning(context.TODO(), params)
 		if err != nil {
-			fmt.Println(err)
+			logger.Logger.Error(err.Error())
 			// return empty	struct
 			return []S3ToVersioning{}
 		}
@@ -183,7 +183,7 @@ func GetS3ToReplicationOtherRegion(s aws.Config, b []types.Bucket) []S3ToReplica
 				s3toReplicationOtherRegion = append(s3toReplicationOtherRegion, S3ToReplicationOtherRegion{*bucket.Name, false, ""})
 				continue
 			}
-			fmt.Println(err)
+			logger.Logger.Error(err.Error())
 			// return empty	struct
 			return []S3ToReplicationOtherRegion{}
 		}

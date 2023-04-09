@@ -10,7 +10,7 @@ import (
 func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan []commons.Check) {
 
 	var checkConfig commons.CheckConfig
-	checkConfig.Init(s, c)
+	checkConfig.Init(c)
 	var checks []commons.Check
 	lambdas := GetLambdas(s)
 

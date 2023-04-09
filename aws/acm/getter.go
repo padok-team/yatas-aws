@@ -2,10 +2,10 @@ package acm
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/service/acm"
 	"github.com/aws/aws-sdk-go-v2/service/acm/types"
+	"github.com/padok-team/yatas-aws/logger"
 )
 
 type ACMGetObjectAPI interface {
@@ -17,7 +17,7 @@ func GetCertificates(svc ACMGetObjectAPI) []types.CertificateDetail {
 	input := &acm.ListCertificatesInput{}
 	result, err := svc.ListCertificates(context.TODO(), input)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
 		// Return an empty list of certificates
 		return []types.CertificateDetail{}
 	}
@@ -33,7 +33,7 @@ func GetCertificates(svc ACMGetObjectAPI) []types.CertificateDetail {
 		input.NextToken = result.NextToken
 		result, err = svc.ListCertificates(context.TODO(), input)
 		if err != nil {
-			fmt.Println(err)
+			logger.Logger.Error(err.Error())
 			return []types.CertificateDetail{}
 		}
 		for _, r := range result.CertificateSummaryList {
@@ -47,7 +47,7 @@ func GetCertificates(svc ACMGetObjectAPI) []types.CertificateDetail {
 		}
 		result, err := svc.DescribeCertificate(context.TODO(), input)
 		if err != nil {
-			fmt.Println(err)
+			logger.Logger.Error(err.Error())
 			return []types.CertificateDetail{}
 		}
 		certificates = append(certificates, *result.Certificate)

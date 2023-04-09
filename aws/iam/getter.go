@@ -2,12 +2,12 @@ package iam
 
 import (
 	"context"
-	"fmt"
 	"sync"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/iam"
 	"github.com/aws/aws-sdk-go-v2/service/iam/types"
+	"github.com/padok-team/yatas-aws/logger"
 )
 
 func GetAllUsers(s aws.Config) []types.User {
@@ -16,7 +16,7 @@ func GetAllUsers(s aws.Config) []types.User {
 	input := &iam.ListUsersInput{}
 	result, err := svc.ListUsers(context.TODO(), input)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
 		// Return an empty list
 		return []types.User{}
 	}
@@ -26,7 +26,7 @@ func GetAllUsers(s aws.Config) []types.User {
 			input.Marker = result.Marker
 			result, err = svc.ListUsers(context.TODO(), input)
 			if err != nil {
-				fmt.Println(err)
+				logger.Logger.Error(err.Error())
 				// Return an empty list
 				return []types.User{}
 			}
@@ -44,7 +44,7 @@ func GetAllRoles(s aws.Config) []types.Role {
 	input := &iam.ListRolesInput{}
 	result, err := svc.ListRoles(context.TODO(), input)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
 		// Return an empty list
 		return []types.Role{}
 	}
@@ -55,7 +55,7 @@ func GetAllRoles(s aws.Config) []types.Role {
 			input.Marker = result.Marker
 			result, err = svc.ListRoles(context.TODO(), input)
 			if err != nil {
-				fmt.Println(err)
+				logger.Logger.Error(err.Error())
 				// Return an empty list
 				return []types.Role{}
 			}
@@ -82,7 +82,7 @@ func GetMfaForUsers(s aws.Config, u []types.User) []MFAForUser {
 		}
 		result, err := svc.ListMFADevices(context.TODO(), input)
 		if err != nil {
-			fmt.Println(err)
+			logger.Logger.Error(err.Error())
 			// Return an empty list of mfa devices
 			return []MFAForUser{}
 		}
@@ -95,7 +95,7 @@ func GetMfaForUsers(s aws.Config, u []types.User) []MFAForUser {
 				input.Marker = result.Marker
 				result, err = svc.ListMFADevices(context.TODO(), input)
 				if err != nil {
-					fmt.Println(err)
+					logger.Logger.Error(err.Error())
 					// Return an empty list of mfa devices
 					return []MFAForUser{}
 				}
@@ -126,7 +126,7 @@ func GetAccessKeysForUsers(s aws.Config, u []types.User) []AccessKeysForUser {
 		}
 		result, err := svc.ListAccessKeys(context.TODO(), input)
 		if err != nil {
-			fmt.Println(err)
+			logger.Logger.Error(err.Error())
 			// Return an empty list of access keys
 			return []AccessKeysForUser{}
 		}
@@ -139,7 +139,7 @@ func GetAccessKeysForUsers(s aws.Config, u []types.User) []AccessKeysForUser {
 				input.Marker = result.Marker
 				result, err = svc.ListAccessKeys(context.TODO(), input)
 				if err != nil {
-					fmt.Println(err)
+					logger.Logger.Error(err.Error())
 					// Return an empty list of access keys
 					return []AccessKeysForUser{}
 				}
@@ -225,7 +225,7 @@ func GetPolicyDocument(wg *sync.WaitGroup, queue chan *string, s aws.Config, pol
 	svc := iam.NewFromConfig(s)
 	result, err := svc.GetPolicyVersion(context.TODO(), input)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
 	}
 	queue <- result.PolicyVersion.Document
 }
@@ -237,7 +237,7 @@ func GetPolicyAttachedToUser(s aws.Config, user types.User) []types.AttachedPoli
 	}
 	result, err := svc.ListAttachedUserPolicies(context.TODO(), input)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
 		// Return an empty list of attached policies
 		return []types.AttachedPolicy{}
 	}
@@ -251,7 +251,7 @@ func GetAllPolicyVersions(s aws.Config, policyArn *string) []types.PolicyVersion
 	}
 	result, err := svc.ListPolicyVersions(context.TODO(), input)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
 		// Return an empty list of policy versions
 		return []types.PolicyVersion{}
 	}
@@ -326,7 +326,7 @@ func GetPolicyAttachedToRole(s aws.Config, role types.Role) []types.AttachedPoli
 	}
 	result, err := svc.ListAttachedRolePolicies(context.TODO(), input)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
 		// Return an empty list of attached policies
 		return []types.AttachedPolicy{}
 	}

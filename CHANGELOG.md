@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/padok-team/yatas-aws/compare/v1.6.0...v1.7.0) (2023-04-09)
+
+
+### Features
+
+* **deps:** update ([4af13e1](https://github.com/padok-team/yatas-aws/commit/4af13e1611719b9492e599b83e41ba63acbdb0f6))
+* **go:** updated to 1.20 ([03895f1](https://github.com/padok-team/yatas-aws/commit/03895f16b6e8d70a086b6a504f1b4b00ed3a86bd))
+* **logger:** update new logger ([45ff0ac](https://github.com/padok-team/yatas-aws/commit/45ff0ac10666e940b42ff4234d2656a7e02e3045))
+* **new-yatas:** update imports and function calls from YATAS ([926aebc](https://github.com/padok-team/yatas-aws/commit/926aebccf86e17caba64c5d9ac08b731c5a1a26d))
+* **panic:** to logger ([1381d16](https://github.com/padok-team/yatas-aws/commit/1381d16331bde6fcb42f0b2a7d0708598ca3b659))
+* **update:** dependcies ([5cecc6e](https://github.com/padok-team/yatas-aws/commit/5cecc6eb061a3d523942f03dcc029a607b4a721f))
+
 ## [1.6.0](https://github.com/padok-team/yatas-aws/compare/v1.5.5...v1.6.0) (2023-03-27)
 
 

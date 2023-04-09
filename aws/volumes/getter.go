@@ -2,11 +2,11 @@ package volumes
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/ec2"
 	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
+	"github.com/padok-team/yatas-aws/logger"
 )
 
 type couple struct {
@@ -23,7 +23,7 @@ func GetSnapshots(s aws.Config) []types.Snapshot {
 	}
 	result, err := svc.DescribeSnapshots(context.TODO(), input)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
 		// Return an empty list
 		return []types.Snapshot{}
 	}
@@ -33,7 +33,7 @@ func GetSnapshots(s aws.Config) []types.Snapshot {
 			input.NextToken = result.NextToken
 			result, err = svc.DescribeSnapshots(context.TODO(), input)
 			if err != nil {
-				fmt.Println(err)
+				logger.Logger.Error(err.Error())
 				// Return an empty list
 				return []types.Snapshot{}
 			}
@@ -52,7 +52,7 @@ func GetVolumes(s aws.Config) []types.Volume {
 	input := &ec2.DescribeVolumesInput{}
 	result, err := svc.DescribeVolumes(context.TODO(), input)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
 		// Return an empty list
 		return []types.Volume{}
 	}
@@ -62,7 +62,7 @@ func GetVolumes(s aws.Config) []types.Volume {
 			input.NextToken = result.NextToken
 			result, err = svc.DescribeVolumes(context.TODO(), input)
 			if err != nil {
-				fmt.Println(err)
+				logger.Logger.Error(err.Error())
 				// Return an empty list
 				return []types.Volume{}
 			}

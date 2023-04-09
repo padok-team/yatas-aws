@@ -2,11 +2,11 @@ package eks
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/eks"
 	"github.com/aws/aws-sdk-go-v2/service/eks/types"
+	"github.com/padok-team/yatas-aws/logger"
 )
 
 type EKSGetObjectAPI interface {
@@ -18,7 +18,7 @@ func GetClusters(svc EKSGetObjectAPI) []types.Cluster {
 	input := &eks.ListClustersInput{}
 	result, err := svc.ListClusters(context.TODO(), input)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
 		// Return an empty list
 		return []types.Cluster{}
 	}
@@ -34,7 +34,7 @@ func GetClusters(svc EKSGetObjectAPI) []types.Cluster {
 		input.NextToken = result.NextToken
 		result, err = svc.ListClusters(context.TODO(), input)
 		if err != nil {
-			fmt.Println(err)
+			logger.Logger.Error(err.Error())
 			// Return an empty list of instances
 			return []types.Cluster{}
 		}
@@ -49,7 +49,7 @@ func GetClusters(svc EKSGetObjectAPI) []types.Cluster {
 		}
 		result, err := svc.DescribeCluster(context.TODO(), input)
 		if err != nil {
-			fmt.Println(err)
+			logger.Logger.Error(err.Error())
 			// Return an empty list of instances
 			return []types.Cluster{}
 		}

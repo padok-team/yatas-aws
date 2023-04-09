@@ -2,11 +2,11 @@ package loadbalancers
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2"
 	"github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2/types"
+	"github.com/padok-team/yatas-aws/logger"
 )
 
 type LoadBalancerAttributes struct {
@@ -24,7 +24,7 @@ func GetLoadBalancersAttributes(s aws.Config, loadbalancers []types.LoadBalancer
 		}
 		result, err := svc.DescribeLoadBalancerAttributes(context.TODO(), input)
 		if err != nil {
-			fmt.Println(err)
+			logger.Logger.Error(err.Error())
 			// return empty struct
 			return []LoadBalancerAttributes{}
 		}
@@ -45,7 +45,7 @@ func GetElasticLoadBalancers(s aws.Config) []types.LoadBalancer {
 	}
 	result, err := svc.DescribeLoadBalancers(context.TODO(), input)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
 		// return empty struct
 		return []types.LoadBalancer{}
 	}
@@ -55,7 +55,7 @@ func GetElasticLoadBalancers(s aws.Config) []types.LoadBalancer {
 			input.Marker = result.NextMarker
 			result, err = svc.DescribeLoadBalancers(context.TODO(), input)
 			if err != nil {
-				fmt.Println(err)
+				logger.Logger.Error(err.Error())
 				// return empty struct
 				return []types.LoadBalancer{}
 			}

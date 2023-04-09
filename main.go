@@ -30,6 +30,7 @@ import (
 	"github.com/padok-team/yatas-aws/aws/volumes"
 	"github.com/padok-team/yatas-aws/aws/vpc"
 	"github.com/padok-team/yatas-aws/internal"
+	"github.com/padok-team/yatas-aws/logger"
 	"github.com/padok-team/yatas/plugins/commons"
 )
 
@@ -212,8 +213,8 @@ func UnmarshalAWS(g *YatasPlugin, c *commons.Config) ([]internal.AWS_Account, er
 
 				for _, v := range value.([]interface{}) {
 					var account internal.AWS_Account
-					g.logger.Debug("🔎")
-					g.logger.Debug("%v", v)
+					logger.Logger.Debug("🔎")
+					logger.Logger.Debug("%v", v)
 					for keyaccounts, valueaccounts := range v.(map[string]interface{}) {
 						switch keyaccounts {
 						case "name":
@@ -237,14 +238,18 @@ func UnmarshalAWS(g *YatasPlugin, c *commons.Config) ([]internal.AWS_Account, er
 		}
 
 	}
-	g.logger.Debug("✅")
-	g.logger.Debug("%v", accounts)
-	g.logger.Debug("Length of accounts: %d", len(accounts))
+	logger.Logger.Debug("✅")
+	logger.Logger.Debug("%v", accounts)
+	logger.Logger.Debug("Length of accounts: %d", len(accounts))
+	if len(accounts) == 0 {
+		logger.Logger.Error("No AWS accounts found in config file")
+	}
 	return accounts, nil
 }
 
 func (g *YatasPlugin) Run(c *commons.Config) []commons.Tests {
-	g.logger.Debug("message from YatasPlugin.Run")
+	logger.Logger = g.logger
+	logger.Logger.Debug("message from YatasPlugin.Run")
 	var err error
 	var accounts []internal.AWS_Account
 	accounts, err = UnmarshalAWS(g, c)
@@ -255,7 +260,7 @@ func (g *YatasPlugin) Run(c *commons.Config) []commons.Tests {
 
 	checks, err := runPlugins(c, "aws", accounts)
 	if err != nil {
-		g.logger.Error("Error running plugins", "error", err)
+		logger.Logger.Error("Error running plugins", "error", err)
 	}
 	checksAll = append(checksAll, checks...)
 	return checksAll

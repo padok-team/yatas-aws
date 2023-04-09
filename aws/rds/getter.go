@@ -2,10 +2,10 @@ package rds
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/service/rds"
 	"github.com/aws/aws-sdk-go-v2/service/rds/types"
+	"github.com/padok-team/yatas-aws/logger"
 )
 
 type RDSGetObjectAPI interface {
@@ -19,7 +19,7 @@ func GetListRDS(svc RDSGetObjectAPI) []types.DBInstance {
 	var instances []types.DBInstance
 	resp, err := svc.DescribeDBInstances(context.TODO(), params)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
 		// Return an empty list of instances
 		return []types.DBInstance{}
 	}
@@ -30,7 +30,7 @@ func GetListRDS(svc RDSGetObjectAPI) []types.DBInstance {
 			resp, err = svc.DescribeDBInstances(context.TODO(), params)
 			instances = append(instances, resp.DBInstances...)
 			if err != nil {
-				fmt.Println(err)
+				logger.Logger.Error(err.Error())
 				// Return an empty list of instances
 				return []types.DBInstance{}
 			}
@@ -49,7 +49,7 @@ func GetListDBClusters(svc RDSGetObjectAPI) []types.DBCluster {
 	resp, err := svc.DescribeDBClusters(context.TODO(), params)
 	clusters = append(clusters, resp.DBClusters...)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
 		// Return an empty list of instances
 		return []types.DBCluster{}
 	}
@@ -59,7 +59,7 @@ func GetListDBClusters(svc RDSGetObjectAPI) []types.DBCluster {
 			resp, err = svc.DescribeDBClusters(context.TODO(), params)
 			clusters = append(clusters, resp.DBClusters...)
 			if err != nil {
-				fmt.Println(err)
+				logger.Logger.Error(err.Error())
 				// Return an empty list of instances
 				return []types.DBCluster{}
 			}

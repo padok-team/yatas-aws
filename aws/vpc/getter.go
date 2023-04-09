@@ -2,11 +2,11 @@ package vpc
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/ec2"
 	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
+	"github.com/padok-team/yatas-aws/logger"
 )
 
 func GetListVPC(s aws.Config) []types.Vpc {
@@ -15,7 +15,7 @@ func GetListVPC(s aws.Config) []types.Vpc {
 	input := &ec2.DescribeVpcsInput{}
 	result, err := svc.DescribeVpcs(context.TODO(), input)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
 		// Return an empty list of vpc
 		return []types.Vpc{}
 	}
@@ -27,7 +27,7 @@ func GetListVPC(s aws.Config) []types.Vpc {
 		input.NextToken = result.NextToken
 		result, err = svc.DescribeVpcs(context.TODO(), input)
 		if err != nil {
-			fmt.Println(err)
+			logger.Logger.Error(err.Error())
 			// Return an empty list of vpc
 			return []types.Vpc{}
 		}
@@ -55,7 +55,7 @@ func GetSubnetForVPCS(s aws.Config, vpcs []types.Vpc) []VPCToSubnet {
 		}
 		result, err := svc.DescribeSubnets(context.TODO(), input)
 		if err != nil {
-			fmt.Println(err)
+			logger.Logger.Error(err.Error())
 			// Return an empty list of subnets
 			return []VPCToSubnet{}
 		}
@@ -70,7 +70,7 @@ func GetSubnetForVPCS(s aws.Config, vpcs []types.Vpc) []VPCToSubnet {
 			input.NextToken = result.NextToken
 			result, err = svc.DescribeSubnets(context.TODO(), input)
 			if err != nil {
-				fmt.Println(err)
+				logger.Logger.Error(err.Error())
 				// Return an empty list of subnets
 				return []VPCToSubnet{}
 			}
@@ -102,7 +102,7 @@ func GetInternetGatewaysForVpc(s aws.Config, vpcs []types.Vpc) []VpcToInternetGa
 		}
 		result, err := svc.DescribeInternetGateways(context.TODO(), input)
 		if err != nil {
-			fmt.Println(err)
+			logger.Logger.Error(err.Error())
 			// Return an empty list of internet gateways
 			return []VpcToInternetGateway{}
 		}
@@ -117,7 +117,7 @@ func GetInternetGatewaysForVpc(s aws.Config, vpcs []types.Vpc) []VpcToInternetGa
 			input.NextToken = result.NextToken
 			result, err = svc.DescribeInternetGateways(context.TODO(), input)
 			if err != nil {
-				fmt.Println(err)
+				logger.Logger.Error(err.Error())
 				// Return an empty list of internet gateways
 				return []VpcToInternetGateway{}
 			}
@@ -149,7 +149,7 @@ func GetFlowLogsForVpc(s aws.Config, vpcs []types.Vpc) []VpcToFlowLogs {
 		}
 		result, err := svc.DescribeFlowLogs(context.TODO(), input)
 		if err != nil {
-			fmt.Println(err)
+			logger.Logger.Error(err.Error())
 			// Return an empty list of flow logs
 			return []VpcToFlowLogs{}
 		}
@@ -164,7 +164,7 @@ func GetFlowLogsForVpc(s aws.Config, vpcs []types.Vpc) []VpcToFlowLogs {
 			input.NextToken = result.NextToken
 			result, err = svc.DescribeFlowLogs(context.TODO(), input)
 			if err != nil {
-				fmt.Println(err)
+				logger.Logger.Error(err.Error())
 				// Return an empty list of flow logs
 				return []VpcToFlowLogs{}
 			}

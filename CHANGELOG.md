@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/padok-team/yatas-aws/compare/v1.7.0...v1.8.0) (2023-04-10)
+
+
+### Features
+
+* **cognito:** add cognito check for self-registration ([7334bed](https://github.com/padok-team/yatas-aws/commit/7334bed438516cfb1552e973f2ada2c8611b79b3))
+* **lambda:** add lambda checks for secrets in environment and URL AuthType ([610606f](https://github.com/padok-team/yatas-aws/commit/610606f2b18d4a453a02dc37f9a0803aedc4fc0a))
+* **lambda:** new test ([43d6de3](https://github.com/padok-team/yatas-aws/commit/43d6de31c55105109bfc3e7a87073116fc91263b))
+* return ARNs as ResourceID instead of name ([f8dcc44](https://github.com/padok-team/yatas-aws/commit/f8dcc443f812b949061a4a1c91c06d84144edaa0))
+
 ## [1.7.0](https://github.com/padok-team/yatas-aws/compare/v1.6.0...v1.7.0) (2023-04-09)
 
 

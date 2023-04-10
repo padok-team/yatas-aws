@@ -20,9 +20,9 @@ type CheckDefinition struct {
 	FailureMessage string
 }
 
-func CheckResources(checkConfig commons.CheckConfig, resources []interface{}, testName string, checkDefinitions []CheckDefinition) {
+func CheckResources(checkConfig commons.CheckConfig, resources []interface{}, checkDefinitions []CheckDefinition) {
 	for _, checkDefinition := range checkDefinitions {
-		check := createCheck(testName, checkDefinition)
+		check := createCheck(checkDefinition)
 		for _, resource := range resources {
 			result := checkResource(resource, checkDefinition.ConditionFn, checkDefinition.SuccessMessage, checkDefinition.FailureMessage)
 			check.AddResult(result)
@@ -31,9 +31,9 @@ func CheckResources(checkConfig commons.CheckConfig, resources []interface{}, te
 	}
 }
 
-func createCheck(testName string, checkDefinition CheckDefinition) commons.Check {
+func createCheck(checkDefinition CheckDefinition) commons.Check {
 	var check commons.Check
-	check.InitCheck(checkDefinition.Title, checkDefinition.Description, testName, checkDefinition.Tags)
+	check.InitCheck(checkDefinition.Description, checkDefinition.Description, checkDefinition.Title, checkDefinition.Tags)
 	return check
 }
 
@@ -76,4 +76,12 @@ func Ec2PublicIPCondition(resource interface{}) bool {
 		return false
 	}
 	return instance.PublicIpAddress == nil
+}
+
+func Ec2RunningInVPCCondition(resource interface{}) bool {
+	instance, ok := resource.(*types.Instance)
+	if !ok {
+		return false
+	}
+	return instance.VpcId != nil && *instance.VpcId != ""
 }

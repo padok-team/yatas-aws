@@ -19,7 +19,7 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	instances := GetEC2s(svc)
 	ec2Checks := []awschecks.CheckDefinition{
 		{
-			Title:          "EC2s have the monitoring option enabled",
+			Title:          "AWS_EC2_001",
 			Description:    "Check if all instances have monitoring enabled",
 			Tags:           []string{"Security", "Good Practice"},
 			ConditionFn:    awschecks.Ec2MonitoringEnabledCondition,
@@ -27,12 +27,20 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 			FailureMessage: "EC2 instance has no monitoring enabled",
 		},
 		{
-			Title:          "EC2s don't have a public IP",
+			Title:          "AWS_EC2_002",
 			Description:    "Check if all instances have a public IP",
 			Tags:           []string{"Security", "Good Practice"},
 			ConditionFn:    awschecks.Ec2PublicIPCondition,
 			SuccessMessage: "EC2 instance has no public IP",
 			FailureMessage: "EC2 instance has a public IP",
+		},
+		{
+			Title:          "AWS_EC2_003",
+			Description:    "Check if instances are running in a Virtual Private Cloud (VPC)",
+			Tags:           []string{"Security", "Good Practice"},
+			ConditionFn:    awschecks.Ec2RunningInVPCCondition,
+			SuccessMessage: "EC2 instance is running in a VPC",
+			FailureMessage: "EC2 instance is not running in a VPC",
 		},
 	}
 
@@ -42,8 +50,8 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 		resources = append(resources, instance)
 	}
 
-	checkConfig.Wg.Add(2)
-	go awschecks.CheckResources(checkConfig, resources, "EC2 Test", ec2Checks)
+	checkConfig.Wg.Add(3)
+	go awschecks.CheckResources(checkConfig, resources, ec2Checks)
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_EC2_001", CheckIfEC2PublicIP)(checkConfig, instances, "AWS_EC2_001")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_EC2_002", CheckIfMonitoringEnabled)(checkConfig, instances, "AWS_EC2_002")
 

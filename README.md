@@ -131,7 +131,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 
 <!-- BEGIN_YATAS -->
 
-## AWS - 63 Checks
+## AWS - 68 Checks
 
 ### AWS Certificate Manager
 - AWS_ACM_001 ACM certificates are valid
@@ -165,6 +165,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 
 ### Cognito
 - AWS_COG_001 Cognito allows unauthenticated users
+- AWS_COG_002 Cognito allows self-registration
 
 ### DynamoDB
 - AWS_DYN_001 Dynamodbs are encrypted
@@ -193,12 +194,15 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_IAM_001 IAM Users have 2FA activated
 - AWS_IAM_002 IAM access key younger than 90 days
 - AWS_IAM_003 IAM User can't elevate rights
-- AWS_IAM_004 IAM Users have not used their password for 120 days
+- AWS_IAM_004 IAM Role can't elevate rights
+- AWS_IAM_005 IAM Users have not used their password for 120 days
 
 ### Lambda
 - AWS_LMD_001 Lambdas are private
 - AWS_LMD_002 Lambdas are in a security group
 - AWS_LMD_003 Lambdas are not with errors
+- AWS_LMD_004 Lambdas has no hard-coded secrets in environment
+- AWS_LMD_005 Lambdas has no public URL access
 
 ### RDS
 - AWS_RDS_001 RDS are encrypted
@@ -233,6 +237,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_VPC_003 VPC only have one Gateway
 - AWS_VPC_004 VPC Flow Logs are activated
 - AWS_VPC_005 VPC have at least 2 subnets
+- AWS_VPC_006 VPC's Subnets are in different zones
 
 <!-- END_YATAS -->
 

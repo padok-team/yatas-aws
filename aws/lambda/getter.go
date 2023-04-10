@@ -48,7 +48,8 @@ func GetLambdaUrlConfigs(s aws.Config, lambdas []types.FunctionConfiguration) []
 		}
 		result, err := svc.ListFunctionUrlConfigs(context.TODO(), input)
 		if err != nil {
-			return nil
+			logger.Logger.Error(err.Error())
+			return []LambdaUrlConfig{}
 		}
 		lambdaUrlConfigs = append(lambdaUrlConfigs, LambdaUrlConfig{
 			LambdaName: *function.FunctionName,

@@ -23,7 +23,6 @@ func GetCognitoPools(s aws.Config) []types.IdentityPoolShortDescription {
 		// Return an empty list of certificates
 		return []types.IdentityPoolShortDescription{}
 	}
-	fmt.Println("Hello")
 	return result.IdentityPools
 }
 
@@ -47,13 +46,15 @@ func GetDetailedCognitoPool(s aws.Config, pools []types.IdentityPoolShortDescrip
 
 func GetCognitoUserPools(s aws.Config) []ciptypes.UserPoolDescriptionType {
 	svc := cognitoidentityprovider.NewFromConfig(s)
-	fmt.Print(svc)
+	logger.Logger.Info(fmt.Sprintf("Getting Cognito User Pools"))
 	cognitoInput := &cognitoidentityprovider.ListUserPoolsInput{
 		MaxResults: 50,
 	}
 	result, err := svc.ListUserPools(context.TODO(), cognitoInput)
 	if err != nil {
-		fmt.Println(err)
+		logger.Logger.Error(err.Error())
+		// Return an empty list of certificates
+		return []ciptypes.UserPoolDescriptionType{}
 	}
 	return result.UserPools
 }
@@ -67,7 +68,9 @@ func GetDetailedCognitoUserPool(s aws.Config, userPools []ciptypes.UserPoolDescr
 		}
 		result, err := svc.DescribeUserPool(context.TODO(), cognitoInput)
 		if err != nil {
-			fmt.Println(err)
+			logger.Logger.Error(err.Error())
+			// Return an empty list of certificates
+			continue
 		}
 		detailedUserPools = append(detailedUserPools, *result)
 	}

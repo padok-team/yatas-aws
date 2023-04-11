@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.1](https://github.com/padok-team/yatas-aws/compare/v1.8.0...v1.8.1) (2023-04-11)
+
+
+### Bug Fixes
+
+* **lambda:** check if not null ([3f70700](https://github.com/padok-team/yatas-aws/commit/3f70700322cb16b3f79d1786669b58320b3cbfc8))
+
 ## [1.8.0](https://github.com/padok-team/yatas-aws/compare/v1.7.0...v1.8.0) (2023-04-10)
 
 

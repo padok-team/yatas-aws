@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
 	ec2Types "github.com/aws/aws-sdk-go-v2/service/ec2/types"
+	"github.com/padok-team/yatas-aws/logger"
 	"github.com/padok-team/yatas/plugins/commons"
 )
 
@@ -22,6 +22,10 @@ type CheckDefinition struct {
 
 func CheckResources(checkConfig commons.CheckConfig, resources []interface{}, checkDefinitions []CheckDefinition) {
 	for _, checkDefinition := range checkDefinitions {
+		// if !checkConfig.ConfigYatas.CheckExclude(checkDefinition.Title) && checkConfig.ConfigYatas.CheckInclude(checkDefinition.Title) {
+		// 	checkConfig.Wg.Add(1)
+		// 	logger.Logger.Info("Running check: " + checkDefinition.Title)
+		// }
 		check := createCheck(checkDefinition)
 		for _, resource := range resources {
 			result := checkResource(resource, checkDefinition.ConditionFn, checkDefinition.SuccessMessage, checkDefinition.FailureMessage)
@@ -33,6 +37,7 @@ func CheckResources(checkConfig commons.CheckConfig, resources []interface{}, ch
 
 func createCheck(checkDefinition CheckDefinition) commons.Check {
 	var check commons.Check
+	logger.Logger.Info("Creating check: " + checkDefinition.Title)
 	check.InitCheck(checkDefinition.Description, checkDefinition.Description, checkDefinition.Title, checkDefinition.Tags)
 	return check
 }
@@ -60,28 +65,4 @@ func getResourceID(resource interface{}) string {
 		fmt.Printf("Unsupported resource type: %s\n", resourceType)
 		return ""
 	}
-}
-
-func Ec2MonitoringEnabledCondition(resource interface{}) bool {
-	instance, ok := resource.(*types.Instance)
-	if !ok {
-		return false
-	}
-	return instance.Monitoring.State == types.MonitoringStateEnabled
-}
-
-func Ec2PublicIPCondition(resource interface{}) bool {
-	instance, ok := resource.(*types.Instance)
-	if !ok {
-		return false
-	}
-	return instance.PublicIpAddress == nil
-}
-
-func Ec2RunningInVPCCondition(resource interface{}) bool {
-	instance, ok := resource.(*types.Instance)
-	if !ok {
-		return false
-	}
-	return instance.VpcId != nil && *instance.VpcId != ""
 }

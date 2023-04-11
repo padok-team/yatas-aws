@@ -35,7 +35,7 @@ func CheckIfLambdaNoSecrets(checkConfig commons.CheckConfig, lambdas []types.Fun
 
 	for _, lambda := range lambdas {
 		envSecrets := []string{}
-		if lambda.Environment.Error == nil {
+		if lambda.Environment != nil && lambda.Environment.Error == nil {
 			for key, value := range lambda.Environment.Variables {
 				if string_has_secrets(value) {
 					envSecrets = append(envSecrets, key)

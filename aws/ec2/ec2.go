@@ -49,7 +49,7 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	for _, instance := range instances {
 		resources = append(resources, instance)
 	}
-	checkConfig.Wg.Add(3)
+	awschecks.AddChecks(&checkConfig, ec2Checks)
 	go awschecks.CheckResources(checkConfig, resources, ec2Checks)
 
 	go func() {

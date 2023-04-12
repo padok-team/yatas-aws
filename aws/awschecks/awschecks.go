@@ -35,6 +35,16 @@ func CheckResources(checkConfig commons.CheckConfig, resources []interface{}, ch
 	}
 }
 
+func AddChecks(checkConfig *commons.CheckConfig, resources ...[]CheckDefinition) {
+	//Print the resources to check
+	totalCount := 0
+	for _, resourceSlice := range resources {
+		totalCount += len(resourceSlice)
+	}
+	logger.Logger.Info(fmt.Sprintf("Adding %d checks", totalCount))
+	checkConfig.Wg.Add(totalCount)
+}
+
 func createCheck(checkDefinition CheckDefinition) commons.Check {
 	var check commons.Check
 	logger.Logger.Info("Creating check: " + checkDefinition.Title)

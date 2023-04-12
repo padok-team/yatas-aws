@@ -133,7 +133,7 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 		clusterResources = append(clusterResources, cluster)
 	}
 
-	checkConfig.Wg.Add(12)
+	awschecks.AddChecks(&checkConfig, rdsChecks, rdsClusterChecks)
 	go awschecks.CheckResources(checkConfig, resources, rdsChecks)
 	go awschecks.CheckResources(checkConfig, clusterResources, rdsClusterChecks)
 

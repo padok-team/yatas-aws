@@ -28,7 +28,7 @@ require (
 	github.com/hashicorp/go-plugin v1.4.9
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/padok-team/yatas v1.4.2
-	github.com/rs/zerolog v1.29.0
+	github.com/rs/zerolog v1.29.1
 	golang.org/x/exp v0.0.0-20230321023759-10a507213a29
 )
 

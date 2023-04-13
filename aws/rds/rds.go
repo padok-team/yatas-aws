@@ -11,6 +11,22 @@ import (
 	"github.com/padok-team/yatas/plugins/logger"
 )
 
+type RDSInstance struct {
+	Instance types.DBInstance
+}
+
+func (r *RDSInstance) GetID() string {
+	return *r.Instance.DBInstanceIdentifier
+}
+
+type RDSCluster struct {
+	Cluster types.DBCluster
+}
+
+func (c *RDSCluster) GetID() string {
+	return *c.Cluster.DBClusterIdentifier
+}
+
 func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan []commons.Check) {
 	var checkConfig commons.CheckConfig
 	checkConfig.Init(c)
@@ -122,15 +138,14 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 		},
 	}
 
-	// Convert instances to a slice of interfaces
-	var resources []interface{}
+	var resources []awschecks.Resource
 	for _, instance := range instances {
-		resources = append(resources, instance)
+		resources = append(resources, &RDSInstance{Instance: instance})
 	}
 
-	var clusterResources []interface{}
+	var clusterResources []awschecks.Resource
 	for _, cluster := range clusters {
-		clusterResources = append(clusterResources, cluster)
+		clusterResources = append(clusterResources, &RDSCluster{Cluster: cluster})
 	}
 
 	awschecks.AddChecks(&checkConfig, rdsChecks, rdsClusterChecks)
@@ -152,111 +167,116 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	queue <- checks
 }
 
-// Example of a condition function
-func CheckIfEncryptionEnabled(resource interface{}) bool {
-	instance, ok := resource.(types.DBInstance)
+func CheckIfEncryptionEnabled(resource awschecks.Resource) bool {
+	instanceResource, ok := resource.(*RDSInstance)
 	if !ok {
 		return false
 	}
 
+	instance := instanceResource.Instance
 	return instance.StorageEncrypted
 }
 
-func CheckIfBackupEnabled(resource interface{}) bool {
-	instance, ok := resource.(types.DBInstance)
+func CheckIfBackupEnabled(resource awschecks.Resource) bool {
+	instanceResource, ok := resource.(*RDSInstance)
 	if !ok {
 		return false
 	}
 
-	return instance.BackupRetentionPeriod != 0
+	instance := instanceResource.Instance
+	return instance.BackupRetentionPeriod > 0
 }
 
-func CheckIfAutoUpgradeEnabled(resource interface{}) bool {
-	instance, ok := resource.(types.DBInstance)
+func CheckIfAutoUpgradeEnabled(resource awschecks.Resource) bool {
+	instanceResource, ok := resource.(*RDSInstance)
 	if !ok {
 		return false
 	}
 
+	instance := instanceResource.Instance
 	return instance.AutoMinorVersionUpgrade
 }
 
-func CheckIfRDSPrivateEnabled(resource interface{}) bool {
-	instance, ok := resource.(types.DBInstance)
+func CheckIfRDSPrivateEnabled(resource awschecks.Resource) bool {
+	instanceResource, ok := resource.(*RDSInstance)
 	if !ok {
 		return false
 	}
 
+	instance := instanceResource.Instance
 	return !instance.PubliclyAccessible
 }
 
-func CheckIfLoggingEnabled(resource interface{}) bool {
-	instance, ok := resource.(types.DBInstance)
+func CheckIfLoggingEnabled(resource awschecks.Resource) bool {
+	instanceResource, ok := resource.(*RDSInstance)
 	if !ok {
 		return false
 	}
 
+	instance := instanceResource.Instance
 	return len(instance.EnabledCloudwatchLogsExports) > 0
 }
 
-func CheckIfDeleteProtectionEnabled(resource interface{}) bool {
-	instance, ok := resource.(types.DBInstance)
+func CheckIfDeleteProtectionEnabled(resource awschecks.Resource) bool {
+	instanceResource, ok := resource.(*RDSInstance)
 	if !ok {
 		return false
 	}
 
+	instance := instanceResource.Instance
 	return instance.DeletionProtection
 }
 
-func CheckIfClusterAutoUpgradeEnabled(resource interface{}) bool {
-	cluster, ok := resource.(types.DBCluster)
+func CheckIfClusterAutoUpgradeEnabled(resource awschecks.Resource) bool {
+	clusterResource, ok := resource.(*RDSCluster)
 	if !ok {
 		return false
 	}
 
-	return cluster.AutoMinorVersionUpgrade
+	return clusterResource.Cluster.AutoMinorVersionUpgrade
 }
 
-func CheckIfClusterBackupEnabled(resource interface{}) bool {
-	cluster, ok := resource.(types.DBCluster)
+func CheckIfClusterBackupEnabled(resource awschecks.Resource) bool {
+	clusterResource, ok := resource.(*RDSCluster)
 	if !ok {
 		return false
 	}
 
-	return *cluster.BackupRetentionPeriod != 0
+	return *clusterResource.Cluster.BackupRetentionPeriod != 0
 }
 
-func CheckIfClusterDeleteProtectionEnabled(resource interface{}) bool {
-	cluster, ok := resource.(types.DBCluster)
+func CheckIfClusterDeleteProtectionEnabled(resource awschecks.Resource) bool {
+	clusterResource, ok := resource.(*RDSCluster)
 	if !ok {
 		return false
 	}
 
-	return *cluster.DeletionProtection
+	return *clusterResource.Cluster.DeletionProtection
 }
 
-func CheckIfClusterEncryptionEnabled(resource interface{}) bool {
-	cluster, ok := resource.(types.DBCluster)
+func CheckIfClusterEncryptionEnabled(resource awschecks.Resource) bool {
+	clusterResource, ok := resource.(*RDSCluster)
 	if !ok {
 		return false
 	}
 
-	return cluster.StorageEncrypted
+	return clusterResource.Cluster.StorageEncrypted
 }
 
-func CheckIfClusterLoggingEnabled(resource interface{}) bool {
-	cluster, ok := resource.(types.DBCluster)
+func CheckIfClusterLoggingEnabled(resource awschecks.Resource) bool {
+	clusterResource, ok := resource.(*RDSCluster)
 	if !ok {
 		return false
 	}
 
-	return len(cluster.EnabledCloudwatchLogsExports) > 0
+	return len(clusterResource.Cluster.EnabledCloudwatchLogsExports) > 0
 }
 
-func CheckIfClusterRDSPrivateEnabled(resource interface{}) bool {
-	cluster, ok := resource.(types.DBCluster)
+func CheckIfClusterRDSPrivateEnabled(resource awschecks.Resource) bool {
+	clusterResource, ok := resource.(*RDSCluster)
 	if !ok {
 		return false
 	}
 
-	return cluster.PubliclyAccessible != nil && !*cluster.PubliclyAccessible
+	return clusterResource.Cluster.PubliclyAccessible != nil && !*clusterResource.Cluster.PubliclyAccessible
 }

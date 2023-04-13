@@ -5,12 +5,20 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/ec2"
+	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
 	"github.com/padok-team/yatas-aws/aws/awschecks"
 	"github.com/padok-team/yatas/plugins/commons"
 )
 
-func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan []commons.Check) {
+type EC2Instance struct {
+	Instance types.Instance
+}
 
+func (e *EC2Instance) GetID() string {
+	return *e.Instance.InstanceId
+}
+
+func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan []commons.Check) {
 	var checkConfig commons.CheckConfig
 	checkConfig.Init(c)
 	var checks []commons.Check
@@ -44,10 +52,9 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 		},
 	}
 
-	// Convert instances to a slice of interfaces
-	var resources []interface{}
+	var resources []awschecks.Resource
 	for _, instance := range instances {
-		resources = append(resources, instance)
+		resources = append(resources, &EC2Instance{Instance: instance})
 	}
 	awschecks.AddChecks(&checkConfig, ec2Checks)
 	go awschecks.CheckResources(checkConfig, resources, ec2Checks)

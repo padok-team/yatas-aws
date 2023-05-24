@@ -10,7 +10,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.28.7
 	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.26.6
 	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.24.8
-	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.15.10
+	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.15.11
 	github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider v1.22.10
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.19.7
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.93.2

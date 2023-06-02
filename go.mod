@@ -25,7 +25,7 @@ require (
 	github.com/aws/smithy-go v1.13.5
 	github.com/dlclark/regexp2 v1.9.0
 	github.com/hashicorp/go-hclog v1.5.0
-	github.com/hashicorp/go-plugin v1.4.9
+	github.com/hashicorp/go-plugin v1.4.10
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/padok-team/yatas v1.4.2
 	github.com/rs/zerolog v1.29.1

@@ -4,19 +4,19 @@ go 1.20
 
 require (
 	github.com/aws/aws-sdk-go-v2 v1.18.1
-	github.com/aws/aws-sdk-go-v2/config v1.18.26
-	github.com/aws/aws-sdk-go-v2/service/acm v1.17.12
-	github.com/aws/aws-sdk-go-v2/service/apigateway v1.16.12
-	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.28.8
-	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.26.7
+	github.com/aws/aws-sdk-go-v2/config v1.18.27
+	github.com/aws/aws-sdk-go-v2/service/acm v1.17.13
+	github.com/aws/aws-sdk-go-v2/service/apigateway v1.16.13
+	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.28.9
+	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.26.8
 	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.24.8
-	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.15.12
-	github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider v1.22.11
-	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.19.9
+	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.15.13
+	github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider v1.22.12
+	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.19.10
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.93.2
-	github.com/aws/aws-sdk-go-v2/service/ecr v1.18.12
-	github.com/aws/aws-sdk-go-v2/service/eks v1.27.13
-	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.19.12
+	github.com/aws/aws-sdk-go-v2/service/ecr v1.18.13
+	github.com/aws/aws-sdk-go-v2/service/eks v1.27.14
+	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.19.13
 	github.com/aws/aws-sdk-go-v2/service/guardduty v1.20.2
 	github.com/aws/aws-sdk-go-v2/service/iam v1.19.12
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.31.1
@@ -34,7 +34,7 @@ require (
 
 require (
 	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.4.10 // indirect
-	github.com/aws/aws-sdk-go-v2/credentials v1.13.25 // indirect
+	github.com/aws/aws-sdk-go-v2/credentials v1.13.26 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.13.4 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.1.34 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.4.28 // indirect
@@ -45,9 +45,9 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/endpoint-discovery v1.7.28 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.9.28 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.14.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/sso v1.12.11 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.14.11 // indirect
-	github.com/aws/aws-sdk-go-v2/service/sts v1.19.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sso v1.12.12 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.14.12 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sts v1.19.2 // indirect
 	github.com/fatih/color v1.15.0 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/google/go-github/v35 v35.3.0 // indirect

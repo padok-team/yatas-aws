@@ -3,7 +3,7 @@ module github.com/padok-team/yatas-aws
 go 1.20
 
 require (
-	github.com/aws/aws-sdk-go-v2 v1.18.1
+	github.com/aws/aws-sdk-go-v2 v1.19.0
 	github.com/aws/aws-sdk-go-v2/config v1.18.27
 	github.com/aws/aws-sdk-go-v2/service/acm v1.17.13
 	github.com/aws/aws-sdk-go-v2/service/apigateway v1.16.13

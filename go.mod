@@ -24,7 +24,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.31.3
 	github.com/aws/smithy-go v1.15.0
 	github.com/dlclark/regexp2 v1.9.0
-	github.com/hashicorp/go-hclog v1.5.0
+	github.com/hashicorp/go-hclog v1.6.3
 	github.com/hashicorp/go-plugin v1.4.10
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/padok-team/yatas v1.4.2

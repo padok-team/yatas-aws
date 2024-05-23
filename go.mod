@@ -28,7 +28,7 @@ require (
 	github.com/hashicorp/go-plugin v1.4.10
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/padok-team/yatas v1.4.2
-	github.com/rs/zerolog v1.29.1
+	github.com/rs/zerolog v1.33.0
 	golang.org/x/exp v0.0.0-20240506185415-9bf2ced13842
 )
 
@@ -55,14 +55,14 @@ require (
 	github.com/hashicorp/yamux v0.1.1 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
-	github.com/mattn/go-isatty v0.0.18 // indirect
+	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/mitchellh/go-testing-interface v1.14.1 // indirect
 	github.com/oklog/run v1.1.0 // indirect
 	golang.org/x/crypto v0.8.0 // indirect
 	golang.org/x/net v0.9.0 // indirect
 	golang.org/x/oauth2 v0.7.0 // indirect
-	golang.org/x/sys v0.7.0 // indirect
+	golang.org/x/sys v0.12.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20230403163135-c38d8f061ccd // indirect

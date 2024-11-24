@@ -1,6 +1,8 @@
 module github.com/padok-team/yatas-aws
 
-go 1.20
+go 1.21
+
+toolchain go1.23.3
 
 require (
 	github.com/aws/aws-sdk-go-v2 v1.21.2
@@ -22,7 +24,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.31.1
 	github.com/aws/aws-sdk-go-v2/service/rds v1.42.3
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.31.3
-	github.com/aws/smithy-go v1.15.0
+	github.com/aws/smithy-go v1.22.1
 	github.com/dlclark/regexp2 v1.9.0
 	github.com/hashicorp/go-hclog v1.5.0
 	github.com/hashicorp/go-plugin v1.4.10

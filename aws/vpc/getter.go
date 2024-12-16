@@ -176,3 +176,38 @@ func GetFlowLogsForVpc(s aws.Config, vpcs []types.Vpc) []VpcToFlowLogs {
 	}
 	return vpcFlowLogs
 }
+
+type SubnetWithRouteTables struct {
+	SubnetId    string
+	RouteTables []types.RouteTable
+}
+
+func GetRouteTableForSubnet(s aws.Config, subnetsforvpcs []VPCToSubnet) map[string][]SubnetWithRouteTables {
+	svc := ec2.NewFromConfig(s)
+	vpcToSubnetWithRouteTables := make(map[string][]SubnetWithRouteTables)
+
+	for _, subnetsforvpc := range subnetsforvpcs {
+		for _, subnet := range subnetsforvpc.Subnets {
+			routeTablesOutput, err := svc.DescribeRouteTables(context.TODO(), &ec2.DescribeRouteTablesInput{
+				Filters: []types.Filter{
+					{
+						Name:   aws.String("association.subnet-id"),
+						Values: []string{*subnet.SubnetId},
+					},
+				},
+			})
+
+			if err != nil {
+				logger.Logger.Error(err.Error())
+				continue
+			}
+
+			vpcToSubnetWithRouteTables[subnetsforvpc.VpcID] = append(vpcToSubnetWithRouteTables[subnetsforvpc.VpcID], SubnetWithRouteTables{
+				SubnetId:    *subnet.SubnetId,
+				RouteTables: routeTablesOutput.RouteTables,
+			})
+		}
+	}
+
+	return vpcToSubnetWithRouteTables
+}

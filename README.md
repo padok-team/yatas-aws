@@ -196,6 +196,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_IAM_003 IAM User can't elevate rights
 - AWS_IAM_004 IAM Role can't elevate rights
 - AWS_IAM_005 IAM Users have not used their password for 120 days
+- AWS_IAM_006 IAM password policy must be defined and enforced
 
 ### Lambda
 - AWS_LMD_001 Lambdas are private

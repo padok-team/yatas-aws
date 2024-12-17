@@ -238,6 +238,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_VPC_004 VPC Flow Logs are activated
 - AWS_VPC_005 VPC have at least 2 subnets
 - AWS_VPC_006 VPC's Subnets are in different zones
+- AWS_VPC_007 VPC have public and private subnets
 
 <!-- END_YATAS -->
 
@@ -263,6 +264,9 @@ If the package already exists and has a `getter.go`
 - Add your test to the `<category_name>.go` file with a new id incremented by 1
 - Add your category in the `<cloudprovider>/<cloudprovider_name>.go` file in the `initTest` function
 
+## How to tests ? 
+
+Simply run `make install` and in your Yatas config instead of the version of the plugin use `local` and it will use the version you just installed.
 
 ### FYI 
 

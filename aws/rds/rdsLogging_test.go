@@ -30,7 +30,7 @@ func TestCheckIfLoggingEnabled(t *testing.T) {
 					{
 						DBInstanceIdentifier: aws.String("test"),
 						DBInstanceArn:        aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:     true,
+						StorageEncrypted:     aws.Bool(true),
 						EnabledCloudwatchLogsExports: []string{
 							"audit",
 						},
@@ -77,7 +77,7 @@ func TestCheckIfLoggingEnabledFail(t *testing.T) {
 					{
 						DBInstanceIdentifier:         aws.String("test"),
 						DBInstanceArn:                aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:             true,
+						StorageEncrypted:             aws.Bool(true),
 						EnabledCloudwatchLogsExports: nil,
 					},
 				},

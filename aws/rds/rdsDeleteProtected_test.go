@@ -30,8 +30,8 @@ func TestCheckIfDeleteProtectionEnabled(t *testing.T) {
 					{
 						DBInstanceIdentifier: aws.String("test"),
 						DBInstanceArn:        aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:     true,
-						DeletionProtection:   true,
+						StorageEncrypted:     aws.Bool(true),
+						DeletionProtection:   aws.Bool(true),
 					},
 				},
 			},
@@ -75,8 +75,8 @@ func TestCheckIfDeleteProtectionEnabledFail(t *testing.T) {
 					{
 						DBInstanceIdentifier: aws.String("test"),
 						DBInstanceArn:        aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:     true,
-						DeletionProtection:   false,
+						StorageEncrypted:     aws.Bool(true),
+						DeletionProtection:   aws.Bool(false),
 					},
 				},
 			},

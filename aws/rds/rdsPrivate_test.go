@@ -30,8 +30,8 @@ func Test_checkIfRDSPrivateEnabled(t *testing.T) {
 					{
 						DBInstanceIdentifier: aws.String("test"),
 						DBInstanceArn:        aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:     true,
-						PubliclyAccessible:   false,
+						StorageEncrypted:     aws.Bool(true),
+						PubliclyAccessible:   aws.Bool(false),
 					},
 				},
 			},
@@ -76,8 +76,8 @@ func Test_checkIfRDSPrivateEnabledFail(t *testing.T) {
 					{
 						DBInstanceIdentifier: aws.String("test"),
 						DBInstanceArn:        aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:     true,
-						PubliclyAccessible:   true,
+						StorageEncrypted:     aws.Bool(true),
+						PubliclyAccessible:   aws.Bool(true),
 					},
 				},
 			},

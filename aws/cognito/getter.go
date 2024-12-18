@@ -2,7 +2,6 @@ package cognito
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/cognitoidentity"
@@ -15,7 +14,7 @@ import (
 func GetCognitoPools(s aws.Config) []types.IdentityPoolShortDescription {
 	svc := cognitoidentity.NewFromConfig(s)
 	cognitoInput := &cognitoidentity.ListIdentityPoolsInput{
-		MaxResults: 50,
+		MaxResults: aws.Int32(50),
 	}
 	result, err := svc.ListIdentityPools(context.TODO(), cognitoInput)
 	if err != nil {
@@ -46,9 +45,9 @@ func GetDetailedCognitoPool(s aws.Config, pools []types.IdentityPoolShortDescrip
 
 func GetCognitoUserPools(s aws.Config) []ciptypes.UserPoolDescriptionType {
 	svc := cognitoidentityprovider.NewFromConfig(s)
-	logger.Logger.Info(fmt.Sprintf("Getting Cognito User Pools"))
+	logger.Logger.Info("Getting Cognito User Pools")
 	cognitoInput := &cognitoidentityprovider.ListUserPoolsInput{
-		MaxResults: 50,
+		MaxResults: aws.Int32(50),
 	}
 	result, err := svc.ListUserPools(context.TODO(), cognitoInput)
 	if err != nil {

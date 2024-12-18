@@ -30,7 +30,7 @@ func Test_checkIfClusterEncryptionEnabled(t *testing.T) {
 					{
 						DBClusterIdentifier: aws.String("test"),
 						DBClusterArn:        aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:    true,
+						StorageEncrypted:    aws.Bool(true),
 					},
 				},
 			},
@@ -74,7 +74,7 @@ func Test_checkIfClusterEncryptionEnabledFail(t *testing.T) {
 					{
 						DBClusterIdentifier: aws.String("test"),
 						DBClusterArn:        aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:    false,
+						StorageEncrypted:    aws.Bool(false),
 					},
 				},
 			},

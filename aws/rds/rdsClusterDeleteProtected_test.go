@@ -30,7 +30,7 @@ func TestCheckIfClusterDeleteProtectionEnabled(t *testing.T) {
 					{
 						DBClusterIdentifier: aws.String("test"),
 						DBClusterArn:        aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:    true,
+						StorageEncrypted:    aws.Bool(true),
 						DeletionProtection:  aws.Bool(true),
 					},
 				},
@@ -75,7 +75,7 @@ func TestCheckIfClusterDeleteProtectionEnabledFail(t *testing.T) {
 					{
 						DBClusterIdentifier: aws.String("test"),
 						DBClusterArn:        aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:    true,
+						StorageEncrypted:    aws.Bool(true),
 						DeletionProtection:  aws.Bool(false),
 					},
 				},

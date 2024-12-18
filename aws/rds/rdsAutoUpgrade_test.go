@@ -30,8 +30,8 @@ func Test_checkIfAutoUpgradeEnabled(t *testing.T) {
 					{
 						DBInstanceIdentifier:    aws.String("test"),
 						DBInstanceArn:           aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:        true,
-						AutoMinorVersionUpgrade: true,
+						StorageEncrypted:        aws.Bool(true),
+						AutoMinorVersionUpgrade: aws.Bool(true),
 					},
 				},
 			},
@@ -75,8 +75,8 @@ func Test_checkIfAutoUpgradeEnabledFail(t *testing.T) {
 					{
 						DBInstanceIdentifier:    aws.String("test"),
 						DBInstanceArn:           aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:        true,
-						AutoMinorVersionUpgrade: false,
+						StorageEncrypted:        aws.Bool(true),
+						AutoMinorVersionUpgrade: aws.Bool(false),
 					},
 				},
 			},

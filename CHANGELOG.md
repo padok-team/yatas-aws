@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/padok-team/yatas-aws/compare/v1.8.1...v1.9.0) (2024-12-18)
+
+
+### Features
+
+* **configservice:** test if aws config is enabled ([#154](https://github.com/padok-team/yatas-aws/issues/154)) ([6674659](https://github.com/padok-team/yatas-aws/commit/66746595de3945b93ed11920bf65acbcad4270de))
+* **iam:** new test on IAM password policy ([#150](https://github.com/padok-team/yatas-aws/issues/150)) ([974557a](https://github.com/padok-team/yatas-aws/commit/974557a8636f58d5711b0260623b6ba22023890e))
+* **iam:** new test on no console pwd for non human ([#151](https://github.com/padok-team/yatas-aws/issues/151)) ([b454363](https://github.com/padok-team/yatas-aws/commit/b454363378edaaa1d1a7bcd092d55750db8cf9e3))
+* **vpc:** add new test on VPC including private and public subnet ([#149](https://github.com/padok-team/yatas-aws/issues/149)) ([878d632](https://github.com/padok-team/yatas-aws/commit/878d6325de00171332c93a292f9281eb52078fcf))
+
 ### [1.8.1](https://github.com/padok-team/yatas-aws/compare/v1.8.0...v1.8.1) (2023-04-11)
 
 

@@ -30,8 +30,8 @@ func Test_checkIfBackupEnabled(t *testing.T) {
 					{
 						DBInstanceIdentifier:  aws.String("test"),
 						DBInstanceArn:         aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:      true,
-						BackupRetentionPeriod: 7,
+						StorageEncrypted:      aws.Bool(true),
+						BackupRetentionPeriod: aws.Int32(7),
 					},
 				},
 			},
@@ -75,8 +75,8 @@ func Test_checkIfBackupEnabledFail(t *testing.T) {
 					{
 						DBInstanceIdentifier:  aws.String("test"),
 						DBInstanceArn:         aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:      true,
-						BackupRetentionPeriod: 0,
+						StorageEncrypted:      aws.Bool(true),
+						BackupRetentionPeriod: aws.Int32(0),
 					},
 				},
 			},

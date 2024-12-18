@@ -30,7 +30,7 @@ func Test_checkIfClusterBackupEnabled(t *testing.T) {
 					{
 						DBClusterIdentifier:   aws.String("test"),
 						DBClusterArn:          aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:      true,
+						StorageEncrypted:      aws.Bool(true),
 						BackupRetentionPeriod: aws.Int32(1),
 					},
 				},
@@ -75,7 +75,7 @@ func Test_checkIfClusterBackupEnabledFail(t *testing.T) {
 					{
 						DBClusterIdentifier:   aws.String("test"),
 						DBClusterArn:          aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:      true,
+						StorageEncrypted:      aws.Bool(true),
 						BackupRetentionPeriod: aws.Int32(0),
 					},
 				},

@@ -30,8 +30,8 @@ func Test_checkIfClusterAutoUpgradeEnabled(t *testing.T) {
 					{
 						DBClusterIdentifier:     aws.String("test"),
 						DBClusterArn:            aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:        true,
-						AutoMinorVersionUpgrade: true,
+						StorageEncrypted:        aws.Bool(true),
+						AutoMinorVersionUpgrade: aws.Bool(true),
 					},
 				},
 			},
@@ -75,8 +75,8 @@ func Test_checkIfClusterAutoUpgradeEnabledFail(t *testing.T) {
 					{
 						DBClusterIdentifier:     aws.String("test"),
 						DBClusterArn:            aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:        true,
-						AutoMinorVersionUpgrade: false,
+						StorageEncrypted:        aws.Bool(true),
+						AutoMinorVersionUpgrade: aws.Bool(false),
 					},
 				},
 			},

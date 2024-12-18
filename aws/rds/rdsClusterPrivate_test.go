@@ -30,7 +30,7 @@ func Test_checkIfClusterRDSPrivateEnabled(t *testing.T) {
 					{
 						DBClusterIdentifier: aws.String("test"),
 						DBClusterArn:        aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:    true,
+						StorageEncrypted:    aws.Bool(true),
 						PubliclyAccessible:  aws.Bool(false),
 					},
 				},
@@ -76,7 +76,7 @@ func Test_checkIfClusterRDSPrivateEnabledFail(t *testing.T) {
 					{
 						DBClusterIdentifier: aws.String("test"),
 						DBClusterArn:        aws.String("arn:aws:rds:us-east-1:123456789012:db:test"),
-						StorageEncrypted:    true,
+						StorageEncrypted:    aws.Bool(true),
 						PubliclyAccessible:  aws.Bool(true),
 					},
 				},

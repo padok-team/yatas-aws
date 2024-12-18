@@ -304,7 +304,7 @@ func main() {
 }
 
 // Run the plugins that are enabled in the config with a switch based on the name of the plugin
-func runPlugins(c *commons.Config, plugin string, accounts []internal.AWS_Account) ([]commons.Tests, error) {
+func runPlugins(c *commons.Config, _ string, accounts []internal.AWS_Account) ([]commons.Tests, error) {
 	var checksAll []commons.Tests
 
 	checksAll, err := Run(c, accounts)

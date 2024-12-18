@@ -66,7 +66,7 @@ func GetS3ToPublicBlockAccess(s aws.Config, b []types.Bucket) []S3toPublicBlockA
 		}
 		resp, err := svc.GetPublicAccessBlock(context.TODO(), params)
 		if err != nil {
-			if resp != nil && resp.PublicAccessBlockConfiguration != nil && resp.PublicAccessBlockConfiguration.BlockPublicAcls {
+			if resp != nil && resp.PublicAccessBlockConfiguration != nil && aws.ToBool(resp.PublicAccessBlockConfiguration.BlockPublicAcls) {
 				s3toPublicBlockAccess = append(s3toPublicBlockAccess, S3toPublicBlockAccess{*bucket.Name, true})
 			} else {
 				s3toPublicBlockAccess = append(s3toPublicBlockAccess, S3toPublicBlockAccess{*bucket.Name, false})

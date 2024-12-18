@@ -162,6 +162,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_CLD_001 Cloudtrails are encrypted
 - AWS_CLD_002 Cloudtrails have Global Service Events Activated
 - AWS_CLD_003 Cloudtrails are in multiple regions
+- AWS_CLD_004 Cloudtrails are enabled
 
 ### Cognito
 - AWS_COG_001 Cognito allows unauthenticated users

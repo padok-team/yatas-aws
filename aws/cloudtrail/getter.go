@@ -22,3 +22,24 @@ func GetCloudtrails(s aws.Config) []types.Trail {
 	}
 	return result.TrailList
 }
+
+func GetTrailStatus(s aws.Config, trailList []types.Trail) []cloudtrail.GetTrailStatusOutput {
+	svc := cloudtrail.NewFromConfig(s)
+	var trailStatusOutput []cloudtrail.GetTrailStatusOutput
+
+	for _, trail := range trailList {
+		statusInput := &cloudtrail.GetTrailStatusInput{
+			Name: trail.Name,
+		}
+		result, err := svc.GetTrailStatus(context.TODO(), statusInput)
+
+		if err != nil {
+			logger.Logger.Error(err.Error())
+			continue
+		}
+
+		trailStatusOutput = append(trailStatusOutput, *result)
+	}
+
+	return trailStatusOutput
+}

@@ -242,6 +242,9 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_VPC_006 VPC's Subnets are in different zones
 - AWS_VPC_007 VPC have public and private subnets
 
+### AWS Config
+- AWS_CFG_001 AWS Config is enabled in the account
+
 <!-- END_YATAS -->
 
 ## How to add a new test ?

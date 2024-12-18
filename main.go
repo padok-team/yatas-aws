@@ -17,6 +17,7 @@ import (
 	"github.com/padok-team/yatas-aws/aws/cloudfront"
 	"github.com/padok-team/yatas-aws/aws/cloudtrail"
 	"github.com/padok-team/yatas-aws/aws/cognito"
+	"github.com/padok-team/yatas-aws/aws/configservice"
 	"github.com/padok-team/yatas-aws/aws/dynamodb"
 	"github.com/padok-team/yatas-aws/aws/ec2"
 	"github.com/padok-team/yatas-aws/aws/ecr"
@@ -177,6 +178,7 @@ func initTest(s aws.Config, c *commons.Config, a internal.AWS_Account) commons.T
 	go commons.CheckMacroTest(&wg, c, guardduty.RunChecks)(&wg, s, c, queue)
 	go commons.CheckMacroTest(&wg, c, iam.RunChecks)(&wg, s, c, queue)
 	go commons.CheckMacroTest(&wg, c, eks.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, configservice.RunChecks)(&wg, s, c, queue)
 
 	go func() {
 		for t := range queue {

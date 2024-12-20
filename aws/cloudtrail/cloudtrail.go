@@ -12,12 +12,12 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	checkConfig.Init(c)
 	var checks []commons.Check
 	cloudtrails := GetCloudtrails(s)
-	trailStatus := GetTrailStatus(s, cloudtrails)
+	eventSelectors := GetEventSelectorsForIsLoggingTrail(s, cloudtrails)
 
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_CLD_001", CheckIfCloudtrailsEncrypted)(checkConfig, cloudtrails, "AWS_CLD_001")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_CLD_002", CheckIfCloudtrailsGlobalServiceEventsEnabled)(checkConfig, cloudtrails, "AWS_CLD_002")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_CLD_003", CheckIfCloudtrailsMultiRegion)(checkConfig, cloudtrails, "AWS_CLD_003")
-	go commons.CheckTest(checkConfig.Wg, c, "AWS_CLD_004", CheckIfCloudtrailIsEnabled)(checkConfig, trailStatus, "AWS_CLD_004")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_CLD_004", CheckIfCloudtrailIsEnabled)(checkConfig, eventSelectors, "AWS_CLD_004")
 
 	go func() {
 		for t := range checkConfig.Queue {

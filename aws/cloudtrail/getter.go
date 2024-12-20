@@ -23,23 +23,37 @@ func GetCloudtrails(s aws.Config) []types.Trail {
 	return result.TrailList
 }
 
-func GetTrailStatus(s aws.Config, trailList []types.Trail) []cloudtrail.GetTrailStatusOutput {
+type EventSelectorsByLoggingTrail struct {
+	TrailName           string
+	EventSelectors      []types.EventSelector
+	HasInsightSelectors bool
+}
+
+func GetEventSelectorsForIsLoggingTrail(s aws.Config, trails []types.Trail) []EventSelectorsByLoggingTrail {
 	svc := cloudtrail.NewFromConfig(s)
-	var trailStatusOutput []cloudtrail.GetTrailStatusOutput
+	var eventSelectorsForIsLoggingTrail []EventSelectorsByLoggingTrail
 
-	for _, trail := range trailList {
-		statusInput := &cloudtrail.GetTrailStatusInput{
+	for _, trail := range trails {
+		status, err := svc.GetTrailStatus(context.TODO(), &cloudtrail.GetTrailStatusInput{
 			Name: trail.Name,
-		}
-		result, err := svc.GetTrailStatus(context.TODO(), statusInput)
-
-		if err != nil {
-			logger.Logger.Error(err.Error())
+		})
+		if err != nil || !aws.ToBool(status.IsLogging) {
 			continue
 		}
 
-		trailStatusOutput = append(trailStatusOutput, *result)
+		eventSelectors, err := svc.GetEventSelectors(context.TODO(), &cloudtrail.GetEventSelectorsInput{
+			TrailName: trail.Name,
+		})
+		if err != nil {
+			continue
+		}
+
+		eventSelectorsForIsLoggingTrail = append(eventSelectorsForIsLoggingTrail, EventSelectorsByLoggingTrail{
+			TrailName:           aws.ToString(trail.Name),
+			EventSelectors:      eventSelectors.EventSelectors,
+			HasInsightSelectors: aws.ToBool(trail.HasInsightSelectors),
+		})
 	}
 
-	return trailStatusOutput
+	return eventSelectorsForIsLoggingTrail
 }

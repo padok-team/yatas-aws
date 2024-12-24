@@ -15,7 +15,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/configservice v1.51.2
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.38.1
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.198.1
-	github.com/aws/aws-sdk-go-v2/service/ecr v1.36.8
+	github.com/aws/aws-sdk-go-v2/service/ecr v1.36.9
 	github.com/aws/aws-sdk-go-v2/service/eks v1.54.1
 	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.43.2
 	github.com/aws/aws-sdk-go-v2/service/guardduty v1.52.2

@@ -13,16 +13,16 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.27.10
 	github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider v1.48.4
 	github.com/aws/aws-sdk-go-v2/service/configservice v1.51.5
-	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.38.1
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.198.3
-	github.com/aws/aws-sdk-go-v2/service/ecr v1.36.9
-	github.com/aws/aws-sdk-go-v2/service/eks v1.54.1
+	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.39.3
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.199.1
+	github.com/aws/aws-sdk-go-v2/service/ecr v1.38.4
+	github.com/aws/aws-sdk-go-v2/service/eks v1.56.3
 	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.43.5
 	github.com/aws/aws-sdk-go-v2/service/guardduty v1.52.3
 	github.com/aws/aws-sdk-go-v2/service/iam v1.38.5
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.69.5
 	github.com/aws/aws-sdk-go-v2/service/rds v1.93.5
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.71.1
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.72.3
 	github.com/aws/smithy-go v1.22.1
 	github.com/dlclark/regexp2 v1.11.4
 	github.com/hashicorp/go-hclog v1.6.3
@@ -40,12 +40,12 @@ require (
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.3.27 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.6.27 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/ini v1.8.1 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/v4a v1.3.26 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/v4a v1.3.27 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.12.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.4.7 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/endpoint-discovery v1.10.7 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.4.8 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/endpoint-discovery v1.10.8 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.12.8 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.18.7 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.18.8 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sso v1.24.9 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.28.8 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sts v1.33.7 // indirect

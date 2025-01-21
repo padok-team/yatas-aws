@@ -23,7 +23,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.69.7
 	github.com/aws/aws-sdk-go-v2/service/rds v1.93.7
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.71.1
-	github.com/aws/smithy-go v1.22.1
+	github.com/aws/smithy-go v1.22.2
 	github.com/dlclark/regexp2 v1.11.4
 	github.com/hashicorp/go-hclog v1.6.3
 	github.com/hashicorp/go-plugin v1.6.2

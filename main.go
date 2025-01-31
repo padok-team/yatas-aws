@@ -28,6 +28,7 @@ import (
 	"github.com/padok-team/yatas-aws/aws/loadbalancers"
 	"github.com/padok-team/yatas-aws/aws/rds"
 	"github.com/padok-team/yatas-aws/aws/s3"
+	"github.com/padok-team/yatas-aws/aws/ssm"
 	"github.com/padok-team/yatas-aws/aws/volumes"
 	"github.com/padok-team/yatas-aws/aws/vpc"
 	"github.com/padok-team/yatas-aws/internal"
@@ -179,6 +180,7 @@ func initTest(s aws.Config, c *commons.Config, a internal.AWS_Account) commons.T
 	go commons.CheckMacroTest(&wg, c, iam.RunChecks)(&wg, s, c, queue)
 	go commons.CheckMacroTest(&wg, c, eks.RunChecks)(&wg, s, c, queue)
 	go commons.CheckMacroTest(&wg, c, configservice.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, ssm.RunChecks)(&wg, s, c, queue)
 
 	go func() {
 		for t := range queue {

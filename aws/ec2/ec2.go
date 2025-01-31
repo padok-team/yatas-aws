@@ -5,6 +5,7 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/ec2"
+	"github.com/aws/aws-sdk-go-v2/service/iam"
 	"github.com/padok-team/yatas/plugins/commons"
 )
 
@@ -14,10 +15,13 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	checkConfig.Init(c)
 	var checks []commons.Check
 
-	svc := ec2.NewFromConfig(s)
-	instances := GetEC2s(svc)
+	ec2Svc := ec2.NewFromConfig(s)
+	iamSvc := iam.NewFromConfig(s)
+	instances := GetEC2s(ec2Svc)
+	instanceToIamPolicies := GetBastionToIAMPolicies(ec2Svc, iamSvc, instances)
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_EC2_001", CheckIfEC2PublicIP)(checkConfig, instances, "AWS_EC2_001")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_EC2_002", CheckIfMonitoringEnabled)(checkConfig, instances, "AWS_EC2_002")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_EC2_003", CheckIfAuditLogsEnabledOnBastionInstance)(checkConfig, instanceToIamPolicies, "AWS_EC2_003")
 
 	go func() {
 		for t := range checkConfig.Queue {

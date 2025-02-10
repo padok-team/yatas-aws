@@ -8,7 +8,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/acm v1.30.18
 	github.com/aws/aws-sdk-go-v2/service/apigateway v1.28.11
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.51.12
-	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.44.9
+	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.44.10
 	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.46.9
 	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.27.10
 	github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider v1.48.6

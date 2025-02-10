@@ -22,8 +22,8 @@ github.com/aws/aws-sdk-go-v2/service/apigateway v1.28.11 h1:ycngSPaz5ANDuVtyr2Zj
 github.com/aws/aws-sdk-go-v2/service/apigateway v1.28.11/go.mod h1:zi9247+Eu/bOu9kfCswcyy5wj9AbBBQckQI9PBCMVV0=
 github.com/aws/aws-sdk-go-v2/service/autoscaling v1.51.12 h1:Bfz5hDqAgm9NByWdA0zfof70CVkjb6SE3RwU75lj66Y=
 github.com/aws/aws-sdk-go-v2/service/autoscaling v1.51.12/go.mod h1:+yg2Ygx7ParYfxoo1CLHzqD1zcmWuKNDfxuB8CrOx44=
-github.com/aws/aws-sdk-go-v2/service/cloudfront v1.44.9 h1:4PpVlmo6btpGYqq+SRkxbDKvfFrn9Fq0IWkqww4o8Nc=
-github.com/aws/aws-sdk-go-v2/service/cloudfront v1.44.9/go.mod h1:uBca+/1aH5v/RYWXqyymLrsbmx1vU9bBxeurlC627Gc=
+github.com/aws/aws-sdk-go-v2/service/cloudfront v1.44.10 h1:fdLh7eMf5mxtggx2nG0+cFkaiRK+ULCOPK3qq8eTje4=
+github.com/aws/aws-sdk-go-v2/service/cloudfront v1.44.10/go.mod h1:uBca+/1aH5v/RYWXqyymLrsbmx1vU9bBxeurlC627Gc=
 github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.46.9 h1:5Gf6dTLBxEQ3fDIXDNaKwrJNJX3eS/Aq/umADz5q+w0=
 github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.46.9/go.mod h1:a94+UYpsBLThABCmb23CFqY8FglQzUgMNIfOJHn/seo=
 github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.27.10 h1:I4auvNO9LF+7vtFieaFiMZN7GhH3cC3846QbMNuxMtc=

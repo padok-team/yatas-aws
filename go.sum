@@ -1,7 +1,7 @@
 github.com/aws/aws-sdk-go-v2 v1.36.1 h1:iTDl5U6oAhkNPba0e1t1hrwAo02ZMqbrGq4k5JBWM5E=
 github.com/aws/aws-sdk-go-v2 v1.36.1/go.mod h1:5PMILGVKiW32oDzjj6RU52yrNrDPUHcbZQYr1sM7qmM=
-github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.6.8 h1:zAxi9p3wsZMIaVCdoiQp2uZ9k1LsZvmAnoTBeZPXom0=
-github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.6.8/go.mod h1:3XkePX5dSaxveLAYY7nsbsZZrKxCyEuE5pM4ziFxyGg=
+github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.6.9 h1:VZPDrbzdsU1ZxhyWrvROqLY0nxFWgMCAzhn/nYz3X48=
+github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.6.9/go.mod h1:3XkePX5dSaxveLAYY7nsbsZZrKxCyEuE5pM4ziFxyGg=
 github.com/aws/aws-sdk-go-v2/config v1.28.11 h1:7Ekru0IkRHRnSRWGQLnLN6i0o1Jncd0rHo2T130+tEQ=
 github.com/aws/aws-sdk-go-v2/config v1.28.11/go.mod h1:x78TpPvBfHH16hi5tE3OCWQ0pzNfyXA349p5/Wp82Yo=
 github.com/aws/aws-sdk-go-v2/credentials v1.17.52 h1:I4ymSk35LHogx2Re2Wu6LOHNTRaRWkLVoJgWS5Wd40M=
@@ -56,8 +56,8 @@ github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.12.13 h1:SYVGSFQH
 github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.12.13/go.mod h1:kizuDaLX37bG5WZaoxGPQR/LNFXpxp0vsUnqfkWXfNE=
 github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.18.7 h1:Hi0KGbrnr57bEHWM0bJ1QcBzxLrL/k2DHvGYhb8+W1w=
 github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.18.7/go.mod h1:wKNgWgExdjjrm4qvfbTorkvocEstaoDl4WCvGfeCy9c=
-github.com/aws/aws-sdk-go-v2/service/lambda v1.69.12 h1:9L6sXmGtRvBFzgf14G4EwlGrFkhltigC3fbGIqZ5g+c=
-github.com/aws/aws-sdk-go-v2/service/lambda v1.69.12/go.mod h1:LUkuzqAgjdxkq+UiBnOs/z5LOGoFyEkeVKxeVXB+Rt8=
+github.com/aws/aws-sdk-go-v2/service/lambda v1.69.13 h1:mzsF4yNGo+YeeWOLJ88oIWLcT2ex+y9FFJHjv0TzOBQ=
+github.com/aws/aws-sdk-go-v2/service/lambda v1.69.13/go.mod h1:ngDWiajpNmDN5xhLiayFavSx3zM6vzjY10qLvVtoMWE=
 github.com/aws/aws-sdk-go-v2/service/rds v1.93.12 h1:6vjEcP08FsczK2J55oxnbYC4UZ4UBDCBW+rBFtK0H/c=
 github.com/aws/aws-sdk-go-v2/service/rds v1.93.12/go.mod h1:oOqXBxRebL78/MgTi1EoBer+a3Myg0Wr2nO1qG881kM=
 github.com/aws/aws-sdk-go-v2/service/s3 v1.71.1 h1:aOVVZJgWbaH+EJYPvEgkNhCEbXXvH7+oML36oaPK3zE=

@@ -20,7 +20,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.43.12
 	github.com/aws/aws-sdk-go-v2/service/guardduty v1.52.10
 	github.com/aws/aws-sdk-go-v2/service/iam v1.38.10
-	github.com/aws/aws-sdk-go-v2/service/lambda v1.69.12
+	github.com/aws/aws-sdk-go-v2/service/lambda v1.69.13
 	github.com/aws/aws-sdk-go-v2/service/rds v1.93.12
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.71.1
 	github.com/aws/smithy-go v1.22.2
@@ -34,7 +34,7 @@ require (
 )
 
 require (
-	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.6.8 // indirect
+	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.6.9 // indirect
 	github.com/aws/aws-sdk-go-v2/credentials v1.17.52 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.16.23 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.3.32 // indirect

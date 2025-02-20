@@ -21,7 +21,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/guardduty v1.52.11
 	github.com/aws/aws-sdk-go-v2/service/iam v1.38.10
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.69.14
-	github.com/aws/aws-sdk-go-v2/service/rds v1.93.13
+	github.com/aws/aws-sdk-go-v2/service/rds v1.93.14
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.71.1
 	github.com/aws/smithy-go v1.22.3
 	github.com/dlclark/regexp2 v1.11.5

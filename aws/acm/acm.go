@@ -17,6 +17,7 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_ACM_001", CheckIfACMValid)(checkConfig, certificates, "AWS_ACM_001")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_ACM_002", CheckIfCertificateExpiresIn90Days)(checkConfig, certificates, "AWS_ACM_002")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_ACM_003", CheckIfACMInUse)(checkConfig, certificates, "AWS_ACM_003")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_ACM_004", CheckIfACMUsesSecureEncryption)(checkConfig, certificates, "AWS_ACM_004")
 	go func() {
 		for t := range checkConfig.Queue {
 			t.EndCheck()

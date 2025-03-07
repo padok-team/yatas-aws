@@ -333,14 +333,14 @@ func GetPolicyAttachedToRole(s aws.Config, role types.Role) []types.AttachedPoli
 	return result.AttachedPolicies
 }
 
-func GetPasswordPolicy(s aws.Config) types.PasswordPolicy {
+func GetPasswordPolicy(s aws.Config) *types.PasswordPolicy {
 	svc := iam.NewFromConfig(s)
 
 	result, err := svc.GetAccountPasswordPolicy(context.TODO(), &iam.GetAccountPasswordPolicyInput{})
 	if err != nil {
 		logger.Logger.Error(err.Error())
-		return types.PasswordPolicy{}
+		return nil
 	}
 
-	return *result.PasswordPolicy
+	return result.PasswordPolicy
 }

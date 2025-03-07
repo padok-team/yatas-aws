@@ -137,6 +137,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_ACM_001 ACM certificates are valid
 - AWS_ACM_002 ACM certificate expires in more than 90 days
 - AWS_ACM_003 ACM certificates are used
+- AWS_ACM_004 ACM certificates are using secure encryption
 
 ### APIGateway
 - AWS_APG_001 ApiGateways logs are sent to Cloudwatch
@@ -190,6 +191,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 
 ### GuardDuty
 - AWS_GDT_001 GuardDuty is enabled in the account
+- AWS_GDT_002 GuardDuty has no HIGH severity findings
 
 ### IAM
 - AWS_IAM_001 IAM Users have 2FA activated

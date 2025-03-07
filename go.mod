@@ -25,8 +25,8 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.70.1
 	github.com/aws/aws-sdk-go-v2/service/rds v1.94.1
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.78.1
-	github.com/aws/smithy-go v1.22.2
-	github.com/dlclark/regexp2 v1.11.4
+	github.com/aws/smithy-go v1.22.3
+	github.com/dlclark/regexp2 v1.11.5
 	github.com/hashicorp/go-hclog v1.6.3
 	github.com/hashicorp/go-plugin v1.6.3
 	github.com/mitchellh/mapstructure v1.5.0

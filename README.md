@@ -5,7 +5,7 @@
 # YATAS
 [![codecov](https://codecov.io/gh/padok-team/yatas-aws/branch/main/graph/badge.svg?token=OFGny8Za4x)](https://codecov.io/gh/padok-team/YATAS) [![goreport](https://goreportcard.com/badge/github.com/padok-team/yatas-aws)](https://goreportcard.com/badge/github.com/padok-team/yatas)
 
-Yet Another Testing &amp; Auditing Solution 
+Yet Another Testing &amp; Auditing Solution
 
 The goal of YATAS is to help you create a secure AWS environment without too much hassle. It won't check for all best practices but only for the ones that are important for you based on my experience. Please feel free to tell me if you find something that is not covered.
 
@@ -16,15 +16,15 @@ YATAS is a simple and easy to use tool to audit your infrastructure for misconfi
 <img src="docs/demo.gif" alt="demo" width="60%">
 <p align="center">
 
-| No details                | Details
-|:-------------------------:|:-------------------------:
-|![](./docs/demo.png)       |  ![](./docs/details.png)
+|      No details      |         Details         |
+|:--------------------:|:-----------------------:|
+| ![](./docs/demo.png) | ![](./docs/details.png) |
 
 ## Plugins
 
-| Name | Description | Checks |
-|------|-------------|--------|
-| [*AWS*](https://github.com/padok-team/yatas-aws) | AWS checks | Good practices and security checks|
+| Name                                             | Description | Checks                             |
+|--------------------------------------------------|-------------|------------------------------------|
+| [*AWS*](https://github.com/padok-team/yatas-aws) | AWS checks  | Good practices and security checks |
 
 
 To install this plugin simply add to your `.yatas.yml` file:
@@ -73,11 +73,11 @@ Flags:
 - `--init`: Creates a .yatas.yml file in the current directory.
 - `--install`: Installs the plugins you need.
 - `--only-failure`: Only show the tests that failed.
-- 
+-
 
 
 
-## Checks 
+## Checks
 
 ### Ignore results for known issues
 You can ignore results of checks by add the following to your `.yatas.yml` file:
@@ -86,11 +86,11 @@ You can ignore results of checks by add the following to your `.yatas.yml` file:
 ignore:
   - id: "AWS_VPC_004"
     regex: true
-    values: 
+    values:
       - "VPC Flow Logs are not enabled on vpc-.*"
   - id: "AWS_VPC_003"
     regex: false
-    values: 
+    values:
       - "VPC has only one gateway on vpc-08ffec87e034a8953"
 ```
 
@@ -106,7 +106,7 @@ plugins:
       - AWS_S3_001
 ```
 
-### Specify which tests to run 
+### Specify which tests to run
 
 To only run a specific test, add the following to your `.yatas.yml` file:
 
@@ -137,6 +137,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_ACM_001 ACM certificates are valid
 - AWS_ACM_002 ACM certificate expires in more than 90 days
 - AWS_ACM_003 ACM certificates are used
+- AWS_ACM_004 ACM certificates are using secure encryption
 
 ### APIGateway
 - AWS_APG_001 ApiGateways logs are sent to Cloudwatch
@@ -190,6 +191,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 
 ### GuardDuty
 - AWS_GDT_001 GuardDuty is enabled in the account
+- AWS_GDT_002 GuardDuty has no HIGH severity findings
 
 ### IAM
 - AWS_IAM_001 IAM Users have 2FA activated
@@ -270,10 +272,10 @@ If the package already exists and has a `getter.go`
 - Add your test to the `<category_name>.go` file with a new id incremented by 1
 - Add your category in the `<cloudprovider>/<cloudprovider_name>.go` file in the `initTest` function
 
-## How to tests ? 
+## How to tests ?
 
 Simply run `make install` and in your Yatas config instead of the version of the plugin use `local` and it will use the version you just installed.
 
-### FYI 
+### FYI
 
-All tests are wrapped with a generic functions that allows us to run the test in parallel and disable some without running them. 
+All tests are wrapped with a generic functions that allows us to run the test in parallel and disable some without running them.

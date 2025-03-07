@@ -12,13 +12,13 @@ import (
 func TestCheckPasswordPolicy(t *testing.T) {
 	tests := []struct {
 		name           string
-		passwordPolicy types.PasswordPolicy
+		passwordPolicy *types.PasswordPolicy
 		expectedStatus string
 		expectedErrors []string
 	}{
 		{
 			name: "Strong password policy",
-			passwordPolicy: types.PasswordPolicy{
+			passwordPolicy: &types.PasswordPolicy{
 				MinimumPasswordLength:      aws.Int32(12),
 				RequireSymbols:             true,
 				RequireNumbers:             true,
@@ -34,7 +34,7 @@ func TestCheckPasswordPolicy(t *testing.T) {
 		},
 		{
 			name: "Weak password policy",
-			passwordPolicy: types.PasswordPolicy{
+			passwordPolicy: &types.PasswordPolicy{
 				MinimumPasswordLength:      aws.Int32(8),
 				RequireSymbols:             false,
 				RequireNumbers:             false,
@@ -60,7 +60,7 @@ func TestCheckPasswordPolicy(t *testing.T) {
 		},
 		{
 			name: "Weak password policy on MinimumPasswordLength",
-			passwordPolicy: types.PasswordPolicy{
+			passwordPolicy: &types.PasswordPolicy{
 				MinimumPasswordLength:      aws.Int32(8),
 				RequireSymbols:             true,
 				RequireNumbers:             true,
@@ -78,7 +78,7 @@ func TestCheckPasswordPolicy(t *testing.T) {
 		},
 		{
 			name: "Weak password policy on ExpirePasswords",
-			passwordPolicy: types.PasswordPolicy{
+			passwordPolicy: &types.PasswordPolicy{
 				MinimumPasswordLength:      aws.Int32(12),
 				RequireSymbols:             true,
 				RequireNumbers:             true,

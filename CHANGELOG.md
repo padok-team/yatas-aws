@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.0](https://github.com/padok-team/yatas-aws/compare/v1.9.0...v1.10.0) (2025-03-07)
+
+
+### Features
+
+* **acm:** add check for secure encryption in ACM certificates ([#188](https://github.com/padok-team/yatas-aws/issues/188)) ([7a4238d](https://github.com/padok-team/yatas-aws/commit/7a4238d6dd4b40842369b1a39128ff9ef6ef8a09))
+* **cloudtrail:** test if cloudtrails are enabled ([#152](https://github.com/padok-team/yatas-aws/issues/152)) ([a86e662](https://github.com/padok-team/yatas-aws/commit/a86e6629d1de10591dd0e034abac61144362fb8c))
+* **guardduty:** add check for high severity findings ([#187](https://github.com/padok-team/yatas-aws/issues/187)) ([1d389a8](https://github.com/padok-team/yatas-aws/commit/1d389a8f9d84854007917c27eea8bf34e532c36a))
+* **ssm:** add bastion audit logs check ([#186](https://github.com/padok-team/yatas-aws/issues/186)) ([f743a98](https://github.com/padok-team/yatas-aws/commit/f743a98aa7cce04311ba0062d9f3aefd802a4c92))
+
+
+### Bug Fixes
+
+* **AWS_IAM_006:** nil pointer in GetPasswordPolicy ([#189](https://github.com/padok-team/yatas-aws/issues/189)) ([bdf0c3d](https://github.com/padok-team/yatas-aws/commit/bdf0c3deb3cec5932d5a16e275b086baeaf1de26))
+
 ## [1.9.0](https://github.com/padok-team/yatas-aws/compare/v1.8.1...v1.9.0) (2024-12-18)
 
 

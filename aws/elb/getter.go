@@ -1,4 +1,4 @@
-package loadbalancers
+package elb
 
 import (
 	"context"
@@ -12,6 +12,8 @@ import (
 type LoadBalancerAttributes struct {
 	LoadBalancerArn  string
 	LoadBalancerName string
+	LoadBalancerType types.LoadBalancerTypeEnum
+	Listeners        []types.Listener
 	Output           *elasticloadbalancingv2.DescribeLoadBalancerAttributesOutput
 }
 
@@ -19,19 +21,33 @@ func GetLoadBalancersAttributes(s aws.Config, loadbalancers []types.LoadBalancer
 	svc := elasticloadbalancingv2.NewFromConfig(s)
 	var loadBalancerAttributes []LoadBalancerAttributes
 	for _, loadbalancer := range loadbalancers {
-		input := &elasticloadbalancingv2.DescribeLoadBalancerAttributesInput{
+		describeLoadBalancerAttributesInput := &elasticloadbalancingv2.DescribeLoadBalancerAttributesInput{
 			LoadBalancerArn: loadbalancer.LoadBalancerArn,
 		}
-		result, err := svc.DescribeLoadBalancerAttributes(context.TODO(), input)
+		resultDescribeLoadBalancerAttributes, err := svc.DescribeLoadBalancerAttributes(context.TODO(), describeLoadBalancerAttributesInput)
 		if err != nil {
 			logger.Logger.Error(err.Error())
 			// return empty struct
 			return []LoadBalancerAttributes{}
 		}
+
+		var listeners []types.Listener
+		describeListenersInput := &elasticloadbalancingv2.DescribeListenersInput{
+			LoadBalancerArn: loadbalancer.LoadBalancerArn,
+		}
+		resultDescribeListeners, err := svc.DescribeListeners(context.TODO(), describeListenersInput)
+		if err != nil {
+			logger.Logger.Error(err.Error())
+			// return empty struct
+			return []LoadBalancerAttributes{}
+		}
+		listeners = resultDescribeListeners.Listeners
 		loadBalancerAttributes = append(loadBalancerAttributes, LoadBalancerAttributes{
 			LoadBalancerArn:  *loadbalancer.LoadBalancerArn,
 			LoadBalancerName: *loadbalancer.LoadBalancerName,
-			Output:           result,
+			LoadBalancerType: loadbalancer.Type,
+			Listeners:        listeners,
+			Output:           resultDescribeLoadBalancerAttributes,
 		})
 	}
 	return loadBalancerAttributes

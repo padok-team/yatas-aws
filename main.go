@@ -22,10 +22,10 @@ import (
 	"github.com/padok-team/yatas-aws/aws/ec2"
 	"github.com/padok-team/yatas-aws/aws/ecr"
 	"github.com/padok-team/yatas-aws/aws/eks"
+	"github.com/padok-team/yatas-aws/aws/elb"
 	"github.com/padok-team/yatas-aws/aws/guardduty"
 	"github.com/padok-team/yatas-aws/aws/iam"
 	"github.com/padok-team/yatas-aws/aws/lambda"
-	"github.com/padok-team/yatas-aws/aws/loadbalancers"
 	"github.com/padok-team/yatas-aws/aws/rds"
 	"github.com/padok-team/yatas-aws/aws/s3"
 	"github.com/padok-team/yatas-aws/aws/ssm"
@@ -175,7 +175,7 @@ func initTest(s aws.Config, c *commons.Config, a internal.AWS_Account) commons.T
 	go commons.CheckMacroTest(&wg, c, cloudfront.RunChecks)(&wg, s, c, queue)
 	go commons.CheckMacroTest(&wg, c, apigateway.RunChecks)(&wg, s, c, queue)
 	go commons.CheckMacroTest(&wg, c, autoscaling.RunChecks)(&wg, s, c, queue)
-	go commons.CheckMacroTest(&wg, c, loadbalancers.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, elb.RunChecks)(&wg, s, c, queue)
 	go commons.CheckMacroTest(&wg, c, guardduty.RunChecks)(&wg, s, c, queue)
 	go commons.CheckMacroTest(&wg, c, iam.RunChecks)(&wg, s, c, queue)
 	go commons.CheckMacroTest(&wg, c, eks.RunChecks)(&wg, s, c, queue)

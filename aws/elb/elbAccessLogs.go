@@ -1,4 +1,4 @@
-package loadbalancers
+package elb
 
 import (
 	"github.com/padok-team/yatas/plugins/commons"

@@ -14,8 +14,14 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	var checks []commons.Check
 	loadBalancers := GetElasticLoadBalancers(s)
 	la := GetLoadBalancersAttributes(s, loadBalancers)
+	var albs []LoadBalancerAttributes
+	for _, lb := range la {
+		if lb.LoadBalancerType == "application" {
+			albs = append(albs, lb)
+		}
+	}
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_ELB_001", CheckIfAccessLogsEnabled)(checkConfig, la, "AWS_ELB_001")
-	go commons.CheckTest(checkConfig.Wg, c, "AWS_ELB_002", CheckAlbEnsureHttps)(checkConfig, la, "AWS_ELB_002")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_ELB_002", CheckAlbEnsureHttps)(checkConfig, albs, "AWS_ELB_002")
 	go func() {
 		for t := range checkConfig.Queue {
 			t.EndCheck()

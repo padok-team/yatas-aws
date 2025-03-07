@@ -10,11 +10,6 @@ func CheckAlbEnsureHttps(checkConfig commons.CheckConfig, loadBalancers []LoadBa
 	check.InitCheck("ALB only allows HTTPS traffic", "Check if ALB only allows HTTPS (443) or redirects HTTP (80) to HTTPS", testName, []string{"Security", "Good Practice"})
 
 	for _, loadBalancer := range loadBalancers {
-		// Only check Application Load Balancers
-		if loadBalancer.LoadBalancerType != "application" {
-			continue
-		}
-
 		hasHttps := false
 		hasHttpRedirect := false
 		hasNoHttpListener := true

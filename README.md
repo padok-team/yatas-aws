@@ -186,8 +186,9 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_EKS_001 EKS clusters have logging enabled
 - AWS_EKS_002 EKS clusters have private endpoint or strict public access
 
-### LoadBalancer
+### ELB
 - AWS_ELB_001 ELB have access logs enabled
+- AWS_ELB_002 ALB only allows HTTPS traffic
 
 ### GuardDuty
 - AWS_GDT_001 GuardDuty is enabled in the account

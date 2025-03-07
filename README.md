@@ -227,8 +227,9 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_S3_001 S3 are encrypted
 - AWS_S3_002 S3 buckets are not replicated to another region
 - AWS_S3_003 S3 buckets are versioned
-- AWS_S3_004 S3 buckets have a retention policy
+- AWS_S3_004 S3 buckets have the object lock option enabled
 - AWS_S3_005 S3 bucket have public access block enabled
+- AWS_S3_006 S3 buckets have a retention policy
 
 ### SSM
 - AWS_SSM_001 EC2 bastion instance have audit logs enabled

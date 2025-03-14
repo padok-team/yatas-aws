@@ -7,12 +7,12 @@ import (
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/aws/aws-sdk-go-v2/service/s3/types"
+	"github.com/padok-team/yatas-aws/logger"
 	"github.com/padok-team/yatas/plugins/commons"
 )
 
 // Return true if the bucket is in the region, false with the correct region if not
 func CheckS3Location(s aws.Config, bucket, region string) (bool, string) {
-
 	svc := s3.NewFromConfig(s)
 
 	params := &s3.GetBucketLocationInput{
@@ -42,7 +42,7 @@ type BucketAndNotInRegion struct {
 }
 
 func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan []commons.Check) {
-
+	logger.Logger.Debug("S3  - Checks started")
 	var checkConfig commons.CheckConfig
 	checkConfig.Init(c)
 	var checks []commons.Check
@@ -76,4 +76,5 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	checkConfig.Wg.Wait()
 
 	queue <- checks
+	logger.Logger.Debug("S3  - Checks done")
 }

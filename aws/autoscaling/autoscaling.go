@@ -5,10 +5,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/autoscaling"
+	"github.com/padok-team/yatas-aws/logger"
 	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan []commons.Check) {
+	logger.Logger.Debug("ASG - Checks started")
 	var checkConfig commons.CheckConfig
 	checkConfig.Init(c)
 	var checks []commons.Check
@@ -31,4 +33,5 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	checkConfig.Wg.Wait()
 
 	queue <- checks
+	logger.Logger.Debug("ASG - Checks done")
 }

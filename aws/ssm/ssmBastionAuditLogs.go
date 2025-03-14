@@ -118,6 +118,6 @@ func CheckIfAuditLogsEnabledOnBastionInstance(checkConfig commons.CheckConfig, e
 			result := commons.Result{Status: "FAIL", Message: Message, ResourceID: *ec2ToIAM.Instance.InstanceId}
 			check.AddResult(result)
 		}
-		checkConfig.Queue <- check
 	}
+	checkConfig.Queue <- check
 }

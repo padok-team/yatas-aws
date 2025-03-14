@@ -45,7 +45,6 @@ func GetDetailedCognitoPool(s aws.Config, pools []types.IdentityPoolShortDescrip
 
 func GetCognitoUserPools(s aws.Config) []ciptypes.UserPoolDescriptionType {
 	svc := cognitoidentityprovider.NewFromConfig(s)
-	logger.Logger.Info("Getting Cognito User Pools")
 	cognitoInput := &cognitoidentityprovider.ListUserPoolsInput{
 		MaxResults: aws.Int32(50),
 	}

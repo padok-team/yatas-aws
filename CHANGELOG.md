@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.11.1](https://github.com/padok-team/yatas-aws/compare/v1.11.0...v1.11.1) (2025-03-14)
+
+
+### Bug Fixes
+
+* **ssm:** move misplaced blocking check channel call ([#199](https://github.com/padok-team/yatas-aws/issues/199)) ([820d731](https://github.com/padok-team/yatas-aws/commit/820d7315c67bfe4ae2a08536babe449079b3c16b))
+
 ## [1.11.0](https://github.com/padok-team/yatas-aws/compare/v1.9.0...v1.11.0) (2025-03-07)
 
 

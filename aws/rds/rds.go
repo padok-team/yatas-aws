@@ -5,11 +5,13 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/rds"
+	"github.com/aws/aws-sdk-go-v2/service/rds/types"
+	"github.com/padok-team/yatas-aws/logger"
 	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan []commons.Check) {
-
+	logger.Logger.Debug("RDS - Checks started")
 	var checkConfig commons.CheckConfig
 	checkConfig.Init(c)
 	var checks []commons.Check
@@ -17,6 +19,10 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 
 	instances := GetListRDS(svc)
 	clusters := GetListDBClusters(svc)
+
+	instanceList := []types.DBInstance{}
+	instanceList = append(instanceList, instances...)
+	instancesToLogFiles := GetInstancesToLogFiles(svc, instanceList)
 
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_RDS_001", checkIfEncryptionEnabled)(checkConfig, instances, "AWS_RDS_001")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_RDS_002", checkIfBackupEnabled)(checkConfig, instances, "AWS_RDS_002")
@@ -30,6 +36,7 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_RDS_010", checkIfClusterEncryptionEnabled)(checkConfig, clusters, "AWS_RDS_010")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_RDS_011", CheckIfClusterLoggingEnabled)(checkConfig, clusters, "AWS_RDS_011")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_RDS_012", checkIfClusterRDSPrivateEnabled)(checkConfig, clusters, "AWS_RDS_012")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_RDS_013", checkIfAuditLogsEnabled)(checkConfig, instancesToLogFiles, "AWS_RDS_013")
 
 	go func() {
 		for t := range checkConfig.Queue {
@@ -44,4 +51,5 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	checkConfig.Wg.Wait()
 
 	queue <- checks
+	logger.Logger.Debug("RDS - Checks done")
 }

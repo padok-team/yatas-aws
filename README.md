@@ -172,6 +172,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 ### DynamoDB
 - AWS_DYN_001 Dynamodbs are encrypted
 - AWS_DYN_002 Dynamodb have continuous backup enabled with PITR
+- AWS_DYN_003 Dynamodb recovery points are encrypted
 
 ### EC2
 - AWS_EC2_001 EC2s don't have a public IP
@@ -224,6 +225,8 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_RDS_011 Aurora RDS logs are exported to cloudwatch
 - AWS_RDS_012 Aurora RDS aren't publicly accessible
 - AWS_RDS_013 RDS / Aurora RDS should have audit logs enabled
+- AWS_RDS_014 RDS snapshots are encrypted
+- AWS_RDS_015 Aurora snapshots are encrypted
 
 ### S3 Bucket
 - AWS_S3_001 S3 are encrypted

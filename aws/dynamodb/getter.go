@@ -4,8 +4,10 @@ import (
 	"context"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/service/backup"
+	backupTypes "github.com/aws/aws-sdk-go-v2/service/backup/types"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
-	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
+	ddbTypes "github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
 	"github.com/padok-team/yatas-aws/logger"
 )
 
@@ -42,7 +44,7 @@ func GetTables(s aws.Config, dynamodbs []string) []*dynamodb.DescribeTableOutput
 
 type TableBackups struct {
 	TableName string
-	Backups   types.ContinuousBackupsDescription
+	Backups   ddbTypes.ContinuousBackupsDescription
 }
 
 func GetContinuousBackups(s aws.Config, tables []string) []TableBackups {
@@ -61,4 +63,27 @@ func GetContinuousBackups(s aws.Config, tables []string) []TableBackups {
 		continuousBackups = append(continuousBackups, TableBackups{d, *resp.ContinuousBackupsDescription})
 	}
 	return continuousBackups
+}
+
+type TableRecoveryPoints struct {
+	TableName      string
+	RecoveryPoints []backupTypes.RecoveryPointByResource
+}
+
+func GetTableRecoveryPoints(s aws.Config, tables []*dynamodb.DescribeTableOutput) []TableRecoveryPoints {
+	svc := backup.NewFromConfig(s)
+	var recoveryPoints []TableRecoveryPoints
+	for _, t := range tables {
+		params := &backup.ListRecoveryPointsByResourceInput{
+			ResourceArn: t.Table.TableArn,
+		}
+		resp, err := svc.ListRecoveryPointsByResource(context.TODO(), params)
+		if err != nil {
+			logger.Logger.Error(err.Error())
+			// Return an empty list of certificates
+			return []TableRecoveryPoints{}
+		}
+		recoveryPoints = append(recoveryPoints, TableRecoveryPoints{*t.Table.TableName, resp.RecoveryPoints})
+	}
+	return recoveryPoints
 }

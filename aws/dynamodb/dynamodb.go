@@ -16,8 +16,10 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	dynamodbs := GetDynamodbs(s)
 	gt := GetTables(s, dynamodbs)
 	gb := GetContinuousBackups(s, dynamodbs)
+	recoveryPoints := GetTableRecoveryPoints(s, gt)
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_DYN_001", CheckIfDynamodbEncrypted)(checkConfig, gt, "AWS_DYN_001")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_DYN_002", CheckIfDynamodbContinuousBackupsEnabled)(checkConfig, gb, "AWS_DYN_002")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_DYN_003", CheckIfEncryptionDynamodbRecoveryPointsEnabled)(checkConfig, recoveryPoints, "AWS_DYN_003")
 
 	go func() {
 		for t := range checkConfig.Queue {

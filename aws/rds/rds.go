@@ -19,6 +19,8 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 
 	instances := GetListRDS(svc)
 	clusters := GetListDBClusters(svc)
+	rdsSnapshots := GetListRDSSnapshots(svc)
+	auroraSnapshots := GetListDBClusterSnapshots(svc)
 
 	instanceList := []types.DBInstance{}
 	instanceList = append(instanceList, instances...)
@@ -37,6 +39,8 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_RDS_011", CheckIfClusterLoggingEnabled)(checkConfig, clusters, "AWS_RDS_011")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_RDS_012", checkIfClusterRDSPrivateEnabled)(checkConfig, clusters, "AWS_RDS_012")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_RDS_013", checkIfAuditLogsEnabled)(checkConfig, instancesToLogFiles, "AWS_RDS_013")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_RDS_014", checkIfRDSSnapshotEncryptionEnabled)(checkConfig, rdsSnapshots, "AWS_RDS_014")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_RDS_015", checkIfClusterSnapshotEncryptionEnabled)(checkConfig, auroraSnapshots, "AWS_RDS_015")
 
 	go func() {
 		for t := range checkConfig.Queue {

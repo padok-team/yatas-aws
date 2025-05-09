@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.12.0](https://github.com/padok-team/yatas-aws/compare/v1.11.1...v1.12.0) (2025-05-09)
+
+
+### Features
+
+* **db-backups:** add 3 checks for 3 backup encryption ([#203](https://github.com/padok-team/yatas-aws/issues/203)) ([f4eb252](https://github.com/padok-team/yatas-aws/commit/f4eb252fb15105a2492ce21b8b91f48fbe438aef))
+* **rds:** add check for audit logs ([#201](https://github.com/padok-team/yatas-aws/issues/201)) ([0fe1ceb](https://github.com/padok-team/yatas-aws/commit/0fe1cebca6e75c6b6744bb3645d549e299709e60))
+
 ### [1.11.1](https://github.com/padok-team/yatas-aws/compare/v1.11.0...v1.11.1) (2025-03-14)
 
 

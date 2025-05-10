@@ -210,3 +210,29 @@ func GetS3ToReplicationOtherRegion(s aws.Config, b []types.Bucket) []S3ToReplica
 
 	return s3toReplicationOtherRegion
 }
+
+type S3ToLifecycleRules struct {
+	BucketName     string
+	LifecycleRules []types.LifecycleRule
+}
+
+func GetS3ToLifecycleRules(s aws.Config, buckets []types.Bucket) []S3ToLifecycleRules {
+	svc := s3.NewFromConfig(s)
+	var s3ToLifecycleRules []S3ToLifecycleRules
+
+	for _, bucket := range buckets {
+		params := &s3.GetBucketLifecycleConfigurationInput{
+			Bucket: aws.String(*bucket.Name),
+		}
+
+		lifecycle, err := svc.GetBucketLifecycleConfiguration(context.TODO(), params)
+
+		if err != nil {
+			s3ToLifecycleRules = append(s3ToLifecycleRules, S3ToLifecycleRules{*bucket.Name, []types.LifecycleRule{}})
+		} else {
+			s3ToLifecycleRules = append(s3ToLifecycleRules, S3ToLifecycleRules{*bucket.Name, lifecycle.Rules})
+		}
+	}
+
+	return s3ToLifecycleRules
+}

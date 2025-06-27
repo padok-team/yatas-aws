@@ -6,6 +6,8 @@ import (
 	"sync"
 	"time"
 
+	"github.com/aws/aws-sdk-go-v2/service/ec2"
+	ec2Types "github.com/aws/aws-sdk-go-v2/service/ec2/types"
 	"github.com/aws/aws-sdk-go-v2/service/rds"
 	"github.com/aws/aws-sdk-go-v2/service/rds/types"
 	"github.com/padok-team/yatas-aws/logger"
@@ -258,4 +260,43 @@ func GetListDBClusterSnapshots(svc RDSGetObjectAPI) []types.DBClusterSnapshot {
 	}
 
 	return snapshots
+}
+
+type InstanceWithSGs struct {
+	Instance       types.DBInstance
+	SecurityGroups []ec2Types.SecurityGroup
+}
+
+func GetInstancesWithSGs(rdsSvc RDSGetObjectAPI, ec2Svc *ec2.Client) []InstanceWithSGs {
+	rdsInstances := GetListRDS(rdsSvc)
+	result := make([]InstanceWithSGs, 0, len(rdsInstances))
+
+	for _, inst := range rdsInstances {
+		groupIDs := []string{}
+		for _, sg := range inst.VpcSecurityGroups {
+			if sg.VpcSecurityGroupId != nil {
+				groupIDs = append(groupIDs, *sg.VpcSecurityGroupId)
+			}
+		}
+
+		if len(groupIDs) == 0 {
+			result = append(result, InstanceWithSGs{Instance: inst, SecurityGroups: []ec2Types.SecurityGroup{}})
+			continue
+		}
+
+		resp, err := ec2Svc.DescribeSecurityGroups(context.TODO(), &ec2.DescribeSecurityGroupsInput{
+			GroupIds: groupIDs,
+		})
+		if err != nil {
+			logger.Logger.Error(err.Error())
+			continue
+		}
+
+		result = append(result, InstanceWithSGs{
+			Instance:       inst,
+			SecurityGroups: resp.SecurityGroups,
+		})
+	}
+
+	return result
 }

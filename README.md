@@ -227,6 +227,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_RDS_013 RDS / Aurora RDS should have audit logs enabled
 - AWS_RDS_014 RDS snapshots are encrypted
 - AWS_RDS_015 Aurora snapshots are encrypted
+- AWS_RDS_016 RDS security groups don’t allow 0.0.0.0 or all port in ingress
 
 ### S3 Bucket
 - AWS_S3_001 S3 are encrypted

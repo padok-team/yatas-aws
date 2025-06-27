@@ -338,7 +338,7 @@ func GetPasswordPolicy(s aws.Config) *types.PasswordPolicy {
 
 	result, err := svc.GetAccountPasswordPolicy(context.TODO(), &iam.GetAccountPasswordPolicyInput{})
 	if err != nil {
-		logger.Logger.Error(err.Error())
+		logger.Logger.Warn(err.Error())
 		return nil
 	}
 

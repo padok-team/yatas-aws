@@ -55,7 +55,7 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	S3ToVersioning := GetS3ToVersioning(s, OnlyBucketInRegion)
 	S3ToObjectLock := GetS3ToObjectLock(s, OnlyBucketInRegion)
 	S3ToReplicationOtherRegion := GetS3ToReplicationOtherRegion(s, OnlyBucketInRegion)
-	S3ToLifecycle := GetS3ToLifecycleRules(s, OnlyBucketInRegion)
+	S3ToLifecycle := GetS3ToLifecycleRules(s, S3ToVersioning)
 
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_S3_001", checkIfEncryptionEnabled)(checkConfig, S3ToEncryption, "AWS_S3_001")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_S3_002", CheckIfBucketNoReplicationOtherRegion)(checkConfig, S3ToReplicationOtherRegion, "AWS_S3_002")

@@ -214,23 +214,24 @@ func GetS3ToReplicationOtherRegion(s aws.Config, b []types.Bucket) []S3ToReplica
 type S3ToLifecycleRules struct {
 	BucketName     string
 	LifecycleRules []types.LifecycleRule
+	Versioning     bool
 }
 
-func GetS3ToLifecycleRules(s aws.Config, buckets []types.Bucket) []S3ToLifecycleRules {
+func GetS3ToLifecycleRules(s aws.Config, buckets []S3ToVersioning) []S3ToLifecycleRules {
 	svc := s3.NewFromConfig(s)
 	var s3ToLifecycleRules []S3ToLifecycleRules
 
 	for _, bucket := range buckets {
 		params := &s3.GetBucketLifecycleConfigurationInput{
-			Bucket: aws.String(*bucket.Name),
+			Bucket: aws.String(bucket.BucketName),
 		}
 
-		lifecycle, err := svc.GetBucketLifecycleConfiguration(context.TODO(), params)
+		resp, err := svc.GetBucketLifecycleConfiguration(context.TODO(), params)
 
 		if err != nil {
-			s3ToLifecycleRules = append(s3ToLifecycleRules, S3ToLifecycleRules{*bucket.Name, []types.LifecycleRule{}})
+			s3ToLifecycleRules = append(s3ToLifecycleRules, S3ToLifecycleRules{bucket.BucketName, []types.LifecycleRule{}, bucket.Versioning})
 		} else {
-			s3ToLifecycleRules = append(s3ToLifecycleRules, S3ToLifecycleRules{*bucket.Name, lifecycle.Rules})
+			s3ToLifecycleRules = append(s3ToLifecycleRules, S3ToLifecycleRules{bucket.BucketName, resp.Rules, bucket.Versioning})
 		}
 	}
 

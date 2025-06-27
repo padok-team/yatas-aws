@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.13.0](https://github.com/padok-team/yatas-aws/compare/v1.12.0...v1.13.0) (2025-06-27)
+
+
+### Features
+
+* **s3:** check bucket deletion policy ([#192](https://github.com/padok-team/yatas-aws/issues/192)) ([ef027cb](https://github.com/padok-team/yatas-aws/commit/ef027cbc5bf841f536615dd84d9fe1ace2524067))
+
 ## [1.12.0](https://github.com/padok-team/yatas-aws/compare/v1.11.1...v1.12.0) (2025-05-09)
 
 

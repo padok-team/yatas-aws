@@ -2,7 +2,6 @@ package s3
 
 import (
 	"github.com/aws/aws-sdk-go-v2/service/s3/types"
-	"github.com/padok-team/yatas-aws/logger"
 	"github.com/padok-team/yatas/plugins/commons"
 )
 
@@ -25,11 +24,7 @@ func checkIfDeletionPolicyExists(checkConfig commons.CheckConfig, buckets []S3To
 
 		Message := "S3 bucket " + bucketName + " is not using a 90 days or less deletion policy"
 		result := commons.Result{Status: "FAIL", Message: Message, ResourceID: bucketName}
-
-		logger.Logger.Debug("Checking bucket " + bucketName + " for deletion policy")
-
 		if isVersioningEnabled {
-			logger.Logger.Debug("Versioning is enabled for bucket " + bucketName)
 
 			// Check if lifecycle rule action "Permanently delete noncurrent versions of objects" exists
 			for _, rule := range lifecycleRules {
@@ -39,7 +34,6 @@ func checkIfDeletionPolicyExists(checkConfig commons.CheckConfig, buckets []S3To
 				}
 
 				if rule.Status != types.ExpirationStatusEnabled {
-					logger.Logger.Debug("Skipping rule with non-enabled status: " + string(rule.Status))
 					continue
 				}
 
@@ -58,7 +52,6 @@ func checkIfDeletionPolicyExists(checkConfig commons.CheckConfig, buckets []S3To
 			}
 
 			if rule.Status != types.ExpirationStatusEnabled {
-				logger.Logger.Debug("Skipping rule with non-enabled status: " + string(rule.Status))
 				continue
 			}
 

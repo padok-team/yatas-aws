@@ -4,6 +4,7 @@ import (
 	"sync"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/service/ec2"
 	"github.com/aws/aws-sdk-go-v2/service/rds"
 	"github.com/aws/aws-sdk-go-v2/service/rds/types"
 	"github.com/padok-team/yatas-aws/logger"
@@ -25,6 +26,8 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	instanceList := []types.DBInstance{}
 	instanceList = append(instanceList, instances...)
 	instancesToLogFiles := GetInstancesToLogFiles(svc, instanceList)
+	ec2Svc := ec2.NewFromConfig(s)
+	instancesWithSGs := GetInstancesWithSGs(svc, ec2Svc)
 
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_RDS_001", checkIfEncryptionEnabled)(checkConfig, instances, "AWS_RDS_001")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_RDS_002", checkIfBackupEnabled)(checkConfig, instances, "AWS_RDS_002")
@@ -41,6 +44,7 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_RDS_013", checkIfAuditLogsEnabled)(checkConfig, instancesToLogFiles, "AWS_RDS_013")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_RDS_014", checkIfRDSSnapshotEncryptionEnabled)(checkConfig, rdsSnapshots, "AWS_RDS_014")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_RDS_015", checkIfClusterSnapshotEncryptionEnabled)(checkConfig, auroraSnapshots, "AWS_RDS_015")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_RDS_016", checkIfRDSRestrictedSecurityGroups)(checkConfig, instancesWithSGs, "AWS_RDS_016")
 
 	go func() {
 		for t := range checkConfig.Queue {

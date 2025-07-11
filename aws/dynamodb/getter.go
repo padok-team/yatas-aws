@@ -87,3 +87,44 @@ func GetTableRecoveryPoints(s aws.Config, tables []*dynamodb.DescribeTableOutput
 	}
 	return recoveryPoints
 }
+
+type TableTTL struct {
+	TableName    string
+	TTLEnabled   bool
+	TTLAttribute string
+}
+
+func GetTableTTL(s aws.Config, tables []string) []TableTTL {
+	svc := dynamodb.NewFromConfig(s)
+	var tableTTLs []TableTTL
+
+	for _, table := range tables {
+		params := &dynamodb.DescribeTimeToLiveInput{
+			TableName: aws.String(table),
+		}
+
+		resp, err := svc.DescribeTimeToLive(context.TODO(), params)
+		if err != nil {
+			logger.Logger.Error(err.Error())
+			continue
+		}
+
+		var ttlEnabled bool
+		var ttlAttribute string
+
+		if resp.TimeToLiveDescription != nil {
+			ttlEnabled = resp.TimeToLiveDescription.TimeToLiveStatus == ddbTypes.TimeToLiveStatusEnabled
+			if resp.TimeToLiveDescription.AttributeName != nil {
+				ttlAttribute = *resp.TimeToLiveDescription.AttributeName
+			}
+		}
+
+		tableTTLs = append(tableTTLs, TableTTL{
+			TableName:    table,
+			TTLEnabled:   ttlEnabled,
+			TTLAttribute: ttlAttribute,
+		})
+	}
+
+	return tableTTLs
+}

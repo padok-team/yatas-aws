@@ -28,8 +28,8 @@ github.com/aws/aws-sdk-go-v2/service/cloudfront v1.45.3 h1:xQnjN34F4I3a/I3Xj0g9v
 github.com/aws/aws-sdk-go-v2/service/cloudfront v1.45.3/go.mod h1:FIBJ48TS+qJb+Ne4qJ+0NeIhtPTVXItXooTeNeVI4Po=
 github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.48.4 h1:pQpinmWv9jEisDR6/DccOf2cXdAf/CAwQ39nfJfJDlE=
 github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.48.4/go.mod h1:/BibEr5ksr34abqBTQN213GrNG6GCKCB6WG7CH4zH2w=
-github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.29.8 h1:MaTDBACfsg2GELfFFUicCGWYd8lraMu1nhpcP7XYxBA=
-github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.29.8/go.mod h1:gnq0P+cE0RD2mSouHc3Y93N2+O3dETp8IQyE9hDchSk=
+github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.29.9 h1:pKF8b95zCppLB/dahGW1COcAjOXcH6IooGhw16CLLRw=
+github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.29.9/go.mod h1:gnq0P+cE0RD2mSouHc3Y93N2+O3dETp8IQyE9hDchSk=
 github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider v1.51.4 h1:SdQnc11mBOCOqUu3O7de4HI5o1+vc6BCugWWKyYhAHY=
 github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider v1.51.4/go.mod h1:ygltZT++6Wn2uG4+tqE0NW1MkdEtb5W2O/CFc0xJX/g=
 github.com/aws/aws-sdk-go-v2/service/configservice v1.52.7 h1:YePgLPpNU9qtA+epjYYMZU5ExDZd8QynfYhkkb7q0q4=

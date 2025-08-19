@@ -1,6 +1,6 @@
 module github.com/padok-team/yatas-aws
 
-go 1.23.0
+go 1.24.0
 
 toolchain go1.24.6
 
@@ -33,7 +33,7 @@ require (
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/padok-team/yatas v1.5.1
 	github.com/rs/zerolog v1.33.0
-	golang.org/x/exp v0.0.0-20250305212735-054e65f0b394
+	golang.org/x/exp v0.0.0-20250819193227-8b4c13bb791b
 )
 
 require (

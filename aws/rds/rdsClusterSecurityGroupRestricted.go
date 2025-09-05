@@ -4,12 +4,12 @@ import (
 	"github.com/padok-team/yatas/plugins/commons"
 )
 
-func checkIfRDSRestrictedSecurityGroups(checkConfig commons.CheckConfig, instances []InstanceWithSGs, testName string) {
+func checkIfClusterRestrictedSecurityGroups(checkConfig commons.CheckConfig, clusters []DBClusterWithSGs, testName string) {
 	var check commons.Check
-	check.InitCheck("RDS have properly restricted security groups", "Ensure no ingress 0.0.0.0/0 or all ports on SGs for RDS", testName, []string{"Security", "Best Practice", "HDS"})
+	check.InitCheck("Aurora RDS have properly restricted security groups", "Ensure no ingress 0.0.0.0/0 or all ports on SGs for Aurora RDS", testName, []string{"Security", "Best Practice", "HDS"})
 
-	for _, i := range instances {
-		instance := i.Instance
+	for _, i := range clusters {
+		cluster := i.Cluster
 		sgrs := i.SecurityGroups
 
 		hasPermissiveIngress := false
@@ -29,26 +29,26 @@ func checkIfRDSRestrictedSecurityGroups(checkConfig commons.CheckConfig, instanc
 		}
 
 		if hasPermissiveIngress {
-			message := "RDS " + *instance.DBInstanceIdentifier + " has SG opened to 0.0.0.0/0"
+			message := "Aurora RDS " + *cluster.DBClusterIdentifier + " has SG opened to 0.0.0.0/0"
 			if hasAllPortsOpen {
 				message += " and all ports opened"
 			}
 			check.AddResult(commons.Result{
 				Status:     "FAIL",
 				Message:    message,
-				ResourceID: *instance.DBInstanceArn,
+				ResourceID: *cluster.DBClusterArn,
 			})
 		} else if hasAllPortsOpen {
 			check.AddResult(commons.Result{
 				Status:     "FAIL",
-				Message:    "RDS " + *instance.DBInstanceIdentifier + " has SG with all ports opened",
-				ResourceID: *instance.DBInstanceArn,
+				Message:    "Aurora RDS " + *cluster.DBClusterIdentifier + " has SG with all ports opened",
+				ResourceID: *cluster.DBClusterArn,
 			})
 		} else {
 			check.AddResult(commons.Result{
 				Status:     "OK",
-				Message:    "RDS SG is restricted for " + *instance.DBInstanceIdentifier,
-				ResourceID: *instance.DBInstanceArn,
+				Message:    "Aurora RDS SG is restricted for " + *cluster.DBClusterIdentifier,
+				ResourceID: *cluster.DBClusterArn,
 			})
 		}
 	}

@@ -6,7 +6,7 @@ import (
 
 func checkIfEncryptionEnabled(checkConfig commons.CheckConfig, buckets []S3ToEncryption, testName string) {
 	var check commons.Check
-	check.InitCheck("S3 are encrypted", "Check if S3 encryption is enabled", testName, []string{"Security", "Good Practice"})
+	check.InitCheck("S3 are encrypted", "Check if S3 encryption is enabled", testName, []string{"Security", "Good Practice", "HDS"})
 	for _, bucket := range buckets {
 		if !bucket.Encrypted {
 			Message := "S3 bucket " + bucket.BucketName + " is not using encryption"

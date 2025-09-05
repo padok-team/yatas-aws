@@ -22,7 +22,7 @@ type PolicyDocument struct {
 // CheckIfAuditLogsEnabledOnBastionInstance checks if the bastion instance has audit logs enabled by checking if it has the correct permissions and resources
 func CheckIfAuditLogsEnabledOnBastionInstance(checkConfig commons.CheckConfig, ec2ToIAMPolicies []BastionToIAMPolicies, testName string) {
 	var check commons.Check
-	check.InitCheck("EC2 bastion instance have audit logs enabled", "Check if EC2 bastion instance have audit logs enabled (ec2 name tag contains bastion* with a role policy containing s3:PutObject and s3:PutObjectAcl on a bucket with an arn like arn:aws:s3:::ssm-logging*)", testName, []string{"Security", "Good Practice"})
+	check.InitCheck("EC2 bastion instance have audit logs enabled", "Check if EC2 bastion instance have audit logs enabled (ec2 name tag contains bastion* with a role policy containing s3:PutObject and s3:PutObjectAcl on a bucket with an arn like arn:aws:s3:::ssm-logging*)", testName, []string{"Security", "Good Practice", "HDS"})
 
 	for _, ec2ToIAM := range ec2ToIAMPolicies {
 		// Check if the instance is a bastion by checking if it has bastion in its tag name

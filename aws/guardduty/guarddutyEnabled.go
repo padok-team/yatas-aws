@@ -6,7 +6,7 @@ import (
 
 func CheckIfGuarddutyEnabled(checkConfig commons.CheckConfig, testName string, detectors []string) {
 	var check commons.Check
-	check.InitCheck("GuardDuty is enabled in the account", "Check if GuardDuty is enabled", testName, []string{"Security", "Good Practice"})
+	check.InitCheck("GuardDuty is enabled in the account", "Check if GuardDuty is enabled", testName, []string{"Security", "Good Practice", "HDS"})
 
 	if len(detectors) == 0 {
 		Message := "GuardDuty is not enabled"

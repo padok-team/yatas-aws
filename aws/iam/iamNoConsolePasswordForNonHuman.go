@@ -7,7 +7,7 @@ import (
 
 func CheckNoConsolePasswordForNonHumanUser(checkConfig commons.CheckConfig, users []types.User, testName string) {
 	var check commons.Check
-	check.InitCheck("IAM Non-human users don’t have console password", "Check if non-human users don’t have console password", testName, []string{"Security", "Good Practice"})
+	check.InitCheck("IAM Non-human users don’t have console password", "Check if non-human users don’t have console password", testName, []string{"Security", "Good Practice", "HDS"})
 	for _, user := range users {
 		userName := "unknown"
 		if user.UserName != nil {

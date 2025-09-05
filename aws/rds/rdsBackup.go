@@ -8,7 +8,7 @@ import (
 
 func checkIfBackupEnabled(checkConfig commons.CheckConfig, instances []types.DBInstance, testName string) {
 	var check commons.Check
-	check.InitCheck("RDS are backedup automatically with PITR", "Check if RDS backup is enabled", testName, []string{"Security", "Good Practice"})
+	check.InitCheck("RDS are backedup automatically with PITR", "Check if RDS backup is enabled", testName, []string{"Security", "Good Practice", "HDS"})
 	for _, instance := range instances {
 		if aws.ToInt32(instance.BackupRetentionPeriod) == 0 {
 			Message := "RDS backup is not enabled on " + *instance.DBInstanceIdentifier

@@ -7,7 +7,7 @@ import (
 
 func checkIfOnlyOneVPC(checkConfig commons.CheckConfig, vpcs []types.Vpc, testName string) {
 	var check commons.Check
-	check.InitCheck("VPC can't be in the same account", "Check if VPC has only one VPC", testName, []string{"Security", "Good Practice"})
+	check.InitCheck("VPC can't be in the same account", "Check if VPC has only one VPC", testName, []string{"Security", "Good Practice", "HDS"})
 	for _, vpc := range vpcs {
 		if len(vpcs) > 1 {
 			Message := "VPC Id:" + *vpc.VpcId

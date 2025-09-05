@@ -6,7 +6,7 @@ import (
 
 func CheckIfAtLeast2Subnets(checkConfig commons.CheckConfig, vpcToSubnets []VPCToSubnet, testName string) {
 	var check commons.Check
-	check.InitCheck("VPC have at least 2 subnets", "Check if VPC has at least 2 subnets", testName, []string{"Security", "Good Practice"})
+	check.InitCheck("VPC have at least 2 subnets", "Check if VPC has at least 2 subnets", testName, []string{"Security", "Good Practice", "HDS"})
 	for _, vpcToSubnet := range vpcToSubnets {
 
 		if len(vpcToSubnet.Subnets) < 2 {

@@ -4,7 +4,7 @@ import "github.com/padok-team/yatas/plugins/commons"
 
 func checkIfVPCFLowLogsEnabled(checkConfig commons.CheckConfig, VpcFlowLogs []VpcToFlowLogs, testName string) {
 	var check commons.Check
-	check.InitCheck("VPC Flow Logs are activated", "Check if VPC Flow Logs are enabled", testName, []string{"Security", "Good Practice"})
+	check.InitCheck("VPC Flow Logs are activated", "Check if VPC Flow Logs are enabled", testName, []string{"Security", "Good Practice", "HDS"})
 	for _, vpcFlowLog := range VpcFlowLogs {
 
 		if len(vpcFlowLog.FlowLogs) == 0 {

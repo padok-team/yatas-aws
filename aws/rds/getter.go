@@ -300,3 +300,43 @@ func GetInstancesWithSGs(rdsSvc RDSGetObjectAPI, ec2Svc *ec2.Client) []InstanceW
 
 	return result
 }
+
+type DBClusterWithSGs struct {
+	Cluster        types.DBCluster
+	SecurityGroups []ec2Types.SecurityGroup
+}
+
+func GetDBClustersWithSGs(rdsSvc RDSGetObjectAPI, ec2Svc *ec2.Client) []DBClusterWithSGs {
+	clusters := GetListDBClusters(rdsSvc)
+	result := make([]DBClusterWithSGs, 0, len(clusters))
+
+	for _, cluster := range clusters {
+
+		groupIDs := []string{}
+		for _, sg := range cluster.VpcSecurityGroups {
+			if sg.VpcSecurityGroupId != nil {
+				groupIDs = append(groupIDs, *sg.VpcSecurityGroupId)
+			}
+		}
+
+		if len(groupIDs) == 0 {
+			result = append(result, DBClusterWithSGs{Cluster: cluster, SecurityGroups: []ec2Types.SecurityGroup{}})
+			continue
+		}
+
+		resp, err := ec2Svc.DescribeSecurityGroups(context.TODO(), &ec2.DescribeSecurityGroupsInput{
+			GroupIds: groupIDs,
+		})
+		if err != nil {
+			logger.Logger.Error(err.Error())
+			continue
+		}
+
+		result = append(result, DBClusterWithSGs{
+			Cluster:        cluster,
+			SecurityGroups: resp.SecurityGroups,
+		})
+	}
+
+	return result
+}

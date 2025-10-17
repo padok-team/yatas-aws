@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.14.0](https://github.com/padok-team/yatas-aws/compare/v1.13.0...v1.14.0) (2025-10-17)
+
+
+### Features
+
+* add AWS_RDS_017 check ([#242](https://github.com/padok-team/yatas-aws/issues/242)) ([3eb01cb](https://github.com/padok-team/yatas-aws/commit/3eb01cb9c4ba383b447bf324e4399c730822fa4b))
+* add rule AWS_RDS_016 ([#224](https://github.com/padok-team/yatas-aws/issues/224)) ([fd16fb4](https://github.com/padok-team/yatas-aws/commit/fd16fb4b60487275a7a2f3626fc7663cf928a96b))
+* **dynamodb:** add check on ttl ([#229](https://github.com/padok-team/yatas-aws/issues/229)) ([869c0b5](https://github.com/padok-team/yatas-aws/commit/869c0b5f88f997a3280b7bbbf0fbdd1cb4948f35))
+* **sqs:** add check on max retention period ([#227](https://github.com/padok-team/yatas-aws/issues/227)) ([ea2fd87](https://github.com/padok-team/yatas-aws/commit/ea2fd87a5a9f653882574808354fe0552b623cb2))
+
 ## [1.13.0](https://github.com/padok-team/yatas-aws/compare/v1.12.0...v1.13.0) (2025-06-27)
 
 

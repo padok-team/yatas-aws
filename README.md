@@ -133,7 +133,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 
 <!-- BEGIN_YATAS -->
 
-## AWS - 69 Checks
+## AWS - 87 Checks
 
 ### AWS Certificate Manager
 
@@ -259,6 +259,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_S3_006 S3 buckets have a retention policy
 
 ### SQS
+
 - AWS_SQS_001 SQS queues have retention period of 14 days maximum
 
 ### SSM

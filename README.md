@@ -173,6 +173,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_DYN_001 Dynamodbs are encrypted
 - AWS_DYN_002 Dynamodb have continuous backup enabled with PITR
 - AWS_DYN_003 Dynamodb recovery points are encrypted
+- AWS_DYN_004 Dynamodb tables have TTL enabled and properly configured with maximum 90-day retention
 
 ### EC2
 - AWS_EC2_001 EC2s don't have a public IP
@@ -196,6 +197,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_GDT_002 GuardDuty has no HIGH severity findings
 
 ### IAM
+
 - AWS_IAM_001 IAM Users have 2FA activated
 - AWS_IAM_002 IAM access key younger than 90 days
 - AWS_IAM_003 IAM User can't elevate rights
@@ -205,6 +207,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_IAM_007 IAM Non-human users don’t have console password
 
 ### Lambda
+
 - AWS_LMD_001 Lambdas are private
 - AWS_LMD_002 Lambdas are in a security group
 - AWS_LMD_003 Lambdas are not with errors
@@ -212,6 +215,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_LMD_005 Lambdas has no public URL access
 
 ### RDS
+
 - AWS_RDS_001 RDS are encrypted
 - AWS_RDS_002 RDS are backedup automatically with PITR
 - AWS_RDS_003 RDS have minor versions automatically updated
@@ -230,6 +234,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_RDS_016 RDS security groups don’t allow 0.0.0.0 or all port in ingress
 
 ### S3 Bucket
+
 - AWS_S3_001 S3 are encrypted
 - AWS_S3_002 S3 buckets are not replicated to another region
 - AWS_S3_003 S3 buckets are versioned
@@ -238,15 +243,18 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_S3_006 S3 buckets have a retention policy
 
 ### SSM
+
 - AWS_SSM_001 EC2 bastion instance have audit logs enabled
 
 ### Volume
+
 - AWS_VOL_001 EC2's volumes are encrypted
 - AWS_VOL_002 EC2 are using GP3
 - AWS_VOL_003 EC2 have snapshots
 - AWS_VOL_004 EC2's volumes are unused
 
 ### VPC
+
 - AWS_VPC_001 VPC CIDRs are bigger than /20
 - AWS_VPC_002 VPC can't be in the same account
 - AWS_VPC_003 VPC only have one Gateway
@@ -256,6 +264,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_VPC_007 VPC have public and private subnets
 
 ### AWS Config
+
 - AWS_CFG_001 AWS Config is enabled in the account
 
 <!-- END_YATAS -->
@@ -267,6 +276,7 @@ You'd like to add a new test ? Then simply fork the repository and create a pull
 ### Add a test to an existing category
 
 If the package already exists and has a `getter.go`
+
 - Create a file with the name of the test
 - Add your test
 - If you need to query the AWS API, add your query to the  `getter.go` file

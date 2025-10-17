@@ -8,7 +8,7 @@ import (
 
 func CheckIfPrivateAndPublicSubnets(checkConfig commons.CheckConfig, vpcToSubnetWithRouteTables map[string][]SubnetWithRouteTables, testName string) {
 	var check commons.Check
-	check.InitCheck("VPCs have private and public subnets", "Check if VPCs have private and public subnets", testName, []string{"Security", "Good Practice"})
+	check.InitCheck("VPCs have private and public subnets", "Check if VPCs have private and public subnets", testName, []string{"Security", "Good Practice", "HDS"})
 
 	for vpcId, subnetsWithRouteTables := range vpcToSubnetWithRouteTables {
 		hasPublicSubnet := false

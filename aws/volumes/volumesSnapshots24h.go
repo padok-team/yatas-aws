@@ -8,7 +8,7 @@ import (
 
 func CheckIfSnapshotYoungerthan24h(checkConfig commons.CheckConfig, vs couple, testName string) {
 	var check commons.Check
-	check.InitCheck("EC2's snapshots are younger than a day old", "Check if all snapshots are younger than 24h", testName, []string{"Security", "Good Practice"})
+	check.InitCheck("EC2's snapshots are younger than a day old", "Check if all snapshots are younger than 24h", testName, []string{"Security", "Good Practice", "HDS"})
 	for _, volume := range vs.Volume {
 		snapshotYoungerThan24h := false
 		for _, snapshot := range vs.Snapshot {

@@ -8,7 +8,7 @@ import (
 
 func CheckIfEksEndpointPrivate(checkConfig commons.CheckConfig, clusters []types.Cluster, testName string) {
 	var check commons.Check
-	check.InitCheck("EKS clusters have private endpoint or strict public access", "Check if EKS clusters have private endpoint", testName, []string{"Security", "Good Practice"})
+	check.InitCheck("EKS clusters have private endpoint or strict public access", "Check if EKS clusters have private endpoint", testName, []string{"Security", "Good Practice", "HDS"})
 	for _, cluster := range clusters {
 		if cluster.ResourcesVpcConfig != nil {
 			if cluster.ResourcesVpcConfig.EndpointPublicAccess {

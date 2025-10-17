@@ -6,7 +6,7 @@ import (
 
 func checkIfRDSRestrictedSecurityGroups(checkConfig commons.CheckConfig, instances []InstanceWithSGs, testName string) {
 	var check commons.Check
-	check.InitCheck("RDS have properly restricted security groups", "Ensure no ingress 0.0.0.0/0 or all ports on SGs for RDS", testName, []string{"Security", "Best Practice"})
+	check.InitCheck("RDS have properly restricted security groups", "Ensure no ingress 0.0.0.0/0 or all ports on SGs for RDS", testName, []string{"Security", "Best Practice", "HDS"})
 
 	for _, i := range instances {
 		instance := i.Instance

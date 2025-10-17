@@ -7,7 +7,7 @@ import (
 
 func CheckAlbEnsureHttps(checkConfig commons.CheckConfig, loadBalancers []LoadBalancerAttributes, testName string) {
 	var check commons.Check
-	check.InitCheck("ALB only allows HTTPS traffic", "Check if ALB only allows HTTPS (443) or redirects HTTP (80) to HTTPS", testName, []string{"Security", "Good Practice"})
+	check.InitCheck("ALB only allows HTTPS traffic", "Check if ALB only allows HTTPS (443) or redirects HTTP (80) to HTTPS", testName, []string{"Security", "Good Practice", "HDS"})
 
 	for _, loadBalancer := range loadBalancers {
 		hasHttps := false

@@ -2,7 +2,7 @@ module github.com/padok-team/yatas-aws
 
 go 1.24.0
 
-toolchain go1.24.7
+toolchain go1.24.9
 
 require (
 	github.com/aws/aws-sdk-go-v2 v1.39.3
@@ -17,7 +17,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider v1.57.8
 	github.com/aws/aws-sdk-go-v2/service/configservice v1.58.3
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.51.1
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.257.1
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.257.2
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.50.6
 	github.com/aws/aws-sdk-go-v2/service/eks v1.74.3
 	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.51.1

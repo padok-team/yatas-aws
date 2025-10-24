@@ -34,7 +34,7 @@ require (
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/padok-team/yatas v1.5.1
 	github.com/rs/zerolog v1.34.0
-	golang.org/x/exp v0.0.0-20251009144603-d2f985daa21b
+	golang.org/x/exp v0.0.0-20251023183803-a4bb9ffd2546
 )
 
 require (

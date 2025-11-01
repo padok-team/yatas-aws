@@ -7,7 +7,7 @@ toolchain go1.24.9
 require (
 	github.com/aws/aws-sdk-go-v2 v1.39.5
 	github.com/aws/aws-sdk-go-v2/config v1.31.16
-	github.com/aws/aws-sdk-go-v2/service/acm v1.37.9
+	github.com/aws/aws-sdk-go-v2/service/acm v1.37.10
 	github.com/aws/aws-sdk-go-v2/service/apigateway v1.35.9
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.59.4
 	github.com/aws/aws-sdk-go-v2/service/backup v1.49.3

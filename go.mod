@@ -27,7 +27,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/rds v1.108.6
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.88.7
 	github.com/aws/aws-sdk-go-v2/service/sqs v1.42.12
-	github.com/aws/smithy-go v1.23.1
+	github.com/aws/smithy-go v1.23.2
 	github.com/dlclark/regexp2 v1.11.5
 	github.com/hashicorp/go-hclog v1.6.3
 	github.com/hashicorp/go-plugin v1.7.0

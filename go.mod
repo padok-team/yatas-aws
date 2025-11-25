@@ -7,14 +7,14 @@ toolchain go1.24.10
 require (
 	github.com/aws/aws-sdk-go-v2 v1.40.0
 	github.com/aws/aws-sdk-go-v2/config v1.31.21
-	github.com/aws/aws-sdk-go-v2/service/acm v1.37.14
+	github.com/aws/aws-sdk-go-v2/service/acm v1.37.15
 	github.com/aws/aws-sdk-go-v2/service/apigateway v1.35.9
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.59.4
 	github.com/aws/aws-sdk-go-v2/service/backup v1.49.4
 	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.55.4
 	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.53.13
-	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.33.13
-	github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider v1.57.14
+	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.33.14
+	github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider v1.57.15
 	github.com/aws/aws-sdk-go-v2/service/configservice v1.58.4
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.51.1
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.257.2
@@ -26,7 +26,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.78.2
 	github.com/aws/aws-sdk-go-v2/service/rds v1.108.9
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.88.7
-	github.com/aws/aws-sdk-go-v2/service/sqs v1.42.16
+	github.com/aws/aws-sdk-go-v2/service/sqs v1.42.17
 	github.com/aws/smithy-go v1.23.2
 	github.com/dlclark/regexp2 v1.11.5
 	github.com/hashicorp/go-hclog v1.6.3

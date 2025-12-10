@@ -5,16 +5,16 @@ go 1.24.0
 toolchain go1.24.11
 
 require (
-	github.com/aws/aws-sdk-go-v2 v1.40.1
+	github.com/aws/aws-sdk-go-v2 v1.41.0
 	github.com/aws/aws-sdk-go-v2/config v1.31.21
-	github.com/aws/aws-sdk-go-v2/service/acm v1.37.16
+	github.com/aws/aws-sdk-go-v2/service/acm v1.37.18
 	github.com/aws/aws-sdk-go-v2/service/apigateway v1.35.9
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.59.4
 	github.com/aws/aws-sdk-go-v2/service/backup v1.49.4
 	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.55.4
 	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.53.13
-	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.33.15
-	github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider v1.57.16
+	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.33.16
+	github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider v1.57.17
 	github.com/aws/aws-sdk-go-v2/service/configservice v1.58.4
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.51.1
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.257.2
@@ -26,7 +26,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.78.2
 	github.com/aws/aws-sdk-go-v2/service/rds v1.108.9
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.88.7
-	github.com/aws/aws-sdk-go-v2/service/sqs v1.42.18
+	github.com/aws/aws-sdk-go-v2/service/sqs v1.42.20
 	github.com/aws/smithy-go v1.24.0
 	github.com/dlclark/regexp2 v1.11.5
 	github.com/hashicorp/go-hclog v1.6.3
@@ -41,8 +41,8 @@ require (
 	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.7.2 // indirect
 	github.com/aws/aws-sdk-go-v2/credentials v1.18.25 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.18.13 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/configsources v1.4.15 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.7.15 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/configsources v1.4.16 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.7.16 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/ini v1.8.4 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/v4a v1.4.11 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.3 // indirect

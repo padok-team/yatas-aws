@@ -2,7 +2,7 @@ module github.com/padok-team/yatas-aws
 
 go 1.24.0
 
-toolchain go1.24.11
+toolchain go1.24.12
 
 require (
 	github.com/aws/aws-sdk-go-v2 v1.41.1
@@ -13,8 +13,8 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/backup v1.49.4
 	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.55.4
 	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.53.13
-	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.33.17
-	github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider v1.57.18
+	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.33.18
+	github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider v1.57.19
 	github.com/aws/aws-sdk-go-v2/service/configservice v1.58.4
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.51.1
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.257.2

@@ -32,7 +32,7 @@ require (
 	github.com/hashicorp/go-hclog v1.6.3
 	github.com/hashicorp/go-plugin v1.7.0
 	github.com/mitchellh/mapstructure v1.5.0
-	github.com/padok-team/yatas v1.5.1
+	github.com/padok-team/yatas v1.6.1
 	github.com/rs/zerolog v1.34.0
 	golang.org/x/exp v0.0.0-20251009144603-d2f985daa21b
 )

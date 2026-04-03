@@ -14,6 +14,7 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	checkConfig.Init(c)
 	var checks []commons.Check
 	users := GetAllUsers(s)
+	consolePasswordForUsers := GetConsolePasswordStatusForUsers(s, users)
 	mfaForUsers := GetMfaForUsers(s, users)
 	accessKeysForUsers := GetAccessKeysForUsers(s, users)
 	UserToPolicies := GetUserPolicies(users, s)
@@ -29,7 +30,7 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_IAM_004", CheckIfRoleCanElevateRights)(checkConfig, RoleToPoliciesElevated, "AWS_IAM_004")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_IAM_005", CheckIfUserLastPasswordUse120Days)(checkConfig, users, "AWS_IAM_005")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_IAM_006", CheckPasswordPolicy)(checkConfig, passwordPolicy, "AWS_IAM_006")
-	go commons.CheckTest(checkConfig.Wg, c, "AWS_IAM_007", CheckNoConsolePasswordForNonHumanUser)(checkConfig, users, "AWS_IAM_007")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_IAM_007", CheckNoConsolePasswordForNonHumanUser)(checkConfig, consolePasswordForUsers, "AWS_IAM_007")
 	go func() {
 		for t := range checkConfig.Queue {
 			t.EndCheck()

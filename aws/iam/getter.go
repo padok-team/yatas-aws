@@ -2,6 +2,7 @@ package iam
 
 import (
 	"context"
+	"errors"
 	"sync"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
@@ -153,6 +154,44 @@ func GetAccessKeysForUsers(s aws.Config, u []types.User) []AccessKeysForUser {
 		}
 	}
 	return accessKeysForUsers
+}
+
+type ConsolePasswordForUser struct {
+	UserName           string
+	HasConsolePassword bool
+}
+
+func GetConsolePasswordStatusForUsers(s aws.Config, u []types.User) []ConsolePasswordForUser {
+	svc := iam.NewFromConfig(s)
+	consolePasswordForUsers := make([]ConsolePasswordForUser, 0, len(u))
+
+	for _, user := range u {
+		userName := *user.UserName
+		input := &iam.GetLoginProfileInput{UserName: user.UserName}
+		_, err := svc.GetLoginProfile(context.TODO(), input)
+		if err != nil {
+			// Check if the error is a NoSuchEntityException, which means the user has no console password
+			var noSuchEntity *types.NoSuchEntityException
+			if errors.As(err, &noSuchEntity) {
+				consolePasswordForUsers = append(consolePasswordForUsers, ConsolePasswordForUser{
+					UserName:           userName,
+					HasConsolePassword: false,
+				})
+				continue
+			}
+
+			logger.Logger.Error(err.Error())
+			// Return an empty list of console passwords
+			return []ConsolePasswordForUser{}
+		}
+
+		consolePasswordForUsers = append(consolePasswordForUsers, ConsolePasswordForUser{
+			UserName:           userName,
+			HasConsolePassword: true,
+		})
+	}
+
+	return consolePasswordForUsers
 }
 
 func GetUserPolicies(users []types.User, s aws.Config) []UserPolicies {

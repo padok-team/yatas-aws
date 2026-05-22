@@ -30,7 +30,7 @@ require (
 	github.com/aws/smithy-go v1.25.1
 	github.com/dlclark/regexp2 v1.11.5
 	github.com/hashicorp/go-hclog v1.6.3
-	github.com/hashicorp/go-plugin v1.7.0
+	github.com/hashicorp/go-plugin v1.8.0
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/padok-team/yatas v1.6.1
 	github.com/rs/zerolog v1.34.0

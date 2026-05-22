@@ -18,6 +18,7 @@ import (
 	"github.com/padok-team/yatas-aws/aws/cloudtrail"
 	"github.com/padok-team/yatas-aws/aws/cognito"
 	"github.com/padok-team/yatas-aws/aws/configservice"
+	"github.com/padok-team/yatas-aws/aws/documentdb"
 	"github.com/padok-team/yatas-aws/aws/dynamodb"
 	"github.com/padok-team/yatas-aws/aws/ec2"
 	"github.com/padok-team/yatas-aws/aws/ecr"
@@ -171,6 +172,7 @@ func initTest(s aws.Config, c *commons.Config, a internal.AWS_Account) commons.T
 	go commons.CheckMacroTest(&wg, c, cloudtrail.RunChecks)(&wg, s, c, queue)
 	go commons.CheckMacroTest(&wg, c, ecr.RunChecks)(&wg, s, c, queue)
 	go commons.CheckMacroTest(&wg, c, lambda.RunChecks)(&wg, s, c, queue)
+	go commons.CheckMacroTest(&wg, c, documentdb.RunChecks)(&wg, s, c, queue)
 	go commons.CheckMacroTest(&wg, c, dynamodb.RunChecks)(&wg, s, c, queue)
 	go commons.CheckMacroTest(&wg, c, ec2.RunChecks)(&wg, s, c, queue)
 	go commons.CheckMacroTest(&wg, c, cloudfront.RunChecks)(&wg, s, c, queue)

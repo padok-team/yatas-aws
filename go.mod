@@ -33,7 +33,7 @@ require (
 	github.com/hashicorp/go-plugin v1.8.0
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/padok-team/yatas v1.6.1
-	github.com/rs/zerolog v1.34.0
+	github.com/rs/zerolog v1.35.1
 	golang.org/x/exp v0.0.0-20260508232706-74f9aab9d74a
 )
 

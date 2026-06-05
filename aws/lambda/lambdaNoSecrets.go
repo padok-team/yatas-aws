@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/service/lambda/types"
-	"github.com/dlclark/regexp2"
+	"github.com/dlclark/regexp2/v2"
 	"github.com/padok-team/yatas/plugins/commons"
 )
 

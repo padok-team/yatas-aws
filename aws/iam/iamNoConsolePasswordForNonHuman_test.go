@@ -3,51 +3,39 @@ package iam
 import (
 	"strings"
 	"testing"
-	"time"
 
-	"github.com/aws/aws-sdk-go-v2/aws"
-	"github.com/aws/aws-sdk-go-v2/service/iam/types"
 	"github.com/padok-team/yatas/plugins/commons"
 )
 
 func TestCheckNoConsolePasswordForNonHumanUser(t *testing.T) {
 	tests := []struct {
 		name             string
-		users            []types.User
+		consolePasswords []ConsolePasswordForUser
 		expectedStatus   []string
 		expectedMessages []string
 	}{
 		{
-			name: "All users have no console password",
-			users: []types.User{
-				{UserName: aws.String("user1"), PasswordLastUsed: nil},
-				{UserName: aws.String("user2"), PasswordLastUsed: nil},
-			},
-			expectedStatus: []string{"OK", "OK"},
+			name:             "All users have no console password",
+			consolePasswords: []ConsolePasswordForUser{{UserName: "user1", HasConsolePassword: false}, {UserName: "user2", HasConsolePassword: false}},
+			expectedStatus:   []string{"OK", "OK"},
 			expectedMessages: []string{
 				"user1 has no console password",
 				"user2 has no console password",
 			},
 		},
 		{
-			name: "One user has console password",
-			users: []types.User{
-				{UserName: aws.String("user1"), PasswordLastUsed: nil},
-				{UserName: aws.String("user2"), PasswordLastUsed: aws.Time(time.Now())},
-			},
-			expectedStatus: []string{"OK", "FAIL"},
+			name:             "One user has console password",
+			consolePasswords: []ConsolePasswordForUser{{UserName: "user1", HasConsolePassword: false}, {UserName: "user2", HasConsolePassword: true}},
+			expectedStatus:   []string{"OK", "FAIL"},
 			expectedMessages: []string{
 				"user1 has no console password",
 				"user2 has a console password",
 			},
 		},
 		{
-			name: "All users have console password",
-			users: []types.User{
-				{UserName: aws.String("user1"), PasswordLastUsed: aws.Time(time.Now())},
-				{UserName: aws.String("user2"), PasswordLastUsed: aws.Time(time.Now())},
-			},
-			expectedStatus: []string{"FAIL", "FAIL"},
+			name:             "All users have console password",
+			consolePasswords: []ConsolePasswordForUser{{UserName: "user1", HasConsolePassword: true}, {UserName: "user2", HasConsolePassword: true}},
+			expectedStatus:   []string{"FAIL", "FAIL"},
 			expectedMessages: []string{
 				"user1 has a console password",
 				"user2 has a console password",
@@ -62,7 +50,7 @@ func TestCheckNoConsolePasswordForNonHumanUser(t *testing.T) {
 				Queue: queue,
 			}
 
-			CheckNoConsolePasswordForNonHumanUser(checkConfig, tt.users, tt.name)
+			CheckNoConsolePasswordForNonHumanUser(checkConfig, tt.consolePasswords, tt.name)
 
 			check := <-queue
 

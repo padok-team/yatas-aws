@@ -1,42 +1,57 @@
-aws: 
-- internal/aws/**/*
+aws:
+- changed-files:
+  - any-glob-to-any-file: 'internal/aws/**/*'
 
 custom:
-- internal/custom/**/*
+- changed-files:
+  - any-glob-to-any-file: 'internal/custom/**/*'
 
 cmd:
-- internal/cmd/**/*
+- changed-files:
+  - any-glob-to-any-file: 'internal/cmd/**/*'
 
 helpers:
-- internal/helpers/**/*
+- changed-files:
+  - any-glob-to-any-file: 'internal/helpers/**/*'
 
 logger:
-- internal/logger/**/*
+- changed-files:
+  - any-glob-to-any-file: 'internal/logger/**/*'
 
 plugins:
-- internal/plugins/**/*
+- changed-files:
+  - any-glob-to-any-file: 'internal/plugins/**/*'
 
 report:
-- internal/report/**/*
+- changed-files:
+  - any-glob-to-any-file: 'internal/report/**/*'
 
 results:
-- internal/results/**/*
+- changed-files:
+  - any-glob-to-any-file: 'internal/results/**/*'
 
-yatas: 
-- internal/yatas/**/*
+yatas:
+- changed-files:
+  - any-glob-to-any-file: 'internal/yatas/**/*'
 
 dependencies:
-- go.mod
-- go.sum
+- changed-files:
+  - any-glob-to-any-file:
+    - 'go.mod'
+    - 'go.sum'
 
 main:
-- main.go
+- changed-files:
+  - any-glob-to-any-file: 'main.go'
 
 makefile:
-- Makefile
+- changed-files:
+  - any-glob-to-any-file: 'Makefile'
 
 readme:
-- README.md
+- changed-files:
+  - any-glob-to-any-file: 'README.md'
 
 github-actions:
-- .github/workflows/*
+- changed-files:
+  - any-glob-to-any-file: '.github/workflows/*'

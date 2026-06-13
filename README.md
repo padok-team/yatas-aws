@@ -133,7 +133,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 
 <!-- BEGIN_YATAS -->
 
-## AWS - 87 Checks
+## AWS - 95 Checks
 
 ### AWS Certificate Manager
 
@@ -177,6 +177,17 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 
 - AWS_COG_001 Cognito allows unauthenticated users
 - AWS_COG_002 Cognito allows self-registration
+
+### DocumentDB
+
+- AWS_DOC_001 DocumentDB clusters are encrypted at rest
+- AWS_DOC_002 DocumentDB clusters have automated backups enabled
+- AWS_DOC_003 DocumentDB clusters have deletion protection enabled
+- AWS_DOC_004 DocumentDB clusters export audit logs to CloudWatch
+- AWS_DOC_005 DocumentDB manual snapshots are not publicly accessible
+- AWS_DOC_006 DocumentDB clusters enforce TLS connections
+- AWS_DOC_007 DocumentDB manual snapshots are encrypted
+- AWS_DOC_008 DocumentDB clusters are deployed in multiple availability zones
 
 ### DynamoDB
 

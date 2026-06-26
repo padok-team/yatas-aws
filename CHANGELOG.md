@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.15.0](https://github.com/padok-team/yatas-aws/compare/v1.14.0...v1.15.0) (2026-06-26)
+
+
+### Features
+
+* add a hds category to the checks used in yamas audits ([9712dbe](https://github.com/padok-team/yatas-aws/commit/9712dbeeede9675a88a388c1808a20653089f997))
+* **documentdb:** added checks for documentdb ([#283](https://github.com/padok-team/yatas-aws/issues/283)) ([f4be87e](https://github.com/padok-team/yatas-aws/commit/f4be87e931d7dd3f25f9b88e1ef9ccd26f4a48e5))
+
+
+### Bug Fixes
+
+* **iam:** improve check no console password with login profile ([#278](https://github.com/padok-team/yatas-aws/issues/278)) ([6c9c1db](https://github.com/padok-team/yatas-aws/commit/6c9c1db8cc6727bc57da1af415f8b3a39c95d385))
+
 ## [1.14.0](https://github.com/padok-team/yatas-aws/compare/v1.13.0...v1.14.0) (2025-10-17)
 
 

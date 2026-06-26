@@ -8,7 +8,7 @@ import (
 
 // MIN_BACKUP_RETENTION_DAYS is the minimum number of days a backup must be retained.
 // A value of 1 ensures that at least one daily backup is always available.
-const MIN_BACKUP_RETENTION_DAYS = 1
+const MIN_BACKUP_RETENTION_DAYS = 30
 
 // checkIfDocumentDBBackupEnabled verifies that automated backups are enabled on
 // each DocumentDB cluster by checking that BackupRetentionPeriod >= MIN_BACKUP_RETENTION_DAYS.

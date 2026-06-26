@@ -105,7 +105,7 @@ func TestCheckIfAuditLogsEnabledOnBastionInstanceFail(t *testing.T) {
 								"Version": "2012-10-17",
 								"Statement": [{
 									"Effect": "Allow",
-									"Action": "s3:PutObject",
+									"Action": "s3:GetObject",
 									"Resource": "arn:aws:s3:::ssm-logging-bucket/*"
 								}]
 							}`,

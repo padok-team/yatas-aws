@@ -3,6 +3,7 @@ package ssm
 import (
 	"encoding/json"
 	"net/url"
+	"slices"
 	"strings"
 
 	"github.com/padok-team/yatas-aws/logger"
@@ -14,110 +15,109 @@ type PolicyDocument struct {
 	Statement []struct {
 		Sid      string
 		Effect   string
-		Action   interface{} // can be string or []string
-		Resource interface{} // can be string or []string
+		Action   any // can be string or []string
+		Resource any // can be string or []string
 	}
+}
+
+func parseStringOrSlice(v any) []string {
+	switch val := v.(type) {
+	case string:
+		return []string{val}
+	case []any:
+		result := make([]string, len(val))
+		for i, item := range val {
+			result[i] = item.(string)
+		}
+		return result
+	}
+	return nil
+}
+
+func isS3AuditResource(resource string) bool {
+	if resource == "*" {
+		return true
+	}
+	if after, ok := strings.CutPrefix(resource, "arn:aws:s3:::"); ok {
+		bucketName := strings.SplitN(after, "/", 2)[0]
+		return strings.Contains(bucketName, "logs") || strings.Contains(bucketName, "ssm")
+	}
+	return false
+}
+
+func hasPutObjectOnS3(policyDoc PolicyDocument) bool {
+	for _, statement := range policyDoc.Statement {
+		if statement.Effect != "Allow" {
+			continue
+		}
+		actions := parseStringOrSlice(statement.Action)
+		resources := parseStringOrSlice(statement.Resource)
+
+		if !slices.ContainsFunc(actions, func(a string) bool {
+			return a == "s3:PutObject" || a == "s3:*" || a == "*"
+		}) {
+			continue
+		}
+
+		if slices.ContainsFunc(resources, isS3AuditResource) {
+			return true
+		}
+	}
+	return false
 }
 
 // CheckIfAuditLogsEnabledOnBastionInstance checks if the bastion instance has audit logs enabled by checking if it has the correct permissions and resources
 func CheckIfAuditLogsEnabledOnBastionInstance(checkConfig commons.CheckConfig, ec2ToIAMPolicies []BastionToIAMPolicies, testName string) {
 	var check commons.Check
-	check.InitCheck("EC2 bastion instance have audit logs enabled", "Check if EC2 bastion instance have audit logs enabled (ec2 name tag contains bastion* with a role policy containing s3:PutObject and s3:PutObjectAcl on a bucket with an arn like arn:aws:s3:::ssm-logging*)", testName, []string{"Security", "Good Practice", "HDS"})
+	check.InitCheck("EC2 bastion instance have audit logs enabled", "Check if EC2 bastion instance have audit logs enabled (ec2 name tag contains bastion* with a role policy containing s3:PutObject on any S3 bucket)", testName, []string{"Security", "Good Practice", "HDS"})
 
 	for _, ec2ToIAM := range ec2ToIAMPolicies {
-		// Check if the instance is a bastion by checking if it has bastion in its tag name
+		isBastion := false
 		if ec2ToIAM.Instance.Tags != nil {
 			for _, tag := range ec2ToIAM.Instance.Tags {
-				if *tag.Key == "Name" {
-					if strings.Contains(*tag.Value, "bastion") {
-						for _, policy := range ec2ToIAM.Policies {
-							// URLDecode the policy document
-							decodedPolicy, err := url.QueryUnescape(policy)
-							if err != nil {
-								logger.Logger.Error(err.Error())
-								Message := "Error while decoding the policy document"
-								result := commons.Result{Status: "ERROR", Message: Message, ResourceID: *ec2ToIAM.Instance.InstanceId}
-								check.AddResult(result)
-								break
-							}
-							var policyDoc PolicyDocument
-							if err := json.Unmarshal([]byte(decodedPolicy), &policyDoc); err != nil {
-								logger.Logger.Error(err.Error())
-								Message := "Error while parsing the policy document"
-								result := commons.Result{Status: "ERROR", Message: Message, ResourceID: *ec2ToIAM.Instance.InstanceId}
-								check.AddResult(result)
-								break
-							}
-
-							hasRequiredPermissions := false
-							for _, statement := range policyDoc.Statement {
-								if statement.Effect == "Allow" {
-									hasPutObjectPermission := false
-									hasPutObjectAclPermission := false
-									hasSSMLoggingBucketArn := false
-
-									// Handle Action being either string or []string
-									var actions []string
-									switch v := statement.Action.(type) {
-									case string:
-										actions = []string{v}
-									case []interface{}:
-										actions = make([]string, len(v))
-										for i, a := range v {
-											actions[i] = a.(string)
-										}
-									}
-
-									// Handle Resource being either string or []string
-									var resources []string
-									switch v := statement.Resource.(type) {
-									case string:
-										resources = []string{v}
-									case []interface{}:
-										resources = make([]string, len(v))
-										for i, r := range v {
-											resources[i] = r.(string)
-										}
-									}
-
-									for _, action := range actions {
-										if action == "s3:PutObject" {
-											hasPutObjectPermission = true
-										}
-										if action == "s3:PutObjectAcl" {
-											hasPutObjectAclPermission = true
-										}
-									}
-
-									for _, resource := range resources {
-										if strings.Contains(resource, "arn:aws:s3:::ssm-logging") {
-											hasSSMLoggingBucketArn = true
-										}
-									}
-
-									if hasPutObjectPermission && hasPutObjectAclPermission && hasSSMLoggingBucketArn {
-										hasRequiredPermissions = true
-										break
-									}
-								}
-							}
-
-							if hasRequiredPermissions {
-								Message := "EC2 instance " + *ec2ToIAM.Instance.InstanceId + " has audit logs enabled"
-								result := commons.Result{Status: "OK", Message: Message, ResourceID: *ec2ToIAM.Instance.InstanceId}
-								check.AddResult(result)
-								break
-							}
-						}
-					}
+				if *tag.Key == "Name" && strings.Contains(strings.ToLower(*tag.Value), "bastion") {
+					isBastion = true
+					break
 				}
 			}
 		}
-		if len(check.Results) == 0 {
-			Message := "EC2 instance " + *ec2ToIAM.Instance.InstanceId + " has no audit logs enabled"
-			result := commons.Result{Status: "FAIL", Message: Message, ResourceID: *ec2ToIAM.Instance.InstanceId}
+
+		if !isBastion {
+			continue
+		}
+
+		instanceHasPermissions := false
+		for _, policy := range ec2ToIAM.Policies {
+			decodedPolicy, err := url.QueryUnescape(policy)
+			if err != nil {
+				logger.Logger.Error(err.Error())
+				result := commons.Result{Status: "ERROR", Message: "Error while decoding the policy document", ResourceID: *ec2ToIAM.Instance.InstanceId}
+				check.AddResult(result)
+				break
+			}
+
+			var policyDoc PolicyDocument
+			if err := json.Unmarshal([]byte(decodedPolicy), &policyDoc); err != nil {
+				logger.Logger.Error(err.Error())
+				result := commons.Result{Status: "ERROR", Message: "Error while parsing the policy document", ResourceID: *ec2ToIAM.Instance.InstanceId}
+				check.AddResult(result)
+				break
+			}
+
+			if hasPutObjectOnS3(policyDoc) {
+				instanceHasPermissions = true
+				break
+			}
+		}
+
+		if instanceHasPermissions {
+			result := commons.Result{Status: "OK", Message: "EC2 instance " + *ec2ToIAM.Instance.InstanceId + " has audit logs enabled", ResourceID: *ec2ToIAM.Instance.InstanceId}
+			check.AddResult(result)
+		} else {
+			result := commons.Result{Status: "FAIL", Message: "EC2 instance " + *ec2ToIAM.Instance.InstanceId + " has no audit logs enabled", ResourceID: *ec2ToIAM.Instance.InstanceId}
 			check.AddResult(result)
 		}
 	}
+
 	checkConfig.Queue <- check
 }

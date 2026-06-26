@@ -7,26 +7,26 @@ toolchain go1.26.4
 require (
 	github.com/aws/aws-sdk-go-v2 v1.42.0
 	github.com/aws/aws-sdk-go-v2/config v1.32.25
-	github.com/aws/aws-sdk-go-v2/service/acm v1.39.6
+	github.com/aws/aws-sdk-go-v2/service/acm v1.40.0
 	github.com/aws/aws-sdk-go-v2/service/apigateway v1.40.6
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.67.4
 	github.com/aws/aws-sdk-go-v2/service/backup v1.57.6
 	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.65.2
 	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.56.4
 	github.com/aws/aws-sdk-go-v2/service/cognitoidentity v1.34.4
-	github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider v1.61.4
+	github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider v1.62.0
 	github.com/aws/aws-sdk-go-v2/service/configservice v1.64.1
-	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.57.9
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.305.3
+	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.59.0
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.308.0
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.58.4
-	github.com/aws/aws-sdk-go-v2/service/eks v1.84.6
+	github.com/aws/aws-sdk-go-v2/service/eks v1.87.0
 	github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2 v1.55.4
-	github.com/aws/aws-sdk-go-v2/service/guardduty v1.79.3
+	github.com/aws/aws-sdk-go-v2/service/guardduty v1.80.0
 	github.com/aws/aws-sdk-go-v2/service/iam v1.54.5
-	github.com/aws/aws-sdk-go-v2/service/lambda v1.92.3
+	github.com/aws/aws-sdk-go-v2/service/lambda v1.93.0
 	github.com/aws/aws-sdk-go-v2/service/rds v1.119.3
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.103.3
-	github.com/aws/aws-sdk-go-v2/service/sqs v1.43.2
+	github.com/aws/aws-sdk-go-v2/service/sqs v1.44.0
 	github.com/aws/smithy-go v1.27.2
 	github.com/dlclark/regexp2/v2 v2.1.2
 	github.com/hashicorp/go-hclog v1.6.3
@@ -46,7 +46,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/internal/v4a v1.4.30 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.12 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.9.22 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/endpoint-discovery v1.12.5 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/endpoint-discovery v1.12.6 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.13.29 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.19.29 // indirect
 	github.com/aws/aws-sdk-go-v2/service/signin v1.2.0 // indirect

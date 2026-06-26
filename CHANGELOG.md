@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.17.0](https://github.com/padok-team/yatas-aws/compare/v1.14.0...v1.17.0) (2026-06-26)
+
+
+### Features
+
+* add a hds category to the checks used in yamas audits ([9712dbe](https://github.com/padok-team/yatas-aws/commit/9712dbeeede9675a88a388c1808a20653089f997))
+* **ci:** add go-version-file in workflow release ([29bee78](https://github.com/padok-team/yatas-aws/commit/29bee785443ec5196b988ebfc9e30fc5388c030e))
+* **documentdb:** added checks for documentdb ([#283](https://github.com/padok-team/yatas-aws/issues/283)) ([f4be87e](https://github.com/padok-team/yatas-aws/commit/f4be87e931d7dd3f25f9b88e1ef9ccd26f4a48e5))
+
+
+### Bug Fixes
+
+* **iam:** improve check no console password with login profile ([#278](https://github.com/padok-team/yatas-aws/issues/278)) ([6c9c1db](https://github.com/padok-team/yatas-aws/commit/6c9c1db8cc6727bc57da1af415f8b3a39c95d385))
+* **ssm:** improve bastion ssm audit logs check ([#306](https://github.com/padok-team/yatas-aws/issues/306)) ([017ba14](https://github.com/padok-team/yatas-aws/commit/017ba146ec4db8da313b171acf99061f60240759))
+
 ## [1.16.0](https://github.com/padok-team/yatas-aws/compare/v1.14.0...v1.16.0) (2026-06-26)
 
 

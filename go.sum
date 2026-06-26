@@ -32,6 +32,8 @@ github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider v1.62.0 h1:gkhS82QW
 github.com/aws/aws-sdk-go-v2/service/cognitoidentityprovider v1.62.0/go.mod h1:fhiInRlq2MkbUqzDYoWLF+dE/NdEg24s9TML5FcSwhA=
 github.com/aws/aws-sdk-go-v2/service/configservice v1.64.1 h1:CJ6YcGJiXPJIz6ICOcGBumi2TcUSldUESHeF243WvVo=
 github.com/aws/aws-sdk-go-v2/service/configservice v1.64.1/go.mod h1:oqVF/7XFqk3GY0/zlvY3Dj2+42ynOx4x/Sp875yKcxE=
+github.com/aws/aws-sdk-go-v2/service/docdb v1.49.5 h1:2CWj6T/9qT+nLh2WLCxCpQ8WTdr9gDZ5gcsCeKXTHxA=
+github.com/aws/aws-sdk-go-v2/service/docdb v1.49.5/go.mod h1:cEgoGBX/E+JwDGo9NQ4wFIg3qmlRdlRDi9DH3EcZfzQ=
 github.com/aws/aws-sdk-go-v2/service/dynamodb v1.59.0 h1:S1qETDbdXKZMYVveuxACCKuRqnAt2NlnmYnlq5SeuMY=
 github.com/aws/aws-sdk-go-v2/service/dynamodb v1.59.0/go.mod h1:jLkDwIDBkCIpiENQhAOjAR2L9jwj56mZgVEvuro4gUE=
 github.com/aws/aws-sdk-go-v2/service/ec2 v1.308.0 h1:xBP+yWpveXD/PxK7HRMcoG6yj1vdOjSahAg4qPomF+0=

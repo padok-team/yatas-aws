@@ -34,8 +34,15 @@ func parseStringOrSlice(v any) []string {
 	return nil
 }
 
-func isS3Resource(resource string) bool {
-	return resource == "*" || strings.HasPrefix(resource, "arn:aws:s3:::")
+func isS3AuditResource(resource string) bool {
+	if resource == "*" {
+		return true
+	}
+	if after, ok := strings.CutPrefix(resource, "arn:aws:s3:::"); ok {
+		bucketName := strings.SplitN(after, "/", 2)[0]
+		return strings.Contains(bucketName, "logs") || strings.Contains(bucketName, "ssm")
+	}
+	return false
 }
 
 func hasPutObjectOnS3(policyDoc PolicyDocument) bool {
@@ -52,7 +59,7 @@ func hasPutObjectOnS3(policyDoc PolicyDocument) bool {
 			continue
 		}
 
-		if slices.ContainsFunc(resources, isS3Resource) {
+		if slices.ContainsFunc(resources, isS3AuditResource) {
 			return true
 		}
 	}

@@ -74,7 +74,7 @@ Flags:
 - `--init`: Creates a .yatas.yml file in the current directory.
 - `--install`: Installs the plugins you need.
 - `--only-failure`: Only show the tests that failed.
--
+- `--hds` : Only run HDS checks.
 
 ## Checks
 

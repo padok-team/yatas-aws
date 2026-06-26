@@ -16,12 +16,12 @@ func Test_checkIfDocumentDBBackupEnabled(t *testing.T) {
 		wantOK   bool
 	}{
 		{
-			name: "backup retention >= 1 day",
+			name: "backup retention >= 30 days",
 			clusters: []types.DBCluster{
 				{
 					DBClusterIdentifier:   aws.String("my-cluster"),
 					DBClusterArn:          aws.String("arn:aws:rds:us-east-1:123456789012:cluster:my-cluster"),
-					BackupRetentionPeriod: aws.Int32(1),
+					BackupRetentionPeriod: aws.Int32(30),
 				},
 			},
 			wantOK: true,

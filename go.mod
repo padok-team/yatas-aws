@@ -2,7 +2,7 @@ module github.com/padok-team/yatas-aws
 
 go 1.25.0
 
-toolchain go1.26.6
+toolchain go1.26.7
 
 require (
 	github.com/aws/aws-sdk-go-v2 v1.43.6

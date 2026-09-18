@@ -74,8 +74,8 @@ github.com/aws/aws-sdk-go-v2/service/ssooidc v1.39.0 h1:crWKPeGYTBTuBxQ3p73kjfJv
 github.com/aws/aws-sdk-go-v2/service/ssooidc v1.39.0/go.mod h1:HjjZVhaBz0JBR/kbWKThmNDhFKS7y6EURuk493tJk9Y=
 github.com/aws/aws-sdk-go-v2/service/sts v1.46.0 h1:IZ63JdogSNNjex/jsODNv7jGDcO/xJYd9FsgyfCsp1g=
 github.com/aws/aws-sdk-go-v2/service/sts v1.46.0/go.mod h1:I+rwAf3spG5dITBaAo3xXRowk8kiOhtU1kYxfvCTC44=
-github.com/aws/smithy-go v1.28.1 h1:R/nXH00c8qcfCzQVELtRw+eLQWtzv+VAIEFJ1/xxXlQ=
-github.com/aws/smithy-go v1.28.1/go.mod h1:YE2RhdIuDbA5E5bTdciG9KrW3+TiEONeUWCqxX9i1Fc=
+github.com/aws/smithy-go v1.28.2 h1:myhcykQcatTul2B/zITjDk203G7t0awUAs1hVry5Bvg=
+github.com/aws/smithy-go v1.28.2/go.mod h1:YE2RhdIuDbA5E5bTdciG9KrW3+TiEONeUWCqxX9i1Fc=
 github.com/bufbuild/protocompile v0.14.1 h1:iA73zAf/fyljNjQKwYzUHD6AD4R8KMasmwa/FBatYVw=
 github.com/bufbuild/protocompile v0.14.1/go.mod h1:ppVdAIhbr2H8asPk6k4pY7t9zB1OU5DoEw9xY/FUi1c=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

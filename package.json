@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/padok-team/yatas-aws#readme",
   "devDependencies": {
-    "standard-version": "9.5.0"
+    "commit-and-tag-version": "9.5.0"
   },
   "license": "Apache-2.0"
 }

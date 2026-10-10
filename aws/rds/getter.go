@@ -36,12 +36,12 @@ func GetListRDS(svc RDSGetObjectAPI) []types.DBInstance {
 		if resp.Marker != nil {
 			params.Marker = resp.Marker
 			resp, err = svc.DescribeDBInstances(context.TODO(), params)
-			instances = append(instances, resp.DBInstances...)
 			if err != nil {
 				logger.Logger.Error(err.Error())
 				// Return an empty list of instances
 				return []types.DBInstance{}
 			}
+			instances = append(instances, resp.DBInstances...)
 		} else {
 			break
 		}
@@ -54,22 +54,22 @@ func GetListDBClusters(svc RDSGetObjectAPI) []types.DBCluster {
 	params := &rds.DescribeDBClustersInput{}
 	var clusters []types.DBCluster
 	resp, err := svc.DescribeDBClusters(context.TODO(), params)
-	clusters = append(clusters, resp.DBClusters...)
 	if err != nil {
 		logger.Logger.Error(err.Error())
 		// Return an empty list of instances
 		return []types.DBCluster{}
 	}
+	clusters = append(clusters, resp.DBClusters...)
 	for {
 		if resp.Marker != nil {
 			params.Marker = resp.Marker
 			resp, err = svc.DescribeDBClusters(context.TODO(), params)
-			clusters = append(clusters, resp.DBClusters...)
 			if err != nil {
 				logger.Logger.Error(err.Error())
 				// Return an empty list of instances
 				return []types.DBCluster{}
 			}
+			clusters = append(clusters, resp.DBClusters...)
 		} else {
 			break
 		}
@@ -111,22 +111,22 @@ func GetListRDSSnapshots(svc RDSGetObjectAPI) []types.DBSnapshot {
 	params := &rds.DescribeDBSnapshotsInput{}
 	var snapshots []types.DBSnapshot
 	resp, err := svc.DescribeDBSnapshots(context.TODO(), params)
-	snapshots = append(snapshots, resp.DBSnapshots...)
 	if err != nil {
 		logger.Logger.Error(err.Error())
 		// Return an empty list of instances
 		return []types.DBSnapshot{}
 	}
+	snapshots = append(snapshots, resp.DBSnapshots...)
 	for {
 		if resp.Marker != nil {
 			params.Marker = resp.Marker
 			resp, err = svc.DescribeDBSnapshots(context.TODO(), params)
-			snapshots = append(snapshots, resp.DBSnapshots...)
 			if err != nil {
 				logger.Logger.Error(err.Error())
 				// Return an empty list of instances
 				return []types.DBSnapshot{}
 			}
+			snapshots = append(snapshots, resp.DBSnapshots...)
 		} else {
 			break
 		}
@@ -229,6 +229,7 @@ func GetLogFilePortion(svc RDSGetObjectAPI, dbInstanceIdentifier string, logFile
 	resp, err := svc.DownloadDBLogFilePortion(context.TODO(), params)
 	if err != nil {
 		logger.Logger.Error(err.Error())
+		return ""
 	}
 
 	return *resp.LogFileData
@@ -238,22 +239,22 @@ func GetListDBClusterSnapshots(svc RDSGetObjectAPI) []types.DBClusterSnapshot {
 	params := &rds.DescribeDBClusterSnapshotsInput{}
 	var snapshots []types.DBClusterSnapshot
 	resp, err := svc.DescribeDBClusterSnapshots(context.TODO(), params)
-	snapshots = append(snapshots, resp.DBClusterSnapshots...)
 	if err != nil {
 		logger.Logger.Error(err.Error())
 		// Return an empty list of instances
 		return []types.DBClusterSnapshot{}
 	}
+	snapshots = append(snapshots, resp.DBClusterSnapshots...)
 	for {
 		if resp.Marker != nil {
 			params.Marker = resp.Marker
 			resp, err = svc.DescribeDBClusterSnapshots(context.TODO(), params)
-			snapshots = append(snapshots, resp.DBClusterSnapshots...)
 			if err != nil {
 				logger.Logger.Error(err.Error())
 				// Return an empty list of instances
 				return []types.DBClusterSnapshot{}
 			}
+			snapshots = append(snapshots, resp.DBClusterSnapshots...)
 		} else {
 			break
 		}

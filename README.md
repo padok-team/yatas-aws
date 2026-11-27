@@ -165,6 +165,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 - AWS_CFT_003 Cloudfronts queries are logged
 - AWS_CFT_004 Cloudfronts are logging Cookies
 - AWS_CFT_005 Cloudfronts are protected by an ACL
+- AWS_CFT_006 Cloudfronts connect to custom origins using HTTPS with TLS 1.2 minimum
 
 ### CloudTrail
 
@@ -215,7 +216,8 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 ### ELB
 
 - AWS_ELB_001 ELB have access logs enabled
-- AWS_ELB_002 ALB only allows HTTPS traffic
+- AWS_ELB_002 ALB only allows HTTPS traffic with TLS 1.2 minimum
+- AWS_ELB_003 NLB TLS listeners enforce TLS 1.2 minimum
 
 ### GuardDuty
 

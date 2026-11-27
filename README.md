@@ -133,7 +133,7 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 
 <!-- BEGIN_YATAS -->
 
-## AWS - 96 Checks
+## AWS - 95 Checks
 
 ### AWS Certificate Manager
 
@@ -276,10 +276,6 @@ The available log levels are: `debug`, `info`, `warn`, `error`, `fatal`, `panic`
 ### SSM
 
 - AWS_SSM_001 EC2 bastion instance have audit logs enabled
-
-### IAM Identity Center (SSO)
-
-- AWS_SSO_001 IAM Identity Center enforces MFA
 
 ### Volume
 

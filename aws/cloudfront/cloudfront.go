@@ -22,6 +22,7 @@ func RunChecks(wa *sync.WaitGroup, s aws.Config, c *commons.Config, queue chan [
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_CFT_003", CheckIfStandardLogginEnabled)(checkConfig, s2c, "AWS_CFT_003")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_CFT_004", CheckIfCookieLogginEnabled)(checkConfig, s2c, "AWS_CFT_004")
 	go commons.CheckTest(checkConfig.Wg, c, "AWS_CFT_005", CheckIfACLUsed)(checkConfig, s2c, "AWS_CFT_005")
+	go commons.CheckTest(checkConfig.Wg, c, "AWS_CFT_006", CheckIfOriginHTTPSTLS12)(checkConfig, d, "AWS_CFT_006")
 
 	go func() {
 		for t := range checkConfig.Queue {
